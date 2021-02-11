@@ -1,82 +1,98 @@
-import java.util.*;
-public class pelaaja {
+import java.util.Comparator;
+
+public class Pelaaja {
 
     private String nimi;
-    private int pelinro;
-    private int voitot;
-    private int tappiot;
+    private int peliNro;
+    private int voitto;
+    private int tappio;
     private int pisteet;
     private int kokonaispisteet;
-    private boolean pudonnut; // totuusarvo onko pelaaja vielä pelissä.
+    private boolean pelissa; // totuusarvo onko pelaaja vielä pelissä.
 
-    public pelaaja (String nimi) {
+    public Pelaaja(String nimi) {
         this.nimi=nimi;
-        this.pudonnut = false;
+        this.pisteet=0;
+        this.pelissa = true;
     }
-    //getter nimelle
+
     public String getNimi() {
         return nimi;
     }
-    //setteri Nimelle
+
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
-    //setter pelinumerolle
-    public int getPelinro() {
-        return pelinro;
+
+    public int getPeliNro() {
+        return peliNro;
     }
-    //setter pelinumerolle
-    public void setPelinro(int pelinro) {
-        this.pelinro = pelinro;
+
+    public void setPeliNro(int peliNro) {
+        this.peliNro = peliNro;
     }
-    //getter voitoille
-    public int getVoitot() {
-        return voitot;
+
+    public int getVoitto() {
+        return voitto;
     }
-    //setter voitoille
-    public void setVoitot(int voitot) {
-        this.voitot = voitot;
+
+    public int getTappio() {
+        return tappio;
     }
-    //getterr Tappioille
-    public int getTappiot() {
-        return tappiot;
-    }
-    //setter Tappioille
-    public void setTappiot(int tappiot) {
-        this.tappiot = tappiot;
-    }
-    //getter pisteille
+
     public int getPisteet() {
         return pisteet;
     }
-    //setter pisteille
+    // lisätään pelaajalle pisteitä
+    //jos pisteet ylittävät 60, asetetaan pisteiksi 60
     public void setPisteet(int pisteet) {
-        this.pisteet = pisteet;
+        if(this.pisteet + pisteet >= 60){
+            this.pisteet = 60;
+        } else {
+            this.pisteet += pisteet;
+        }
     }
-    //getter kokonaispisteille
+
     public int getKokonaispisteet() {
         return kokonaispisteet;
     }
-    //setter kokonaispisteille
+    // HUOM! muokkaa kokonaispisteiden laskemiseksi
     public void setKokonaispisteet(int kokonaispisteet) {
         this.kokonaispisteet = kokonaispisteet;
     }
-    //getter
-    public boolean isPudonnut() {
-        return pudonnut;
+    // lisätään pelaajalle voitto
+    public void lisaaVoitto(){
+        this.voitto += 1;
     }
-    //setter totuusarvolle onko pelaaja pudonnut kilpailusta
-    public void setPudonnut(boolean pudonnut) {
-        this.pudonnut = pudonnut;
+    // lisätään pelaajalle tappio
+    // jos 2 tappiota, poistetaan pelaaja pelistä
+    public void lisaaTappio(){
+        this.tappio += 1;
+        if (tappio == 2){
+            this.setPelissa(false);
+        }
+    }
+
+    public boolean isPelissa() {
+        return pelissa;
+    }
+
+    public void setPelissa(boolean pelissa) {
+        this.pelissa = pelissa;
     }
 
     @Override
     public String toString() {
-        return "pelaaja{" +
-                "nimi='" + nimi + '\'' +
-                ", pelinro=" + pelinro +
-                '}';
+        return nimi + " | " + peliNro + " | " + voitto + " | " + tappio + " | ";
     }
+
+    //tällä vertaillaan kahden pelaajan eroa, jotta pelaajat saatiin voittojen mukaan järjestykseen
+    public static Comparator <Pelaaja> sijoitusNro = new Comparator<Pelaaja>() {
+        public int compare(Pelaaja p1, Pelaaja p2) {
+            int eka = p1.getVoitto();
+            int toka = p2.getVoitto();
+
+            return toka-eka;
+        }
+    };
 }
-
-
