@@ -89,4 +89,10 @@ public class Pelaajataulu {
         temp.clear();
         System.out.println("");
     }
+    
+    //Palauttaa kaikki pelaajat
+    public ArrayList<Pelaaja> getPelaajataulu() {
+        return pelaajat;
+    }
+
 }

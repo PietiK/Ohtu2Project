@@ -2,54 +2,56 @@ import java.util.*;
 
 public class Turnaus {
 	
-	private ArrayList<ottelu> ottelut;
-	private pelaaja voittaja;
-	private pelaaja toinen;
-	private pelaaja kolmas;
+	private ArrayList<Ottelu> ottelut;
+	private Pelaajataulu pelaajat = new Pelaajataulu();
+	/*private Pelaaja voittaja;
+	private Pelaaja toinen;
+	private Pelaaja kolmas;*/
 	
-	public Turnaus(ArrayList<ottelu> lista) {
+	public Turnaus(ArrayList<Ottelu> lista) {
 		this.ottelut = lista;
 	}
 	
-	public Turnaus(ArrayList<ottelu> lista, pelaaja voittaja, pelaaja toinen, pelaaja kolmas) {
-		this.ottelut = lista;
-		this.voittaja = voittaja;
-		this.toinen = toinen;
-		this.kolmas = kolmas;
+	public Turnaus(ArrayList<Ottelu> ottelulista, Pelaajataulu pelaajalista) {
+		this.ottelut = ottelulista;
+		this.pelaajat = pelaajalista;
 	}
 	
-	public void lisaaOttelu(ottelu o) {
+	public void lisaaOttelu(Ottelu o) {
 		this.ottelut.add(o);
 	}
 	
-	public void setVoittaja(pelaaja voittaja) {
-		this.voittaja = voittaja;
-	}
-	
-	public void setToinen(pelaaja toinen) {
-		this.toinen = toinen;
-	}
-	
-	public void setKolmas(pelaaja kolmas) {
-		this.kolmas = kolmas;
-	}
-	
-	public ArrayList<ottelu> getOttelut() {
+	public ArrayList<Ottelu> getOttelut() {
 		return ottelut;
 	}
 	
-	public pelaaja getVoittaja() {
+	public ArrayList<Pelaaja> getPelaajat() {
+		return pelaajat.getPelaajataulu();
+	}
+
+	/*
+	public void setVoittaja(Pelaaja voittaja) {
+		this.voittaja = voittaja;
+	}
+	
+	public void setToinen(Pelaaja toinen) {
+		this.toinen = toinen;
+	}
+	
+	public void setKolmas(Pelaaja kolmas) {
+		this.kolmas = kolmas;
+	}
+	
+	public Pelaaja getVoittaja() {
 		return voittaja;
 	}
 	
-	public pelaaja getToinen() {
+	public Pelaaja getToinen() {
 		return toinen;
 	}
 	
-	public pelaaja getKolmas() {
+	public Pelaaja getKolmas() {
 		return kolmas;
-	}
-	
-	
+	}*/
 	
 }
