@@ -1,6 +1,12 @@
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+/*
+-------------------------------------------------------------------
+TÄÄ LUOKKA ON TURHA KOSKA KOODI ON MYÖS Pelaajataulu.java -LUOKASSA
+-------------------------------------------------------------------
+*/
+
 public class PelaajaNumerot {
 	//Metodi joka jakaa pelaajille pelinumerot
 	public void arvoNumerot(Turnaus t) {
