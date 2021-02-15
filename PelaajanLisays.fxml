@@ -11,23 +11,23 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="89.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää pelaajia" textAlignment="CENTER" wrappingWidth="253.63623046875">
+      <Text id="LisääPelaajiaText" layoutX="89.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää pelaajia" textAlignment="CENTER" wrappingWidth="253.63623046875">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </Text>
-      <TextField layoutX="100.0" layoutY="117.0" prefHeight="34.0" prefWidth="214.0" />
-      <Button layoutX="349.0" layoutY="121.0" mnemonicParsing="false" text="Lisää">
+      <TextField id="TextField" layoutX="100.0" layoutY="117.0" prefHeight="34.0" prefWidth="214.0" />
+      <Button id="LisääBtn" layoutX="349.0" layoutY="121.0" mnemonicParsing="false" text="Lisää">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
       </Button>
       <TableView layoutX="8.0" layoutY="184.0" prefHeight="222.0" prefWidth="438.0">
         <columns>
-          <TableColumn prefWidth="366.0" text="Pelaajat" />
-          <TableColumn prefWidth="71.0" text="C2" />
+          <TableColumn id="TableColmunPelaajat" prefWidth="366.0" text="Pelaajat" />
+          <TableColumn id="TableColmunMäärä" prefWidth="71.0" text="C2" />
         </columns>
       </TableView>
-      <Button layoutX="165.0" layoutY="430.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="124.0" text="Aloita turnaus" />
+      <Button id="AloitaTurnausBtn" layoutX="165.0" layoutY="430.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="124.0" text="Aloita turnaus" />
    </children>
 </AnchorPane>
