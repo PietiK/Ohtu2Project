@@ -10,11 +10,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<<<<<<< HEAD
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1 " fx:controller="Controller">
-=======
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
->>>>>>> fd145655bf61d2aa7017ab9b533d491a64f31930
    <children>
       <Text id="TervetuloaText" fx:id="TervetuloaTxt" fontSmoothingType="LCD" layoutX="125.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tervetuloa!">
          <font>
