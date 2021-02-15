@@ -10,27 +10,31 @@
 <?import javafx.scene.text.Text?>
 
 
+<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1 " fx:controller="Controller">
+=======
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> fd145655bf61d2aa7017ab9b533d491a64f31930
    <children>
-      <Text id="TervetuloaText" fontSmoothingType="LCD" layoutX="125.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tervetuloa!">
+      <Text id="TervetuloaText" fx:id="TervetuloaTxt" fontSmoothingType="LCD" layoutX="125.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tervetuloa!">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </Text>
-      <Button id="AloitaPeliBtn" layoutX="178.0" layoutY="150.0" mnemonicParsing="false" text="Aloita peli">
+      <Button id="AloitaPeliBtn" fx:id="AloitaPeliBtn" layoutX="178.0" layoutY="150.0" mnemonicParsing="false" text="Aloita peli">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
       </Button>
-      <ImageView id="Alotuskuva" fitHeight="305.0" fitWidth="543.0" layoutX="-2.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="Aloituskuva" fx:id="Kuva" fitHeight="305.0" fitWidth="543.0" layoutX="-2.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Downloads/325636352_3560703aa0_e.jpg" />
          </image>
       </ImageView>
-      <MenuButton id="ValitsePeliMenuBTN" layoutX="155.0" layoutY="94.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Valitse peli">
+      <MenuButton id="ValitsePeliMenuBTN" fx:id="ValitsePeliMenuBtn" layoutX="155.0" layoutY="94.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Valitse peli">
         <items>
-          <MenuItem mnemonicParsing="false" text="Kaisa" />
-          <MenuItem mnemonicParsing="false" text="Snooker" />
+          <MenuItem fx:id="MenuitemKaisa" mnemonicParsing="false" text="Kaisa" />
+          <MenuItem fx:id="MenuItemSnooker" mnemonicParsing="false" text="Snooker" />
         </items>
       </MenuButton>
    </children>
