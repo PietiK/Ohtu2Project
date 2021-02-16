@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Pelaaja {
@@ -9,11 +10,13 @@ public class Pelaaja {
     private int pisteet;
     private int kokonaispisteet;
     private boolean pelissa; // totuusarvo onko pelaaja vielä pelissä.
+    private ArrayList<Pelaaja> pelattu; // lista johon lisätään pelaajat joita vastaan on jo pelattu
 
     public Pelaaja(String nimi) {
         this.nimi=nimi;
         this.pisteet=0;
         this.pelissa = true;
+        this.pelattu = new ArrayList<>();
     }
 
     public String getNimi() {
@@ -80,7 +83,20 @@ public class Pelaaja {
     public void setPelissa(boolean pelissa) {
         this.pelissa = pelissa;
     }
+    public ArrayList<Pelaaja> getPelattu(){
+        return pelattu;
+    }
 
+    // Lisätään pelaaja pelattujen listaan
+    public void setPelattu(Pelaaja pelaaja){
+        this.pelattu.add(pelaaja);
+    }
+
+    public void printPelattu (Pelaaja pelaaja){
+        for (Pelaaja p : pelattu){
+            System.out.print(p.getNimi() + ", ");
+        }
+    }
     @Override
     public String toString() {
         return nimi + " | " + peliNro + " | " + voitto + " | " + tappio + " | ";

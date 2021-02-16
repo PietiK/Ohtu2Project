@@ -1,5 +1,4 @@
-import java.sql.SQLOutput;
-import java.util.*;
+import java.util.Scanner;
 
 public class Ottelu {
 

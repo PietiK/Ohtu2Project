@@ -7,11 +7,12 @@ public class Pelaajataulu {
     private ArrayList<Pelaaja> pelaajat;
     private ArrayList<Pelaaja> pudonneet;
     int i;
+    List<Ottelu> kierros = new ArrayList<>();
 
     public Pelaajataulu() {
         pelaajat = new ArrayList<>();
         pudonneet = new ArrayList<>();
-        i = 0;
+        //i = 0;
     }
 
     //Lisätään pelaaja
@@ -101,6 +102,46 @@ public class Pelaajataulu {
         return pelaajat;
     }
 
+    // Jaetaan ottelupareja
+    // HUOM! Puuttuu vielä, miten huomioida että pelaajat ovat jo pelanneet vastakkain
+    public void jaaOtteluparit() {
+        // Jos pelaajia on pariton määrä, lisätään pelaaja jolle eie löydy paria tälle listaan
+        List<Pelaaja> ylimaarainen = new ArrayList<>();
+
+        if (pelaajat.size() > 1) {
+            for (int i = 0; i < pelaajat.size(); i++){
+                for (int j = 0; j < pelaajat.size(); j++) {
+                    // Tarkistetaan ovatko pelaajat pelanneet toisiaan vastaan
+                    if (pelaajat.get(i).equals(pelaajat.get(j)) || pelaajat.get(i).getPelattu().contains(pelaajat.get(j))) {
+                    } else {
+                        kierros.add(new Ottelu(pelaajat.get(i), pelaajat.get(j))); // Lisätään pelaajat otteluun
+                        pelaajat.get(i).setPelattu(pelaajat.get(j)); // Lisätään vastustaja pelattujen listalle
+                        pelaajat.get(j).setPelattu(pelaajat.get(i)); // Lisätään vastustaja pelattujen listalle
+                        pelaajat.remove(pelaajat.get(j)); // Poistetaan arvotut pelaajat listalta
+                        pelaajat.remove(pelaajat.get(i)); // Poistetaan arvotut pelaajat listalta
+                        // Nollataan indeksit
+                        i = 0;
+                        j = 0;
+                    }
+                }
+            }
+        }
+
+        //Tulostetaan kierroksen ottelut
+        for (Ottelu o : kierros) {
+            System.out.println(o.toString());
+        }
+        System.out.println("");
+
+        // Tuodaan pelaajat takaisin pelaajat listaan
+        // Ensin tuodaan otteluparin eka pelaaja ja sitten toinen
+        for (Ottelu o : kierros) {
+            pelaajat.add(o.getPelaaja1());
+            pelaajat.add(o.getPelaaja2());
+        }
+        kierros.clear();
+    }
+
     //Metodi joka jakaa pelaajille pelinumerot
 	public void arvoNumerot(ArrayList<Pelaaja> pelaajat) {
 		
@@ -130,5 +171,4 @@ public class Pelaajataulu {
         taulu[i] = a;
       }
     }
-
 }
