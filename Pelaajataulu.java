@@ -103,7 +103,7 @@ public class Pelaajataulu {
     }
 
     // Jaetaan ottelupareja
-    // HUOM! Puuttuu vielä, miten huomioida että pelaajat ovat jo pelanneet vastakkain
+    // HUOM! Puuttuu vielä, miten huomioidaan jos kaikki ovat jo pelanneet toisiaan vastaan eli joutuvat pelaamaan uudestaan keskenään
     public void jaaOtteluparit() {
         // Jos pelaajia on pariton määrä, lisätään pelaaja jolle eie löydy paria tälle listaan
         List<Pelaaja> ylimaarainen = new ArrayList<>();
