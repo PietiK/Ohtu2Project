@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane fx:id="Anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="Anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LisaysController">
    <children>
       <Text id="LisääPelaajiaText" fx:id="LisääPelaajiaTxt" layoutX="89.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lisää pelaajia" textAlignment="CENTER" wrappingWidth="253.63623046875">
          <font>

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" style="-fx-background-color: #B3C6DC;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" style="-fx-background-color: #B3C6DC;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AloitusController">
    <children>
       <VBox layoutY="29.0" opacity="0.62" prefHeight="101.0" prefWidth="455.0" style="-fx-background-color: #EAEDF2;">
          <effect>
@@ -40,7 +40,7 @@
       </ImageView>
       <VBox layoutX="107.0" layoutY="171.0" prefHeight="275.0" prefWidth="241.0" spacing="30.0">
          <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" text="Uusi peli " textAlignment="CENTER" textFill="#111111">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#SiirryPelinLuontiin" text="Uusi peli " textAlignment="CENTER" textFill="#111111">
                <font>
                   <Font name="Bodoni MT" size="25.0" />
                </font>
