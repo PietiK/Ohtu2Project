@@ -1,37 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" style="-fx-background-color: #B3C6DC;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text id="TervetuloaText" fx:id="TervetuloaTxt" fontSmoothingType="LCD" layoutX="125.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tervetuloa!">
-         <font>
-            <Font name="Arial" size="36.0" />
-         </font>
-      </Text>
-      <Button id="AloitaPeliBtn" fx:id="AloitaPeliBtn" layoutX="178.0" layoutY="150.0" mnemonicParsing="false" text="Aloita peli">
-         <font>
-            <Font name="Arial" size="13.0" />
-         </font>
-      </Button>
-      <ImageView id="Aloituskuva" fx:id="Kuva" fitHeight="305.0" fitWidth="543.0" layoutX="-2.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+      <VBox layoutY="29.0" opacity="0.62" prefHeight="101.0" prefWidth="455.0" style="-fx-background-color: #EAEDF2;">
+         <effect>
+            <Glow>
+               <input>
+                  <ColorAdjust />
+               </input>
+            </Glow>
+         </effect>
+         <children>
+            <Label contentDisplay="CENTER" text="TERVETULOA" textFill="#959ce8">
+               <font>
+                  <Font name="Bodoni MT" size="48.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="70.0" top="20.0" />
+         </padding>
+      </VBox>
+      <ImageView id="Aloituskuva" fx:id="Kuva" fitHeight="202.0" fitWidth="543.0" layoutX="-2.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Downloads/325636352_3560703aa0_e.jpg" />
          </image>
       </ImageView>
-      <MenuButton id="ValitsePeliMenuBTN" fx:id="ValitsePeliMenuBtn" layoutX="155.0" layoutY="94.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Valitse peli">
-        <items>
-          <MenuItem fx:id="MenuitemKaisa" mnemonicParsing="false" text="Kaisa" />
-          <MenuItem fx:id="MenuItemSnooker" mnemonicParsing="false" text="Snooker" />
-        </items>
-      </MenuButton>
+      <VBox layoutX="107.0" layoutY="171.0" prefHeight="275.0" prefWidth="241.0" spacing="30.0">
+         <children>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" text="Uusi peli " textAlignment="CENTER" textFill="#111111">
+               <font>
+                  <Font name="Bodoni MT" size="25.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="133.0" text="Tulevat">
+               <font>
+                  <Font name="Bodoni MT" size="24.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="133.0" text="Menneet" textFill="#0c0c0c">
+               <font>
+                  <Font name="Bodoni MT" size="24.0" />
+               </font>
+               <effect>
+                  <Glow level="0.0" />
+               </effect>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets right="12.0" top="10.0" />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <padding>
+            <Insets bottom="40.0" left="60.0" right="40.0" top="40.0" />
+         </padding>
+         <effect>
+            <Glow />
+         </effect>
+      </VBox>
    </children>
 </AnchorPane>
