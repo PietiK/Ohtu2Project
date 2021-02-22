@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="TulevatPelitTxt" layoutX="172.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulevat pelit">
+         <font>
+            <Font name="Arial" size="36.0" />
+         </font>
+      </Text>
+      <TableView fx:id="TableView" layoutX="66.0" layoutY="129.0" prefHeight="334.0" prefWidth="252.0">
+        <columns>
+          <TableColumn fx:id="TableColumnPelityyppi" prefWidth="122.0" text="Pelityyppi" />
+          <TableColumn fx:id="TableColumnPäivämäärä" prefWidth="129.0" text="Päivämäärä" />
+        </columns>
+      </TableView>
+      <Button fx:id="PelaaBtn" layoutX="386.0" layoutY="175.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="73.0" text="Pelaa">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="MuokkaaBtn" layoutX="384.0" layoutY="240.0" mnemonicParsing="false" text="Muokkaa">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="PeruPeliBtn" layoutX="385.0" layoutY="308.0" mnemonicParsing="false" text="Peru peli">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="TakaisinBtn" layoutX="73.0" layoutY="495.0" mnemonicParsing="false" text="Takaisin">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
