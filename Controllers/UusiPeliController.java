@@ -7,8 +7,10 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import main.Pelaaja;
 
 public class UusiPeliController {
 
@@ -28,7 +30,7 @@ public class UusiPeliController {
     private TableView<?> TableView;
 
     @FXML
-    private TableColumn<?, ?> TablecolumPelaajat;
+    private TableColumn<Pelaaja, String> TablecolumPelaajat;
 
     @FXML
     private TableColumn<?, ?> TableColumnLuku;
@@ -47,5 +49,10 @@ public class UusiPeliController {
 
     @FXML
     private Button TakaisinBtn;
+
+    @FXML
+    void initialize() {
+        TablecolumPelaajat.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+    }
 
 }
