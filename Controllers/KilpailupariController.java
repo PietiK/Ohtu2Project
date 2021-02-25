@@ -2,8 +2,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import main.Pelaaja;
 
 public class KilpailupariController{
 
@@ -17,10 +19,10 @@ public class KilpailupariController{
     private TableView<?> TableView;
 
     @FXML
-    private TableColumn<?, ?> TableColmun1;
+    private TableColumn<Pelaaja, String> TableColmun1;
 
     @FXML
-    private TableColumn<?, ?> TableColumn2;
+    private TableColumn<Pelaaja, String> TableColumn2;
 
     @FXML
     private Button TakaisinBtn;
@@ -28,4 +30,9 @@ public class KilpailupariController{
     @FXML
     private Button SeuraavaBtn;
 
+    @FXML
+    void initialize() {
+        TableColmun1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+        TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+    }
 }
