@@ -41,7 +41,7 @@ public class AloitusController {
     @FXML
     public void SiirryPelinLuontiin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/UusiPeli.fxml"));
+        loader.setLocation(getClass().getResource("/main/UusiPeli.fxml"));
         Parent AloitusNayttoP = loader.load();
         Scene UusipeliS = new Scene(AloitusNayttoP);
 
