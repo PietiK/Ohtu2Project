@@ -51,4 +51,16 @@ public class AloitusController {
         window.show();
     }
 
+    @FXML
+    public void SiirryTuleviinPeleihin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/TulevatPelit.fxml"));
+        Parent AloitusNayttoP = loader.load();
+        Scene TulevatpelitS = new Scene(AloitusNayttoP);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(TulevatpelitS);
+        window.show();
+    }
 }

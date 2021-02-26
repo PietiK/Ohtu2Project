@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TulevatPelitController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TulevatPelitController">
    <children>
       <Text fx:id="TulevatPelitTxt" layoutX="172.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulevat pelit">
          <font>
@@ -35,7 +35,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="TakaisinBtn" layoutX="73.0" layoutY="495.0" mnemonicParsing="false" text="Takaisin">
+      <Button fx:id="TakaisinBtn" layoutX="73.0" layoutY="495.0" mnemonicParsing="false" onAction="#SiirryTakaisin" text="Takaisin">
          <font>
             <Font name="Arial" size="14.0" />
          </font>

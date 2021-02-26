@@ -45,7 +45,7 @@
                   <Font name="Bodoni MT" size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="133.0" text="Tulevat">
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="133.0" onAction="#SiirryTuleviinPeleihin" text="Tulevat">
                <font>
                   <Font name="Bodoni MT" size="24.0" />
                </font>
