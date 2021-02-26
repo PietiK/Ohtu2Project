@@ -20,12 +20,17 @@
           <TableColumn fx:id="TableColumn2" prefWidth="170.0" />
         </columns>
       </TableView>
-      <Button fx:id="TakaisinBtn" layoutX="67.0" layoutY="483.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" text="Takaisin" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="404.0" AnchorPane.topAnchor="483.0">
+      <Button fx:id="TakaisinBtn" layoutX="67.0" layoutY="483.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" text="Takaisin" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="430.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="SeuraavaBtn" layoutX="405.0" layoutY="483.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" text="Seuraava" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="404.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="483.0">
+      <Button fx:id="SeuraavaBtn" layoutX="430.0" layoutY="483.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" text="Seuraava" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="483.0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="PelaaBtn" layoutX="236.0" layoutY="483.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" text="Pelaa" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="236.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
