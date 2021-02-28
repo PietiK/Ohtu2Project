@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="R02"/>
-	<classpathentry kind="lib" path="C:/Users/pieti/ohtu2/R02/lib/sqlite-jdbc-3.34.0.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
