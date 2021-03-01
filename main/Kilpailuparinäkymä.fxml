@@ -30,7 +30,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="PelaaBtn" layoutX="236.0" layoutY="483.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" text="Pelaa" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="236.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="483.0">
+      <Button fx:id="PelaaBtn" layoutX="236.0" layoutY="483.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="27.0" prefWidth="87.0" text="Pelaa" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="236.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
