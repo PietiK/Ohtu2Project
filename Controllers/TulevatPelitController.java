@@ -64,4 +64,17 @@ public class TulevatPelitController {
         window.setScene(AloitusS);
         window.show();
     }
+
+    @FXML
+    public void Pelaa(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/Kilpailuparinäkymä.fxml"));
+        Parent AloitusNayttoP = loader.load();
+        Scene PariS = new Scene(AloitusNayttoP);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(PariS);
+        window.show(); 
+    }
 }

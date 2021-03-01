@@ -1,4 +1,6 @@
-import java.sql.Connection;  
+package main;
+
+import java.sql.Connection;
 import java.sql.DriverManager;  
 import java.sql.SQLException;  
 

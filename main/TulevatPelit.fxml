@@ -20,7 +20,7 @@
           <TableColumn fx:id="TableColumnPäivämäärä" prefWidth="129.0" text="Päivämäärä" />
         </columns>
       </TableView>
-      <Button fx:id="PelaaBtn" layoutX="386.0" layoutY="175.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="73.0" text="Pelaa">
+      <Button fx:id="PelaaBtn" layoutX="386.0" layoutY="175.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="27.0" prefWidth="73.0" text="Pelaa">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
