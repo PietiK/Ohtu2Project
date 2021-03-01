@@ -19,7 +19,7 @@
          </font>
       </Text>
       <TextField id="TextField" fx:id="TextField" layoutX="134.0" layoutY="417.0" prefHeight="34.0" prefWidth="278.0" />
-      <Button id="LisääBtn" fx:id="LisääBtn" layoutX="448.0" layoutY="421.0" mnemonicParsing="false" text="Lisää">
+      <Button id="LisääBtn" fx:id="LisääBtn" layoutX="448.0" layoutY="421.0" mnemonicParsing="false" onAction="#LisaaPelaaja" text="Lisää">
          <font>
             <Font name="Arial" size="13.0" />
          </font>

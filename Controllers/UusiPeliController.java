@@ -1,7 +1,11 @@
 package Controllers;
 
-import java.io.IOException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.beans.value.ChangeListener;
 
+import java.io.IOException;
+import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +23,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Pelaaja;
+import main.Tietokanta;
+
+import java.sql.*;
 
 public class UusiPeliController {
 
@@ -35,11 +42,22 @@ public class UusiPeliController {
     private Button LisääBtn;
 
     @FXML
-    private TableView<?> TableView;
+    private TableView<Pelaaja> TableView;
 
     @FXML
     private TableColumn<Pelaaja, String> TablecolumPelaajat;
 
+    @FXML
+    void initialize() {
+        TablecolumPelaajat.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+        TableView.setItems(Tietokanta.haePelaajat());
+
+        TableView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observableValue, oldValue, newValue) -> {
+            if(TableView.getSelectionModel().getSelectedItem() != null) {
+                Pelaaja pelaaja = TableView.getSelectionModel().getSelectedItem();
+            }
+        });
+    }
     @FXML
     private TableColumn<?, ?> TableColumnLuku;
 
@@ -58,10 +76,7 @@ public class UusiPeliController {
     @FXML
     private Button TakaisinBtn;
 
-    @FXML
-    void initialize() {
-        TablecolumPelaajat.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
-    }
+
 
     @FXML
     public void SiirryTakaisin(ActionEvent event) throws IOException {
@@ -75,4 +90,14 @@ public class UusiPeliController {
         window.setScene(UusipeliS);
         window.show();
     }
+    @FXML
+    public void LisaaPelaaja(ActionEvent event) throws IOException {
+        String nimi = TextField.getText();
+        System.out.println(nimi);
+        Pelaaja temp = new Pelaaja(nimi);
+        Tietokanta.LisaaPelaaja(temp);
+        initialize();
+    }
+
+
 }
