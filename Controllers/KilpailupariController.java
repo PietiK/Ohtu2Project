@@ -2,6 +2,7 @@ package Controllers;
 
 import java.io.IOException;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Pelaaja;
+import main.Tietokanta;
+import main.Ottelu;
 
 public class KilpailupariController{
 
@@ -26,7 +29,7 @@ public class KilpailupariController{
     private Text EnsimmäinenTxt;
 
     @FXML
-    private TableView<?> TableView;
+    private TableView<Ottelu> TableView;
 
     @FXML
     private TableColumn<Pelaaja, String> TableColmun1;
@@ -40,10 +43,23 @@ public class KilpailupariController{
     @FXML
     private Button SeuraavaBtn;
 
+    //HUOM! KESKEN
+    //
+    //
     @FXML
     void initialize() {
-        TableColmun1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
-        TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+        TableColmun1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("Pelaaja1"));
+        TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("Pelaaja2"));
+        TableView.setItems(Tietokanta.haeKilpailuparinPelaajat());
+
+        TableView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observableValue, oldValue, newValue) -> {
+            if (TableView.getSelectionModel().getSelectedItem() != null) {
+                Ottelu ottelu = TableView.getSelectionModel().getSelectedItem();
+                //Pelaaja eka = ottelu.getPelaaja1();
+                //Pelaaja toka = ottelu.getPelaaja2();
+
+            }
+        });
     }
 
     
@@ -58,5 +74,18 @@ public class KilpailupariController{
 
         window.setScene(PisteS);
         window.show(); 
+    }
+    //siirry TulevatPelit näkymään
+    @FXML
+    public void SiirryTakaisin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/TulevatPelit.fxml"));
+        Parent AloitusNayttoP = loader.load();
+        Scene AloitusS = new Scene(AloitusNayttoP);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(AloitusS);
+        window.show();
     }
 }

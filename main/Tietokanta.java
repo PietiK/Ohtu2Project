@@ -28,13 +28,10 @@ public class Tietokanta {
         return conn;
     }
         /* En saanut tällä toimimaan, sen vuoksi kommenttina
-
         try {
             //Tietokannan osoite
-
             //Luo yhteys tietokantaan
             conn = DriverManager.getConnection(url);
-
             System.out.println("Yhteys tietokantaan muodostettu");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -48,10 +45,7 @@ public class Tietokanta {
             }
         }
     }
-
     */
-
-
 
     public static void LisaaPelaaja(Pelaaja pelaaja){
         String query = "Insert Into pelaaja(pelinro, nimi, pisteet) " + "Values(?, ?, ?)";
@@ -68,8 +62,6 @@ public class Tietokanta {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     public static ObservableList<Pelaaja> haePelaajat(){
@@ -82,6 +74,33 @@ public class Tietokanta {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
                 Pelaaja temp = new Pelaaja(rs.getString("nimi"));
+                lista.add(temp);
+            }
+            connect.close();
+            return FXCollections.observableList(lista);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //HUOM! KESKEN
+    //en keksinyt miten pelaajan nimet saataisiin pelaajan_idn avulla.
+    //nyt haetaan  pelaaja_id nimeksi
+    public static ObservableList<Ottelu>haeKilpailuparinPelaajat(){
+        Statement stmt = null;
+        String query = "Select * From ottelu"; //tietokanta?
+        List<Ottelu> lista = new ArrayList<>();
+        try {
+            Connection connect = connect();
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                Ottelu temp = new Ottelu(
+                        new Pelaaja(String.valueOf(rs.getInt("pelaaja1"))),
+                        new Pelaaja(String.valueOf(rs.getInt("pelaaja2"))));
                 lista.add(temp);
             }
             connect.close();
