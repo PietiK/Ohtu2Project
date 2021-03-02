@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TulevatPelitController">
    <children>
-      <Text fx:id="TulevatTurnauksetTxt" layoutX="133.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulevat Turnaukset">
+      <Text fx:id="TulevatTurnauksetTxt" layoutX="131.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulevat turnaukset">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
