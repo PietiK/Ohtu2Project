@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Turnaus;
 
-public class TulevatPelitController {
+public class TulevatTurnauksetController {
 
     @FXML
     private AnchorPane AnchorPane;
