@@ -51,13 +51,9 @@ public class UusiTurnausController {
     void initialize() {
         TablecolumPelaajat.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
         TableView.setItems(Tietokanta.haePelaajat());
-
-        TableView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observableValue, oldValue, newValue) -> {
-            if(TableView.getSelectionModel().getSelectedItem() != null) {
-                Pelaaja pelaaja = TableView.getSelectionModel().getSelectedItem();
-            }
-        });
     }
+
+    
     @FXML
     private TableColumn<?, ?> TableColumnLuku;
 
