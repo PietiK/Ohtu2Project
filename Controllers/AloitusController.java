@@ -41,7 +41,7 @@ public class AloitusController {
     @FXML
     public void SiirryPelinLuontiin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/main/UusiPeli.fxml"));
+        loader.setLocation(getClass().getResource("/main/UusiTurnaus.fxml"));
         Parent AloitusNayttoP = loader.load();
         Scene UusipeliS = new Scene(AloitusNayttoP);
 
@@ -54,7 +54,7 @@ public class AloitusController {
     @FXML
     public void SiirryTuleviinPeleihin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/main/TulevatPelit.fxml"));
+        loader.setLocation(getClass().getResource("/main/TulevatTurnaukset.fxml"));
         Parent AloitusNayttoP = loader.load();
         Scene TulevatpelitS = new Scene(AloitusNayttoP);
 

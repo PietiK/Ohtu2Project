@@ -27,7 +27,7 @@ import main.Tietokanta;
 
 import java.sql.*;
 
-public class UusiPeliController {
+public class UusiTurnausController {
 
     @FXML
     private AnchorPane Anchorpane;
