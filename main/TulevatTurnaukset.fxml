@@ -30,7 +30,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="PeruPeliBtn" layoutX="385.0" layoutY="308.0" mnemonicParsing="false" text="Peru peli">
+      <Button fx:id="PeruPeliBtn" layoutX="385.0" layoutY="308.0" mnemonicParsing="false" text="Peru turnaus">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
