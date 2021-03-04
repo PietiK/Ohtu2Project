@@ -13,6 +13,7 @@ public class Ottelu {
     private boolean pelattu;
     Scanner skanneri = new Scanner(System.in);
 
+    
     public Ottelu(Pelaaja eka, Pelaaja toka, int kierros) {
         this.kierros = kierros; 
         this.pelaaja1 = eka;
@@ -20,6 +21,10 @@ public class Ottelu {
         this.p1pisteet = 0;
         this.p2pisteet = 0; 
         this.pelattu = false; 
+    }
+
+    public boolean getPelattu() {
+        return this.pelattu;
     }
 
     public void setPelattu() {
