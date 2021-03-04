@@ -4,17 +4,44 @@ import java.util.Scanner;
 
 public class Ottelu {
 
+    private int kierros; 
     private Pelaaja pelaaja1;
     private Pelaaja pelaaja2;
+    private int p1pisteet; 
+    private int p2pisteet; 
     private String otNimi;
+    private boolean pelattu;
     Scanner skanneri = new Scanner(System.in);
 
-    public Ottelu(Pelaaja eka, Pelaaja toka) {
+    public Ottelu(Pelaaja eka, Pelaaja toka, int kierros) {
+        this.kierros = kierros; 
         this.pelaaja1 = eka;
         this.pelaaja2 = toka;
-        pelaaja1.setPisteet(0);
-        pelaaja2.setPisteet(0);
+        this.p1pisteet = 0;
+        this.p2pisteet = 0; 
+        this.pelattu = false; 
     }
+
+    public void setPelattu() {
+        this.pelattu = true; 
+    }
+
+    public int getP1pisteet() {
+        return p1pisteet; 
+    }
+
+    public int getP2pisteet() {
+        return p2pisteet; 
+    }
+
+    public void LisääPisteitä1(int piste) {
+        this.p1pisteet = getP1pisteet() + piste; 
+    }
+
+    public void LisääPisteitä2(int piste) {
+        this.p2pisteet = getP2pisteet() + piste; 
+    }
+
 
     public Pelaaja getPelaaja1() {
         return pelaaja1;

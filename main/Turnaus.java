@@ -6,7 +6,7 @@ public class Turnaus {
 	
 	private String pelityyppi; 
 	private String pvm; 
-	private ArrayList<Ottelu> ottelut;
+	private ArrayList<Kierros> kierrokset;
 	private Pelaajataulu pelaajat = new Pelaajataulu();
 
 	/*private Pelaaja voittaja;
