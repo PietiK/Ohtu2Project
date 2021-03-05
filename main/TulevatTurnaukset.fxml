@@ -20,12 +20,12 @@
           <TableColumn fx:id="TableColumnPäivämäärä" prefWidth="129.0" text="Päivämäärä" />
         </columns>
       </TableView>
-      <Button fx:id="PelaaBtn" layoutX="386.0" layoutY="175.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="27.0" prefWidth="73.0" text="Pelaa">
+      <Button fx:id="NäytäPeliBtn" layoutX="386.0" layoutY="175.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="26.0" prefWidth="101.0" text="Näytä peli">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="MuokkaaBtn" layoutX="384.0" layoutY="240.0" mnemonicParsing="false" text="Muokkaa">
+      <Button fx:id="MuokkaaBtn" layoutX="384.0" layoutY="240.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Muokkaa">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
