@@ -16,7 +16,7 @@ public class Turnaus {
 	 * private Pelaaja voittaja; private Pelaaja toinen; private Pelaaja kolmas;
 	 */
 
-	// Tällä metodilla lisätään tappio pelaajalle ottelun lopussa
+	// Tällä metodilla lisätään tappio pelaajalle ottelun lopussa 
 	public void LisääTappio(Pelaaja p) {
 		this.tappiot.put(p, PelaajanTappiot(p) +1);
 	}
