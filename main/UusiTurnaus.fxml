@@ -11,51 +11,62 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UusiTurnausController">
+<AnchorPane fx:id="Anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UusiTurnausController">
    <children>
-      <Text id="LisääPelaajiaText" fx:id="UusiTurnausTxt" layoutX="146.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uusi turnaus" textAlignment="CENTER" wrappingWidth="253.63623046875">
+      <Text id="LisääPelaajiaText" fx:id="UusiTurnausTxt" layoutX="180.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uusi turnaus" textAlignment="CENTER" wrappingWidth="253.63623046875">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </Text>
-      <TextField id="TextField" fx:id="TextField" layoutX="134.0" layoutY="447.0" prefHeight="34.0" prefWidth="278.0" />
-      <Button id="LisääBtn" fx:id="LisääBtn" layoutX="448.0" layoutY="451.0" mnemonicParsing="false" text="Lisää">
+      <TextField id="TextField" fx:id="TextField2" layoutX="134.0" layoutY="556.0" prefHeight="34.0" prefWidth="278.0" />
+      <Button id="LisääBtn" fx:id="LisääBtn2" layoutX="422.0" layoutY="560.0" mnemonicParsing="false" text="Lisää">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
       </Button>
-      <TableView fx:id="TableView" layoutX="35.0" layoutY="244.0" prefHeight="185.0" prefWidth="463.0" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="244.0">
+      <TableView fx:id="TableView" layoutX="26.0" layoutY="255.0" prefHeight="268.0" prefWidth="543.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="255.0">
         <columns>
           <TableColumn id="TableColmunPelaajat" fx:id="TablecolumPelaajat" prefWidth="366.0" text="Pelaajat" />
-          <TableColumn id="TableColmunMäärä" fx:id="TableColumnLuku" prefWidth="71.0" text="C2" />
+          <TableColumn id="TableColmunMäärä" fx:id="TableColumnLuku" prefWidth="71.0" />
         </columns>
       </TableView>
-      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="386.0" layoutY="501.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="124.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="501.0">
+      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font></Button>
-      <MenuButton fx:id="ValitsePeliBtn" layoutX="90.0" layoutY="145.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Valitse peli" AnchorPane.topAnchor="145.0">
+      <MenuButton fx:id="ValitsePeliBtn" layoutX="46.0" layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Valitse peli" AnchorPane.topAnchor="189.0">
         <items>
           <MenuItem mnemonicParsing="false" text="Kaisa" />
           <MenuItem mnemonicParsing="false" text="Snooker" />
         </items>
       </MenuButton>
-      <DatePicker fx:id="DatePicker1" layoutX="309.0" layoutY="118.0" AnchorPane.topAnchor="118.0" />
-      <Text fx:id="AloituspäivämääräTxt" layoutX="317.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aloituspäivämäärä" wrappingWidth="172.5400390625">
+      <DatePicker fx:id="DatePicker1" layoutX="392.0" layoutY="119.0" AnchorPane.topAnchor="119.0" />
+      <Text fx:id="AloituspäivämääräTxt" layoutX="399.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aloituspäivämäärä" wrappingWidth="172.5400390625">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="TakaisinBtn" layoutX="35.0" layoutY="501.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="124.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="402.0" AnchorPane.topAnchor="501.0">
+      <Button fx:id="TakaisinBtn" layoutX="498.0" layoutY="617.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="78.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="498.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="617.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Text fx:id="LopetuspäivämääräTxt" layoutX="313.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lopetuspäivämäärä" wrappingWidth="172.5400390625">
+      <Text fx:id="LopetuspäivämääräTxt" layoutX="399.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lopetuspäivämäärä" wrappingWidth="172.5400390625">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
       </Text>
-      <DatePicker fx:id="DatePicker2" layoutX="309.0" layoutY="189.0" />
+      <DatePicker fx:id="DatePicker2" layoutX="392.0" layoutY="189.0" />
+      <Text fx:id="NimeäTurnausTxt" layoutX="48.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nimeä turnaus" wrappingWidth="172.5400390625">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Text>
+      <TextField id="TextField" fx:id="TextField1" layoutX="35.0" layoutY="118.0" prefHeight="11.0" prefWidth="173.0" />
+      <Button id="LisääBtn" fx:id="LisääBtn1" layoutX="223.0" layoutY="120.0" mnemonicParsing="false" text="Lisää">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
