@@ -23,7 +23,10 @@ public class Ottelu {
         this.pelattu = false; 
     }
 
-    public boolean getPelattu() {
+    public Ottelu(Pelaaja pelaaja, Pelaaja pelaaja3) {
+	}
+
+	public boolean getPelattu() {
         return this.pelattu;
     }
 

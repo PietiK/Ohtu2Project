@@ -19,7 +19,7 @@
          </font>
       </Text>
       <TextField id="TextField" fx:id="TextField2" layoutX="134.0" layoutY="556.0" prefHeight="34.0" prefWidth="278.0" />
-      <Button id="LisääBtn" fx:id="LisääBtn2" layoutX="422.0" layoutY="560.0" mnemonicParsing="false" text="Lisää">
+      <Button id="LisääBtn" fx:id="LisääBtn2" layoutX="422.0" layoutY="560.0" mnemonicParsing="false" onAction="#LisaaPelaaja" text="Lisää">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
@@ -30,7 +30,7 @@
           <TableColumn id="TableColmunMäärä" fx:id="TableColumnLuku" prefWidth="71.0" />
         </columns>
       </TableView>
-      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
+      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="78.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font></Button>

@@ -24,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Pelaaja;
 import main.Tietokanta;
+import main.Turnaus; 
 
 import java.sql.*;
 
@@ -33,13 +34,13 @@ public class UusiTurnausController {
     private AnchorPane Anchorpane;
 
     @FXML
-    private Text LisääPelaajiaTxt;
+    private Text UusiTurnausTxt;
 
     @FXML
-    private TextField TextField;
+    private TextField TextField2;
 
     @FXML
-    private Button LisääBtn;
+    private Button LisääBtn2;
 
     @FXML
     private TableView<Pelaaja> TableView;
@@ -47,13 +48,6 @@ public class UusiTurnausController {
     @FXML
     private TableColumn<Pelaaja, String> TablecolumPelaajat;
 
-    @FXML
-    void initialize() {
-        TablecolumPelaajat.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
-        TableView.setItems(Tietokanta.haePelaajat());
-    }
-
-    
     @FXML
     private TableColumn<?, ?> TableColumnLuku;
 
@@ -64,15 +58,36 @@ public class UusiTurnausController {
     private MenuButton ValitsePeliBtn;
 
     @FXML
-    private DatePicker DatePicker;
+    private DatePicker DatePicker1;
 
     @FXML
-    private Text PäivämääräTxt;
+    private Text AloituspäivämääräTxt;
 
     @FXML
     private Button TakaisinBtn;
 
+    @FXML
+    private Text LopetuspäivämääräTxt;
 
+    @FXML
+    private DatePicker DatePicker2;
+
+    @FXML
+    private Text NimeäTurnausTxt;
+
+    @FXML
+    private TextField TextField1;
+
+    @FXML
+    private Button LisääBtn1;
+
+
+   @FXML
+    void initialize() {
+        TablecolumPelaajat.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+        //TableView.setItems(Tietokanta.haePelaajat());
+        //Ylläoleva hakee kaikki tietokannassa olevat pelaajat taulukkoon, miksi? 
+    }
 
     @FXML
     public void SiirryTakaisin(ActionEvent event) throws IOException {
@@ -88,11 +103,33 @@ public class UusiTurnausController {
     }
     @FXML
     public void LisaaPelaaja(ActionEvent event) throws IOException {
-        String nimi = TextField.getText();
-        System.out.println(nimi);
-        Pelaaja temp = new Pelaaja(nimi);
-        Tietokanta.LisaaPelaaja(temp);
+        String nimi = TextField2.getText();
+        TableView.getItems().add(new Pelaaja(nimi)); 
+        TextField2.setText("");
+        //Tietokanta.LisaaPelaaja(temp);
         initialize();
+    }
+
+    /*tällä metodilla siis tarkoitus luoda turnaus tietokantaan, vielä ei toimi koska 
+    tietokannan pathissa joku ongelma. puuttuu vielä pelaajalista, koska se vaatii eri 
+    tietokantametodin jne. 
+    */
+    public void LuoTurnaus(ActionEvent event) throws IOException {
+        Turnaus uusiturnaus = new Turnaus(); 
+        uusiturnaus.setName(TextField1.getText()); 
+        uusiturnaus.setAloituspvm(DatePicker1.getAccessibleText());
+        uusiturnaus.setLopetuspvm(DatePicker2.getAccessibleText());
+        Tietokanta.LisaaTurnaus(uusiturnaus);
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/Aloitusnäyttö.fxml"));
+        Parent AloitusNayttoP = loader.load();
+        Scene UusipeliS = new Scene(AloitusNayttoP);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(UusipeliS);
+        window.show();
     }
 
 

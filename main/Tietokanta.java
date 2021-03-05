@@ -64,6 +64,22 @@ public class Tietokanta {
         }
     }
 
+    public static void LisaaTurnaus(Turnaus turnaus) {
+        String query = "Insert Into turnaus(nimi, aloituspvm, lopetuspvm) " + "Values(?,?, ?)";
+        try {
+            Connection conn = connect(); 
+            PreparedStatement stmt = conn.prepareStatement(query); 
+            stmt.setString(1, turnaus.getNimi());
+            stmt.setString(2, turnaus.getAloituspvm());
+            stmt.setString(3, turnaus.getLopetuspvm());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static ObservableList<Pelaaja> haePelaajat(){
         Statement stmt = null;
         String query = "Select * From pelaaja";

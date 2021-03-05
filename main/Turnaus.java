@@ -5,8 +5,10 @@ import java.util.Map.Entry;
 
 public class Turnaus {
 
+	private String nimi; 
 	private String pelityyppi;
-	private String pvm;
+	private String aloituspvm;
+	private String lopetuspvm;
 	private ArrayList<Kierros> kierrokset;
 	private Map<Pelaaja, Integer> tappiot;
 	private Pelaajataulu pelaajat = new Pelaajataulu();
@@ -34,6 +36,26 @@ public class Turnaus {
 			}
 		}
 		return jäljellä; 
+	}
+
+	public String getNimi() {
+		return this.nimi; 
+	}
+	public String getAloituspvm() {
+		return this.aloituspvm;
+	}
+
+	public String getLopetuspvm() {
+		return this.lopetuspvm;
+	}
+
+	public void setName(String text) {
+	}
+
+	public void setAloituspvm(String accessibleText) {
+	}
+
+	public void setLopetuspvm(String accessibleText) {
 	}
 	
 	/* Laitoin tästä metodeita kommenteiksi koska turnauksella ei ole enää otteluita vaan
