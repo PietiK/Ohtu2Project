@@ -14,7 +14,7 @@ public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
 
-        String url = "jdbc:sqlite:src/main/tietokanta.db";
+        String url = "jdbc:sqlite:C:/Users/Siru_/OHTU2/R02/main/tietokanta.db";
 
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -78,6 +78,31 @@ public class Tietokanta {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static ObservableList<Turnaus> haeTurnaukset() {
+        Statement stmt = null;
+        String query = "Select nimi, aloituspvm, lopetuspvm From turnaus";
+        List<Turnaus> lista = new ArrayList<>();
+        try {
+            Connection connect = connect();
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Turnaus t = new Turnaus(); 
+                t.setNimi(rs.getString("nimi"));
+                t.setAloituspvm(rs.getString("aloituspvm"));
+                t.setLopetuspvm(rs.getString("lopetuspvm"));
+                lista.add(t);
+            }
+            connect.close();
+            return FXCollections.observableList(lista);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static ObservableList<Pelaaja> haePelaajat(){

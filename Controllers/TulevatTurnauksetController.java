@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.Tietokanta;
 import main.Turnaus;
 
 public class TulevatTurnauksetController {
@@ -49,7 +50,9 @@ public class TulevatTurnauksetController {
     @FXML
     void initialize() {
         TableColumnPelityyppi.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("pelityyppi"));
-        TableColumnPäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("pvm"));
+        TableColumnPäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("aloituspvm"));
+        TableView.setItems(Tietokanta.haeTurnaukset()); 
+        //tässä vielä säädettävää että saadaan asiat näkyville
     }
 
     @FXML

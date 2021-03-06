@@ -49,7 +49,7 @@ public class Turnaus {
 		return this.lopetuspvm;
 	}
 
-	public void setName(String text) {
+	public void setNimi(String text) {
 	}
 
 	public void setAloituspvm(String accessibleText) {
