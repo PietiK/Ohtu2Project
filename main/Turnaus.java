@@ -57,6 +57,16 @@ public class Turnaus {
 
 	public void setLopetuspvm(String accessibleText) {
 	}
+
+	public Map<Pelaaja, Integer> getPelaajat() {
+		return this.tappiot;
+	}
+
+	public void setPelaajat(List<Pelaaja> lista) {
+		for (Pelaaja p : lista) {
+			this.tappiot.put(p, 0); 
+		}
+	}
 	
 	/* Laitoin tästä metodeita kommenteiksi koska turnauksella ei ole enää otteluita vaan
 	kierroksella t Siru

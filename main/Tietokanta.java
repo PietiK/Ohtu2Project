@@ -14,7 +14,7 @@ public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
 
-        String url = "jdbc:sqlite:C:/Users/Siru_/OHTU2/R02/main/tietokanta.db";
+        String url = "jdbc:sqlite:main/tietokanta.db";
 
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -79,7 +79,6 @@ public class Tietokanta {
             e.printStackTrace();
         }
     }
-
     public static ObservableList<Turnaus> haeTurnaukset() {
         Statement stmt = null;
         String query = "Select nimi, aloituspvm, lopetuspvm From turnaus";
