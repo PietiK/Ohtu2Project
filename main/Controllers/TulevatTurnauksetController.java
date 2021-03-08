@@ -15,15 +15,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.Tietokanta;
 import main.Turnaus;
 
 public class TulevatTurnauksetController {
+
 
     @FXML
     private AnchorPane AnchorPane;
 
     @FXML
-    private Text TulevatPelitTxt;
+    private Text TulevatTurnauksetTxt;
 
     @FXML
     private TableView<Turnaus> TableView;
@@ -32,10 +34,16 @@ public class TulevatTurnauksetController {
     private TableColumn<Turnaus, String> TableColumnPelityyppi;
 
     @FXML
-    private TableColumn<Turnaus, String> TableColumnPäivämäärä;
+    private TableColumn<Turnaus, String> TableColumnTurnauksenNimi;
 
     @FXML
-    private Button PelaaBtn;
+    private TableColumn<Turnaus, String> TableColumnAloituspäivämäärä;
+
+    @FXML
+    private TableColumn<Turnaus, String> TableColumnLopetuspäivämäärä;
+
+    @FXML
+    private Button NäytäPeliBtn;
 
     @FXML
     private Button MuokkaaBtn;
@@ -49,7 +57,10 @@ public class TulevatTurnauksetController {
     @FXML
     void initialize() {
         TableColumnPelityyppi.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("pelityyppi"));
-        TableColumnPäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("pvm"));
+        TableColumnTurnauksenNimi.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("nimi"));
+        TableColumnAloituspäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("aloituspvm"));
+        TableColumnLopetuspäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("lopetuspvm"));
+        TableView.setItems(Tietokanta.haeTurnaukset());
     }
 
     @FXML

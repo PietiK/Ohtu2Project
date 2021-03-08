@@ -119,7 +119,7 @@ public class UusiTurnausController {
         uusiturnaus.setNimi(TextField1.getText()); 
         uusiturnaus.setAloituspvm(DatePicker1.getAccessibleText());
         uusiturnaus.setLopetuspvm(DatePicker2.getAccessibleText());
-        System.out.println(TableView.getItems());
+        Tietokanta.LisaaTurnaus(uusiturnaus);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/Aloitusnäyttö.fxml"));
