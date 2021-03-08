@@ -21,6 +21,14 @@ public class Pelaaja {
         this.pelattu = new ArrayList<>();
     }
 
+    public Pelaaja(String nimi, int peliNro) {
+      this.nimi=nimi;
+      this.peliNro = peliNro;
+      this.pisteet=0;
+      this.pelissa = true;
+      this.pelattu = new ArrayList<>();
+  }
+
     public String getNimi() {
         return nimi;
     }
