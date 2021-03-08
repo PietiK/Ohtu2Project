@@ -1,4 +1,4 @@
-package Controllers;
+package main.Controllers;
 
 import java.io.IOException;
 

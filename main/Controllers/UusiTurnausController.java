@@ -1,4 +1,4 @@
-package Controllers;
+package main.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -116,7 +116,7 @@ public class UusiTurnausController {
     */
     public void LuoTurnaus(ActionEvent event) throws IOException {
         Turnaus uusiturnaus = new Turnaus(); 
-        uusiturnaus.setName(TextField1.getText()); 
+        uusiturnaus.setNimi(TextField1.getText()); 
         uusiturnaus.setAloituspvm(DatePicker1.getAccessibleText());
         uusiturnaus.setLopetuspvm(DatePicker2.getAccessibleText());
         System.out.println(TableView.getItems());
