@@ -14,6 +14,16 @@ public class Turnaus {
 	private Map<Pelaaja, Integer> tappiot;
 	private Pelaajataulu pelaajat = new Pelaajataulu();
 
+  public Turnaus(){
+    
+  }
+
+  public Turnaus(String nimi, String aloituspvm, String lopetuspvm){
+    this.nimi = nimi;
+    this.aloituspvm = aloituspvm;
+    this.lopetuspvm = lopetuspvm;
+  }
+
 
 	/*
 	 * private Pelaaja voittaja; private Pelaaja toinen; private Pelaaja kolmas;
@@ -51,12 +61,15 @@ public class Turnaus {
 	}
 
 	public void setNimi(String text) {
+    this.nimi = text;
 	}
 
 	public void setAloituspvm(String accessibleText) {
+    this.aloituspvm = accessibleText;
 	}
 
 	public void setLopetuspvm(String accessibleText) {
+    this.lopetuspvm = accessibleText;
 	}
 
 	public Map<Pelaaja, Integer> getPelaajat() {
