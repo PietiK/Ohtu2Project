@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 public class Turnaus {
 
+	private int id; 
 	private String nimi; 
 	private String pelityyppi;
 	private String aloituspvm;
@@ -22,6 +23,14 @@ public class Turnaus {
     this.nimi = nimi;
     this.aloituspvm = aloituspvm;
     this.lopetuspvm = lopetuspvm;
+  }
+
+  public int getId() {
+	  return this.id; 
+  }
+
+  public void setId(int id) {
+	  this.id = id; 
   }
 
 

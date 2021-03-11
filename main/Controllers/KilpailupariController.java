@@ -50,7 +50,7 @@ public class KilpailupariController{
     void initialize() {
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("Pelaaja2"));
-        TableView.setItems(Tietokanta.haeKilpailuparinPelaajat());
+       // TableView.setItems(Tietokanta.haeKilpailuparinPelaajat());
 
         TableView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observableValue, oldValue, newValue) -> {
             if (TableView.getSelectionModel().getSelectedItem() != null) {

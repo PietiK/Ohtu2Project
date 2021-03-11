@@ -14,7 +14,7 @@ import java.util.List;
 public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
-        String url = "jdbc:sqlite:main/tietokanta.db";
+        String url = "jdbc:sqlite:tietokanta.db";
 
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -64,16 +64,43 @@ public class Tietokanta {
         }
     }
 
-    public static void LuoTurnauksenPelaajalista(List<Pelaaja> pelaajat, Turnaus turnaus) { 
+    public static void LuoTurnauksenPelaajalista(Pelaaja pelaaja, int tid) { 
         String query = "Insert into pelaaja_turnaus(pelaaja_id, turnaus_id, pelinro) values (?, ?, ?)";
         try {
             Connection conn = connect(); 
             PreparedStatement stmt = conn.prepareStatement(query); 
+            stmt.setInt(1, pelaaja.getId());
+            stmt.setInt(2, tid); 
+            stmt.setInt(3, pelaaja.getPeliNro());
+            stmt.executeUpdate();
+            conn.close();
         }  catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public static int HaeuusinTurnausID() {
+        Statement stmt = null; 
+        String query = "SELECT turnaus_id, MAX([turnaus_id]) from turnaus"; 
+        int id = -1; 
+        try {
+            Connection connect = connect();
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+            connect.close();
+            return id;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
 
     }
 

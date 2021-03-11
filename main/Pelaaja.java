@@ -5,6 +5,7 @@ import java.util.Comparator;
 
 public class Pelaaja {
 
+    private int id; 
     private String nimi;
     private int peliNro;
     private int voitto;
@@ -29,6 +30,14 @@ public class Pelaaja {
       this.pelattu = new ArrayList<>();
   }
 
+    public int getId() {
+        return this.id; 
+    }
+
+    public void setId(int id) {
+        this.id = id; 
+    }
+    
     public String getNimi() {
         return nimi;
     }

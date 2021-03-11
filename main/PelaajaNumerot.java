@@ -11,9 +11,7 @@ TÄÄ LUOKKA ON TURHA KOSKA KOODI ON MYÖS Pelaajataulu.java -LUOKASSA
 
 public class PelaajaNumerot {
 	//Metodi joka jakaa pelaajille pelinumerot
-	public void arvoNumerot(Turnaus t) {
-		//Lista pelaajille
-		ArrayList<Pelaaja> pelaajat = t.getPelaajat();
+	public static void arvoNumerot(ArrayList<Pelaaja> pelaajat) {
 		
 		//Taulukko pelaajien numeroille
 		int randomi[] = new int[pelaajat.size()];
@@ -30,7 +28,7 @@ public class PelaajaNumerot {
 	}
 	
 	//metodi joka sekoittaa annetun taulukon
-	public void sekoita(int[] taulu)
+	public static void sekoita(int[] taulu)
 	  {
 	    Random rnd = ThreadLocalRandom.current();
 	    for (int i = taulu.length - 1; i > 0; i--)

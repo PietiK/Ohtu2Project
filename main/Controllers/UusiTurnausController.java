@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import main.Pelaaja;
 import main.Tietokanta;
 import main.Turnaus; 
+import main.PelaajaNumerot;
 
 import java.sql.*;
 
@@ -119,7 +120,20 @@ public class UusiTurnausController {
         uusiturnaus.setNimi(TextField1.getText()); 
         uusiturnaus.setAloituspvm(DatePicker1.getAccessibleText());
         uusiturnaus.setLopetuspvm(DatePicker2.getAccessibleText());
+        ObservableList<Pelaaja> p = TableView.getItems();
+        ArrayList<Pelaaja> pelaajat = new ArrayList<Pelaaja>(); 
+        for (Pelaaja pe : p) {
+            pelaajat.add(pe); 
+        }
         Tietokanta.LisaaTurnaus(uusiturnaus);
+
+        int id = Tietokanta.HaeuusinTurnausID(); 
+
+        PelaajaNumerot.arvoNumerot(pelaajat); 
+        
+        for (Pelaaja pel : pelaajat) {
+            Tietokanta.LuoTurnauksenPelaajalista(pel, id);
+        }
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/Aloitusnäyttö.fxml"));
