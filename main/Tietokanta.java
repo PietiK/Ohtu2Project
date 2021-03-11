@@ -14,8 +14,7 @@ import java.util.List;
 public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
-
-        String url = "jdbc:sqlite:C:/Users/Siru_/OHTU2/R02/main/tietokanta.db";
+        String url = "jdbc:sqlite:main/tietokanta.db";
 
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -79,16 +78,19 @@ public class Tietokanta {
     }
 
     public static void LisaaTurnaus(Turnaus turnaus) {
-        String query = "Insert Into turnaus(nimi, aloituspvm, lopetuspvm) " + "Values(?,?, ?)";
+        String query = "INSERT INTO turnaus(nimi, aloituspvm, lopetuspvm) " 
+                        + "VALUES(?,?,?)";
+
         try {
             Connection conn = connect(); 
             PreparedStatement stmt = conn.prepareStatement(query); 
-            System.out.println(turnaus.getNimi()); 
             stmt.setString(1, turnaus.getNimi());
             stmt.setString(2, turnaus.getAloituspvm());
             stmt.setString(3, turnaus.getLopetuspvm());
             stmt.executeUpdate();
-        } catch (SQLException e) {
+            conn.close();
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
@@ -223,7 +225,7 @@ public class Tietokanta {
 
 
   public static void main(String[] args) {  
-
+    
   }
 
 
