@@ -65,6 +65,19 @@ public class Tietokanta {
         }
     }
 
+    public static void LuoTurnauksenPelaajalista(List<Pelaaja> pelaajat, Turnaus turnaus) { 
+        String query = "Insert into pelaaja_turnaus(pelaaja_id, turnaus_id, pelinro) values (?, ?, ?)";
+        try {
+            Connection conn = connect(); 
+            PreparedStatement stmt = conn.prepareStatement(query); 
+        }  catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void LisaaTurnaus(Turnaus turnaus) {
         String query = "Insert Into turnaus(nimi, aloituspvm, lopetuspvm) " + "Values(?,?, ?)";
         try {
