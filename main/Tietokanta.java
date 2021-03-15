@@ -14,7 +14,7 @@ import java.util.List;
 public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
-        String url = "jdbc:sqlite:tietokanta.db";
+        String url = "jdbc:sqlite:src/tietokanta.db";
 
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -250,6 +250,33 @@ public class Tietokanta {
     return null;
     }
 
+
+    public static void LisaaPisteita(int pelaajaid, int otteluid, int pisteet){
+        String ottelu_query = "UPDATE pelaaja_ottelu SET pisteet = pisteet + ? " +
+                "WHERE ottelu_id = ? " +
+                " AND pelaaja_id = ?";
+        String turnaus_query = "UPDATE pelaaja_turnaus SET turnauspisteet = turnauspisteet + ? "+
+                "WHERE pelaaja_id = ?";
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(ottelu_query);
+            PreparedStatement stmt2 = conn.prepareStatement(turnaus_query);
+            stmt.setInt(1,pisteet);
+            stmt.setInt(2,otteluid);
+            stmt.setInt(3,pelaajaid);
+            stmt2.setInt(1,pisteet);
+            stmt2.setInt(2,pelaajaid);
+
+            stmt.executeUpdate();
+            stmt2.executeUpdate();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
   public static void main(String[] args) {  
     
