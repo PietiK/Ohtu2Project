@@ -66,12 +66,17 @@ public class Tietokanta {
 
     public static void LuoTurnauksenPelaajalista(Pelaaja pelaaja, int tid) { 
         String query = "Insert into pelaaja_turnaus(pelaaja_id, turnaus_id, pelinro) values (?, ?, ?)";
+        String query2 = "Insert into pelaaja(pelaaja_id, nimi) values (?, ?)";
         try {
             Connection conn = connect(); 
             PreparedStatement stmt = conn.prepareStatement(query); 
+            PreparedStatement stmt2 = conn.prepareStatement(query2);
             stmt.setInt(1, pelaaja.getId());
             stmt.setInt(2, tid); 
             stmt.setInt(3, pelaaja.getPeliNro());
+            stmt.executeUpdate();
+            stmt2.setInt(1, pelaaja.getId()); 
+            stmt2.setString(2, pelaaja.getNimi()); 
             stmt.executeUpdate();
             conn.close();
         }  catch (SQLException e) {
