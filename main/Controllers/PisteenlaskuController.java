@@ -72,7 +72,7 @@ public class PisteenlaskuController {
         //TableColumn1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
         //TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
         
-      Minuutit.setText("60");
+      /*Minuutit.setText("60");
       Sekunnit.setText("0");
 
       kesto = Duration.minutes(60);
@@ -97,7 +97,7 @@ public class PisteenlaskuController {
             lastTimerCall = NOW;
           }
         }
-      };
+      };*/
     }
     public void aloitaKello(ActionEvent event) throws IOException {
       ajastin.start();
