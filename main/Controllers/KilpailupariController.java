@@ -79,7 +79,7 @@ public class KilpailupariController{
     @FXML
     public void SiirryTakaisin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/main/TulevatPelit.fxml"));
+        loader.setLocation(getClass().getResource("/main/TulevatTurnaukset.fxml"));
         Parent AloitusNayttoP = loader.load();
         Scene AloitusS = new Scene(AloitusNayttoP);
 
