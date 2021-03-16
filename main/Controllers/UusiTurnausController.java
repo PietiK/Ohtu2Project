@@ -111,10 +111,7 @@ public class UusiTurnausController {
         initialize();
     }
 
-    /*tällä metodilla siis tarkoitus luoda turnaus tietokantaan, vielä ei toimi koska 
-    tietokannan pathissa joku ongelma. puuttuu vielä pelaajalista, koska se vaatii eri 
-    tietokantametodin jne. 
-    */
+    
     public void LuoTurnaus(ActionEvent event) throws IOException {
         Turnaus uusiturnaus = new Turnaus(); 
         uusiturnaus.setNimi(TextField1.getText()); 
