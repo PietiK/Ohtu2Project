@@ -17,10 +17,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Pelaaja;
+import main.Pelaajataulu;
 import main.Tietokanta;
 import main.Ottelu;
 
 public class KilpailupariController{
+
 
     @FXML
     private AnchorPane AnchorPane;
@@ -32,10 +34,10 @@ public class KilpailupariController{
     private TableView<Ottelu> TableView;
 
     @FXML
-    private TableColumn<Pelaaja, String> TableColmun1;
+    private TableColumn<Ottelu, String> TableColmun1;
 
     @FXML
-    private TableColumn<Pelaaja, String> TableColumn2;
+    private TableColumn<Ottelu, String> TableColumn2;
 
     @FXML
     private Button TakaisinBtn;
@@ -48,14 +50,16 @@ public class KilpailupariController{
     //
     @FXML
     void initialize() {
-        TableColmun1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("Pelaaja1"));
-        TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("Pelaaja2"));
-       // TableView.setItems(Tietokanta.haeKilpailuparinPelaajat());
+        TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
+        TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
+        //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat());
+
+
 
         TableView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observableValue, oldValue, newValue) -> {
             if (TableView.getSelectionModel().getSelectedItem() != null) {
                 Ottelu ottelu = TableView.getSelectionModel().getSelectedItem();
-                //Pelaaja eka = ottelu.getPelaaja1();
+                //Pelaaja eka = ottelu.getPelaaja1().;
                 //Pelaaja toka = ottelu.getPelaaja2();
 
             }
@@ -79,7 +83,7 @@ public class KilpailupariController{
     @FXML
     public void SiirryTakaisin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/main/TulevatTurnaukset.fxml"));
+        loader.setLocation(getClass().getResource("/main/TulevatPelit.fxml"));
         Parent AloitusNayttoP = loader.load();
         Scene AloitusS = new Scene(AloitusNayttoP);
 

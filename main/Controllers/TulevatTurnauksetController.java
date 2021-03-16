@@ -1,26 +1,35 @@
 package main.Controllers;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.Tietokanta;
-import main.Turnaus;
+import main.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TulevatTurnauksetController {
+    public static Pelaajataulu pelaajat = new Pelaajataulu();
+    public static Turnaus turnaus = new Turnaus();
+    public static ArrayList<Pelaaja> pel;
+    List<Ottelu> kierros = new ArrayList();
 
 
+    public static Pelaajataulu getPelaajat(){
+        return pelaajat;
+    }
     @FXML
     private AnchorPane AnchorPane;
 
@@ -82,6 +91,31 @@ public class TulevatTurnauksetController {
         loader.setLocation(getClass().getResource("/main/Kilpailuparinäkymä.fxml"));
         Parent AloitusNayttoP = loader.load();
         Scene PariS = new Scene(AloitusNayttoP);
+
+        /* Haetaan turnauksen nimi valitusta rivistä.
+        https://stackoverflow.com/questions/29090583/javafx-tableview-how-to-get-cells-data
+         */
+        TablePosition pos = TableView.getSelectionModel().getSelectedCells().get(0);
+        int row = pos.getRow();
+        Turnaus item = TableView.getItems().get(row);
+        TableColumn col = TableView.getColumns().get(1);
+        String nimi = (String) col.getCellObservableValue(item).getValue();
+
+        //haetaan turnauksen ID turnauksen nimellä
+        int id = Tietokanta.HaeTurnauksenID(nimi);
+
+
+        pel =  Tietokanta.TurnauksenPelaajat(id);
+        for (Pelaaja p : pel){
+            pelaajat.setPelaaja(p);
+        }
+
+        turnaus.setPelaajat(pel);
+        Kierros uusi_kierros = new Kierros();
+
+        pelaajat.jaaOtteluparit();
+        kierros = pelaajat.getKierros();
+        Tietokanta.PelaajatOtteluun(kierros);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 

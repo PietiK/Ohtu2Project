@@ -108,15 +108,57 @@ public class Pelaajataulu {
     // HUOM! Puuttuu vielä, miten huomioidaan jos kaikki ovat jo pelanneet toisiaan vastaan eli joutuvat pelaamaan uudestaan keskenään
     public void jaaOtteluparit() {
         // Jos pelaajia on pariton määrä, lisätään pelaaja jolle eie löydy paria tälle listaan
+        kierros.clear();
         List<Pelaaja> ylimaarainen = new ArrayList<>();
-
-        if (pelaajat.size() > 1) {
+        Pelaaja temp = pelaajat.get(0);
+        if (pelaajat.size() > 1 && pelaajat.get(0).getPelattu().size() <2) {
             for (int i = 0; i < pelaajat.size(); i++){
                 for (int j = 0; j < pelaajat.size(); j++) {
                     // Tarkistetaan ovatko pelaajat pelanneet toisiaan vastaan
                     if (pelaajat.get(i).equals(pelaajat.get(j)) || pelaajat.get(i).getPelattu().contains(pelaajat.get(j))) {
                     } else {
-                        kierros.add(new Ottelu(pelaajat.get(i), pelaajat.get(j))); // Lisätään pelaajat otteluun
+                        kierros.add(new Ottelu(pelaajat.get(i), pelaajat.get(j),1)); // Lisätään pelaajat otteluun
+                        pelaajat.get(i).setPelattu(pelaajat.get(j)); // Lisätään vastustaja pelattujen listalle
+                        pelaajat.get(j).setPelattu(pelaajat.get(i)); // Lisätään vastustaja pelattujen listalle
+                        pelaajat.remove(pelaajat.get(j)); // Poistetaan arvotut pelaajat listalta
+                        pelaajat.remove(pelaajat.get(i)); // Poistetaan arvotut pelaajat listalta
+                        // Nollataan indeksit
+                        i = 0;
+                        j = 0;
+                    }
+                }
+            }
+        }
+        else if (pelaajat.size() % 2 != 0 && pelaajat.get(0).getPelattu().size() == 1) {
+            for (int i = 0; i < pelaajat.size(); i++){
+                for (int j = 0; j < pelaajat.size(); j++) {
+                    // Tarkistetaan ovatko pelaajat pelanneet toisiaan vastaan
+                    if (pelaajat.get(i).equals(pelaajat.get(j)) || pelaajat.get(i).getPelattu().contains(pelaajat.get(j))) {
+                    } else {
+                        kierros.add(new Ottelu(pelaajat.get(i), pelaajat.get(j),2)); // Lisätään pelaajat otteluun
+                        pelaajat.get(i).setPelattu(pelaajat.get(j)); // Lisätään vastustaja pelattujen listalle
+                        pelaajat.get(j).setPelattu(pelaajat.get(i)); // Lisätään vastustaja pelattujen listalle
+                        pelaajat.remove(pelaajat.get(j)); // Poistetaan arvotut pelaajat listalta
+                        pelaajat.remove(pelaajat.get(i)); // Poistetaan arvotut pelaajat listalta
+                        // Nollataan indeksit
+                        i = 0;
+                        j = 0;
+                    }
+
+                }
+            }
+
+            if (pelaajat.size() == 1){
+                kierros.add(new Ottelu(pelaajat.get(0),temp,2));
+            }
+        }
+        else if (pelaajat.size() > 1 && pelaajat.get(0).getPelattu().size() > 2) {
+            for (int i = 0; i < pelaajat.size(); i++){
+                for (int j = 0; j < pelaajat.size(); j++) {
+                    // Tarkistetaan ovatko pelaajat pelanneet toisiaan vastaan
+                    if (pelaajat.get(i).equals(pelaajat.get(j)) || pelaajat.get(i).getPelattu().contains(pelaajat.get(j))) {
+                    } else {
+                        kierros.add(new Ottelu(pelaajat.get(i), pelaajat.get(j),1)); // Lisätään pelaajat otteluun
                         pelaajat.get(i).setPelattu(pelaajat.get(j)); // Lisätään vastustaja pelattujen listalle
                         pelaajat.get(j).setPelattu(pelaajat.get(i)); // Lisätään vastustaja pelattujen listalle
                         pelaajat.remove(pelaajat.get(j)); // Poistetaan arvotut pelaajat listalta
@@ -138,10 +180,15 @@ public class Pelaajataulu {
         // Tuodaan pelaajat takaisin pelaajat listaan
         // Ensin tuodaan otteluparin eka pelaaja ja sitten toinen
         for (Ottelu o : kierros) {
-            pelaajat.add(o.getPelaaja1());
-            pelaajat.add(o.getPelaaja2());
+            if (!pelaajat.contains(o.getPelaaja1())){
+                pelaajat.add(o.getPelaaja1());
+            }
+            if (!pelaajat.contains(o.getPelaaja2())){
+                pelaajat.add(o.getPelaaja2());
+            }
+            //pelaajat.add(o.getPelaaja2());
         }
-        kierros.clear();
+
     }
 
     //Metodi joka jakaa pelaajille pelinumerot
@@ -172,5 +219,13 @@ public class Pelaajataulu {
         taulu[index] = taulu[i];
         taulu[i] = a;
       }
+    }
+
+    public List<Ottelu> getKierros() {
+        return kierros;
+    }
+
+    public void setKierros(List<Ottelu> kierros) {
+        this.kierros = kierros;
     }
 }

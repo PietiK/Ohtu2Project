@@ -29,7 +29,9 @@ public class Pelaaja {
       this.pelissa = true;
       this.pelattu = new ArrayList<>();
   }
-
+    public void setTappio(int tappio){
+        this.tappio = tappio;
+    }
     public int getId() {
         return this.id; 
     }

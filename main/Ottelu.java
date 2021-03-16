@@ -93,10 +93,12 @@ public class Ottelu {
         if (pelaaja.equals(pelaaja1)){
             if (pelaaja1.getPisteet() >= 60){
                 totuus = true;
+                pelattu = true;
             }
         } else {
             if (pelaaja2.getPisteet() >= 60){
                 totuus = true;
+                pelattu = true;
             }
         }
 

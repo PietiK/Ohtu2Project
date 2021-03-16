@@ -16,13 +16,14 @@ public class Turnaus {
 	private Pelaajataulu pelaajat = new Pelaajataulu();
 
   public Turnaus(){
-    
+    this.tappiot = new HashMap<>();
   }
 
   public Turnaus(String nimi, String aloituspvm, String lopetuspvm){
     this.nimi = nimi;
     this.aloituspvm = aloituspvm;
     this.lopetuspvm = lopetuspvm;
+    this.tappiot = new HashMap<>();
   }
 
   public int getId() {

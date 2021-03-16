@@ -14,7 +14,7 @@ import java.util.List;
 public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
-        String url = "jdbc:sqlite:tietokanta.db";
+        String url = "jdbc:sqlite:src/tietokanta.db";
 
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -66,17 +66,12 @@ public class Tietokanta {
 
     public static void LuoTurnauksenPelaajalista(Pelaaja pelaaja, int tid) { 
         String query = "Insert into pelaaja_turnaus(pelaaja_id, turnaus_id, pelinro) values (?, ?, ?)";
-        String query2 = "Insert into pelaaja(pelaaja_id, nimi) values (?, ?)";
         try {
             Connection conn = connect(); 
             PreparedStatement stmt = conn.prepareStatement(query); 
-            PreparedStatement stmt2 = conn.prepareStatement(query2);
             stmt.setInt(1, pelaaja.getId());
             stmt.setInt(2, tid); 
             stmt.setInt(3, pelaaja.getPeliNro());
-            stmt.executeUpdate();
-            stmt2.setInt(1, pelaaja.getId()); 
-            stmt2.setString(2, pelaaja.getNimi()); 
             stmt.executeUpdate();
             conn.close();
         }  catch (SQLException e) {
@@ -254,7 +249,39 @@ public class Tietokanta {
     }
     return null;
     }
+    public static int HaeTurnauksenID(String nimi){
+        String query = "SELECT turnaus_id FROM turnaus WHERE nimi = ?";
+        int id = -1;
+        int rows = 0;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1,nimi);
+            ResultSet rs = stmt.executeQuery();
+            id = rs.getInt(1);
+            conn.close();
+            return id;
+            /*
+            Connection conn = connect();
+            System.out.println(query);
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1,nimi);
+            ResultSet rs = stmt.executeQuery(query);
+            id = rs.getInt(1);
+            conn.close();
+            return id;
 
+             */
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return id;
+    }
 
     public static void LisaaPisteita(int pelaajaid, int otteluid, int pisteet){
         String ottelu_query = "UPDATE pelaaja_ottelu SET pisteet = pisteet + ? " +
@@ -279,6 +306,90 @@ public class Tietokanta {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static ArrayList<Pelaaja> TurnauksenPelaajat(int turnausid){
+        Pelaajataulu pelaajat = new Pelaajataulu();
+        ArrayList<Pelaaja> pel = new ArrayList<>();
+        String query = "SELECT pelaaja.pelaaja_id,pelaaja.nimi, pelinro FROM turnaus, pelaaja " +
+        "JOIN pelaaja_turnaus USING(pelaaja_id)" +
+        "WHERE turnaus.turnaus_id = ?";
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,turnausid);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                String nimi = rs.getString(2);
+                int id = rs.getInt(1);
+                Pelaaja temp = new Pelaaja(nimi);
+                temp.setId(id);
+                pel.add(temp);
+            }
+            conn.close();
+            return pel;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pel;
+
+    }
+
+    public static int PelaajanId(String nimi){
+        String query = "SELECT pelaaja_id FROM pelaaja WHERE nimi = ?";
+        int id = -1;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1,nimi);
+            ResultSet rs = stmt.executeQuery();
+            id = rs.getInt(1);
+            conn.close();
+            return id;
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return id;
+
+    }
+
+    public static void PelaajatOtteluun(List<Ottelu> kierros){
+        String eka = "INSERT INTO pelaaja_ottelu (pelaaja_id,ottelu_id) "+
+                      "VALUES (?,?)";
+        String toka = "INSERT INTO pelaaja_ottelu (pelaaja_id,ottelu_id) "+
+                     "VALUES (?,?)";
+
+        int eka_id = -1;
+        int toka_id = -1;
+        int laskuri = 1;
+        try {
+            Connection conn = connect();
+            for (Ottelu o : kierros){
+                PreparedStatement stmt_eka = conn.prepareStatement(eka);
+                PreparedStatement stmt_toka = conn.prepareStatement(toka);
+                stmt_eka.setInt(1, PelaajanId(o.getPelaaja1().getNimi()));
+                stmt_eka.setInt(2, laskuri);
+                stmt_toka.setInt(1, PelaajanId(o.getPelaaja2().getNimi()));
+                stmt_toka.setInt(2, laskuri);
+                stmt_eka.executeUpdate();
+                stmt_toka.executeUpdate();
+                laskuri++;
+            }
+            conn.close();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        } catch (Exception e) {
+
             e.printStackTrace();
         }
     }

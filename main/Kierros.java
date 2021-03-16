@@ -12,6 +12,7 @@ public class Kierros {
 
     //Kun kierros luodaan, tällä saa turnauksessa jäljellä olevat pelaajat
     public void setJäljellä() {
+
         this.jäljellä = this.turnaus.Jäljellä(); 
     }
 
