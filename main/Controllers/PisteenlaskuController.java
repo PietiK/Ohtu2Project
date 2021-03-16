@@ -3,6 +3,7 @@ package main.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -17,15 +18,6 @@ import main.Tietokanta;
 import java.io.IOException;
 
 public class PisteenlaskuController {
-
-  private static final int SECONDS_PER_DAY = 86400;
-  private static final int SECONDS_PER_HOUR = 3600;
-  private static final int SECONDS_PER_MINUTE = 60;
-  @FXML private TextField minutes;
-  @FXML private TextField seconds;
-  private Duration kesto;
-  private long lastTimerCall;
-  private AnimationTimer ajastin;
 
     // väliaikaiset pelaajat, jotta sai testattua pelaajien pisteitä.
     Pelaaja pelaaja_1 = new Pelaaja("eka", 2);
@@ -58,9 +50,19 @@ public class PisteenlaskuController {
     private TextField TextField2;
 
     @FXML
-    private TextField Minuutit;
+    private Label Minuutit;
     @FXML
-    private TextField Sekunnit;
+    private Label Sekunnit;
+
+    //Ajastimen hommat
+    private static final int SECONDS_PER_DAY = 86400;
+    private static final int SECONDS_PER_HOUR = 3600;
+    private static final int SECONDS_PER_MINUTE = 60;
+    @FXML private TextField minutes;
+    @FXML private TextField seconds;
+    private Duration kesto;
+    private long lastTimerCall;
+    private AnimationTimer ajastin;
 
     @FXML
     void initialize() {
@@ -70,7 +72,7 @@ public class PisteenlaskuController {
         //TableColumn1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
         //TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
         
-      Minuutit.setText("0");
+      Minuutit.setText("60");
       Sekunnit.setText("0");
 
       kesto = Duration.minutes(60);
@@ -97,9 +99,9 @@ public class PisteenlaskuController {
         }
       };
     }
-public void aloitaKello(ActionEvent event) throws IOException {
-  ajastin.start();
-}
+    public void aloitaKello(ActionEvent event) throws IOException {
+      ajastin.start();
+    }
     public void lisaaPelaajalle1(ActionEvent event) throws IOException {
         int pisteet = Integer.valueOf(TextField1.getText());
         pelaaja_1.setPisteet(pisteet);

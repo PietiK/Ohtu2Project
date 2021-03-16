@@ -11,8 +11,9 @@
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.PisteenlaskuController">
   <children>
-  <TextField fx:id="Minuutit" layoutX="201.0" layoutY="70.0"/>
-  <TextField fx:id="Sekunnit" layoutX="260.0" layoutY="70.0"/>
+    <Label fx:id="Minuutit" layoutX="225.0" layoutY="45.0"><font><Font name="Arial" size="30"/></font></Label>
+    <Label fx:id="Kaksoispiste" text=":" layoutX="265.0" layoutY="45.0"><font><Font name="Arial" size="30"/></font></Label>
+    <Label fx:id="Sekunnit" layoutX="280.0" layoutY="45.0"><font><Font name="Arial" size="30"/></font></Label>
       <TableView fx:id="TableView" layoutX="40.0" layoutY="129.0" prefHeight="310.0" prefWidth="478.0" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="231.0" text="Pelaaja 1 pisteet" />
