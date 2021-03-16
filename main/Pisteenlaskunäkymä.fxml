@@ -8,49 +8,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.*?>
 
-<<<<<<< Updated upstream
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.PisteenlaskuController">
-=======
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
->>>>>>> Stashed changes
    <children>
-      <TableView fx:id="TableView" layoutX="40.0" layoutY="129.0" prefHeight="310.0" prefWidth="478.0" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
+      <TableView fx:id="TableView" layoutX="34.0" layoutY="105.0" prefHeight="310.0" prefWidth="478.0" AnchorPane.bottomAnchor="139.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="105.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="231.0" text="Pelaaja 1 pisteet" />
           <TableColumn fx:id="TableColumn2" prefWidth="246.0" text="Pelaaja 2 pisteet" />
         </columns>
       </TableView>
-<<<<<<< Updated upstream
       <TextField fx:id="TextField1" layoutX="48.0" layoutY="455.0" prefHeight="27.0" prefWidth="114.0" />
       <Button fx:id="LisääBtn1" layoutX="172.0" layoutY="455.0" mnemonicParsing="false" onAction="#lisaaPelaajalle1" prefHeight="27.0" prefWidth="54.0" text="Lisää">
-=======
-      <TextField fx:id="TextField1" layoutX="40.0" layoutY="455.0" prefHeight="27.0" prefWidth="114.0" />
-      <Button fx:id="LisääBtn1" layoutX="164.0" layoutY="455.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Lisää">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="LisääBtn2" layoutX="464.0" layoutY="455.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Lisää">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Button>
-      <TextField fx:id="TextField2" layoutX="341.0" layoutY="455.0" prefHeight="25.0" prefWidth="114.0" />
-      <Button fx:id="SeuraavaBtn" layoutX="239.0" layoutY="507.0" mnemonicParsing="false" text="Seuraava">
->>>>>>> Stashed changes
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Button>
-<<<<<<< Updated upstream
       <Button fx:id="LisääBtn2" layoutX="452.0" layoutY="455.0" mnemonicParsing="false" onAction="#lisaaPelaajalle2" prefHeight="27.0" prefWidth="54.0" text="Lisää">
-=======
-      <Button fx:id="AloitaKelloBtn" layoutX="231.0" layoutY="86.0" mnemonicParsing="false" text="Aloita kello">
->>>>>>> Stashed changes
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
+      <TextField fx:id="TextField2" layoutX="327.0" layoutY="455.0" prefHeight="25.0" prefWidth="114.0" />
    </children>
 </AnchorPane>
