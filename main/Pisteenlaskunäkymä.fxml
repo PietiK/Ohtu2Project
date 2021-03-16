@@ -22,7 +22,6 @@
       <TextField fx:id="TextField1" layoutX="48.0" layoutY="455.0" prefHeight="27.0" prefWidth="114.0" />
       <Button fx:id="LisääBtn1" layoutX="172.0" layoutY="455.0" mnemonicParsing="false" onAction="#lisaaPelaajalle1" prefHeight="27.0" prefWidth="54.0" text="Lisää">
       </Button>
-      <TextField fx:id="TextField2" layoutX="341.0" layoutY="455.0" prefHeight="25.0" prefWidth="114.0" />
       <Button fx:id="SeuraavaBtn" layoutX="239.0" layoutY="507.0" mnemonicParsing="false" text="Seuraava">
          <font>
             <Font name="Arial" size="14.0" />
@@ -35,5 +34,6 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
+      <TextField fx:id="TextField2" layoutX="327.0" layoutY="455.0" prefHeight="25.0" prefWidth="114.0" />
    </children>
 </AnchorPane>
