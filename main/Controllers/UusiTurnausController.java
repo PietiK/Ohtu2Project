@@ -126,11 +126,17 @@ public class UusiTurnausController {
 
         int id = Tietokanta.HaeuusinTurnausID(); 
 
-        PelaajaNumerot.arvoNumerot(pelaajat); 
-        
         for (Pelaaja pel : pelaajat) {
-            Tietokanta.LuoTurnauksenPelaajalista(pel, id);
+            Tietokanta.LisaaPelaaja(pel);
+            int pid = Tietokanta.HaeUusinPelaajaID();
+            pel.setId(pid); 
         }
+        PelaajaNumerot.arvoNumerot(pelaajat); 
+
+        for (Pelaaja peip : pelaajat) {
+            Tietokanta.LuoTurnauksenPelaajalista(peip, id);
+        }
+
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/Aloitusnäyttö.fxml"));

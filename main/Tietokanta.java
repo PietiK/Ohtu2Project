@@ -48,13 +48,11 @@ public class Tietokanta {
     */
 
     public static void LisaaPelaaja(Pelaaja pelaaja){
-        String query = "Insert Into pelaaja(pelinro, nimi, pisteet) " + "Values(?, ?, ?)";
+        String query = "Insert Into pelaaja(nimi) " + "Values(?)";
         try {
             Connection conn = connect();
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1,pelaaja.getPeliNro());
-            stmt.setString(2,pelaaja.getNimi());
-            stmt.setInt(3,pelaaja.getPisteet());
+            stmt.setString(1, pelaaja.getNimi());
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -101,7 +99,27 @@ public class Tietokanta {
             e.printStackTrace();
         }
         return id;
+    }
 
+    public static int HaeUusinPelaajaID() {
+        Statement stmt = null; 
+        String query = "Select pelaaja_id, MAX([pelaaja_id]) from pelaaja"; 
+        int id = -1; 
+        try {
+            Connection connect = connect();
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                id = rs.getInt("pelaaja_id");
+            }
+            connect.close();
+            return id;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 
     public static void LisaaTurnaus(Turnaus turnaus) {
@@ -125,7 +143,7 @@ public class Tietokanta {
     }
     public static ObservableList<Turnaus> haeTurnaukset() {
         Statement stmt = null;
-        String query = "Select nimi, aloituspvm, lopetuspvm From turnaus";
+        String query = "Select turnaus_id, nimi, aloituspvm, lopetuspvm From turnaus";
         List<Turnaus> lista = new ArrayList<>();
         try {
             Connection connect = connect();
@@ -133,6 +151,7 @@ public class Tietokanta {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 Turnaus t = new Turnaus(); 
+                t.setId(rs.getInt("turnaus_id"));
                 t.setNimi(rs.getString("nimi"));
                 t.setAloituspvm(rs.getString("aloituspvm"));
                 t.setLopetuspvm(rs.getString("lopetuspvm"));
@@ -309,23 +328,25 @@ public class Tietokanta {
             e.printStackTrace();
         }
     }
-    public static ArrayList<Pelaaja> TurnauksenPelaajat(int turnausid){
+    public static ArrayList<Pelaaja> TurnauksenPelaajat(Turnaus t){
         Pelaajataulu pelaajat = new Pelaajataulu();
         ArrayList<Pelaaja> pel = new ArrayList<>();
-        String query = "SELECT pelaaja.pelaaja_id,pelaaja.nimi, pelinro FROM turnaus, pelaaja " +
-        "JOIN pelaaja_turnaus USING(pelaaja_id)" +
-        "WHERE turnaus.turnaus_id = ?";
+        String query = "SELECT pelaaja.nimi, pelaaja_turnaus.pelaaja_id, pelaaja_turnaus.pelinro " + 
+        "FROM pelaaja_turnaus" +
+        " INNER JOIN pelaaja ON pelaaja_turnaus.pelaaja_id = pelaaja.pelaaja_id" + 
+        " WHERE pelaaja_turnaus.turnaus_id = " + t.getId();
+
         try {
             Connection conn = connect();
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1,turnausid);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
-                String nimi = rs.getString(2);
-                int id = rs.getInt(1);
-                Pelaaja temp = new Pelaaja(nimi);
-                temp.setId(id);
-                pel.add(temp);
+                Pelaaja p = new Pelaaja(); 
+                p.setId(rs.getInt("pelaaja_id"));
+                p.setNimi(rs.getString("nimi"));
+                p.setPeliNro(rs.getInt("pelinro"));
+                System.out.println(p.getNimi()); 
+                pel.add(p); 
             }
             conn.close();
             return pel;
@@ -393,6 +414,12 @@ public class Tietokanta {
             e.printStackTrace();
         }
     }
+
+    /*
+    public ObservableList<Ottelu> haeKierroksenOttelut(int id) {
+        String query = ""
+    }
+    */
 
   public static void main(String[] args) {  
     

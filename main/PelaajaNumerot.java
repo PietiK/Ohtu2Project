@@ -15,6 +15,13 @@ public class PelaajaNumerot {
 		
 		//Taulukko pelaajien numeroille
 		int randomi[] = new int[pelaajat.size()];
+		int alku = 1; 
+
+		for (int i = 0; i < pelaajat.size(); i ++) {
+			randomi[i] = alku; 
+			alku++; 
+		}
+
 
 		//sekoitetaan taulukko
 		sekoita(randomi);

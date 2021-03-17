@@ -70,6 +70,11 @@ public class TulevatTurnauksetController {
         TableColumnAloituspäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("aloituspvm"));
         TableColumnLopetuspäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("lopetuspvm"));
         TableView.setItems(Tietokanta.haeTurnaukset());
+        TableView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (TableView.getSelectionModel().getSelectedItem() != null) {
+                Turnaus valittu = TableView.getSelectionModel().getSelectedItem(); 
+            }
+        });
     }
 
     @FXML
@@ -92,9 +97,12 @@ public class TulevatTurnauksetController {
         Parent AloitusNayttoP = loader.load();
         Scene PariS = new Scene(AloitusNayttoP);
 
+        Turnaus turnaus = TableView.getSelectionModel().getSelectedItem();
+    
         /* Haetaan turnauksen nimi valitusta rivistä.
         https://stackoverflow.com/questions/29090583/javafx-tableview-how-to-get-cells-data
-         */
+        */
+         /*
         TablePosition pos = TableView.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         Turnaus item = TableView.getItems().get(row);
@@ -103,9 +111,15 @@ public class TulevatTurnauksetController {
 
         //haetaan turnauksen ID turnauksen nimellä
         int id = Tietokanta.HaeTurnauksenID(nimi);
+        */
 
+        ArrayList<Pelaaja> turnauksenpelaajat =  Tietokanta.TurnauksenPelaajat(turnaus);
+        System.out.println(turnaus.getId()); 
+        for (Pelaaja pip : turnauksenpelaajat) {
+            System.out.println(pip.getNimi() + pip.getPeliNro());
+        }
+         
 
-        pel =  Tietokanta.TurnauksenPelaajat(id);
         for (Pelaaja p : pel){
             pelaajat.setPelaaja(p);
         }
