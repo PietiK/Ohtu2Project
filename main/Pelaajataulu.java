@@ -25,7 +25,7 @@ public class Pelaajataulu {
 
         //Arvotaan pelaajille numerot
         //Numerot pitää jakaa jokasen pelaajan jälkeen uusiks
-        arvoNumerot(pelaajat);
+        //arvoNumerot(pelaajat);
     }
     // Haetaan pelaaja pelaajanro:lla
     // Jos tätä ei tarvitsekkaan, niin poistetaan
@@ -37,6 +37,10 @@ public class Pelaajataulu {
             }
         }
         return temp;
+    }
+    
+    public ArrayList<Pelaaja> getPelaajat() {
+        return this.pelaajat; 
     }
     // Haetaan pelinroa pelaajalla
     public int getPelinro(Pelaaja pelaaja){

@@ -3,7 +3,7 @@ package main;
 import java.util.Scanner;
 
 public class Ottelu {
-
+    private int ottelu_id; 
     private int kierros; 
     private Pelaaja pelaaja1;
     private Pelaaja pelaaja2;
@@ -23,9 +23,28 @@ public class Ottelu {
         this.pelattu = false; 
     }
 
+    public void setID(int id) {
+        this.ottelu_id = id; 
+    }
+
+    public int getID() {
+        return this.ottelu_id;
+    }
+
+
     public Ottelu(Pelaaja pelaaja, Pelaaja pelaaja3) {
 	}
 
+    public Ottelu() {
+    }
+
+    public void setKierros(int kid) {
+        this.kierros = kid; 
+    }
+    public int getKierros() {
+        return this.kierros; 
+    }
+    
 	public boolean getPelattu() {
         return this.pelattu;
     }

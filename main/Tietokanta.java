@@ -328,6 +328,11 @@ public class Tietokanta {
             e.printStackTrace();
         }
     }
+/*
+    public static ArrayList<Ottelu> KierroksenOttelut(Kierros k) {
+        String query = "Select pelaaja.nimi, pelaaja.pelaaja_id, pelaaja_ottelu.ottelu_id, pelaaja_turnaus.pelinro"
+    }
+*/
     public static ArrayList<Pelaaja> TurnauksenPelaajat(Turnaus t){
         Pelaajataulu pelaajat = new Pelaajataulu();
         ArrayList<Pelaaja> pel = new ArrayList<>();
@@ -382,7 +387,85 @@ public class Tietokanta {
 
     }
 
-    public static void PelaajatOtteluun(List<Ottelu> kierros){
+
+    public static void LisaaKierros(Kierros kierros) {
+        String query = "Insert into kierros (turnaus_id) values (?) ";
+        try {
+            Connection conn = connect(); 
+            PreparedStatement stmt = conn.prepareStatement(query); 
+            stmt.setInt(1, kierros.getTurnaus().getId());
+            stmt.executeUpdate(); 
+            conn.close();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public static int HaeUusinKierrosID() {
+        Statement stmt = null; 
+        String query = "Select kierros_id, MAX([kierros_id]) from kierros"; 
+        int id = -1; 
+        try {
+            Connection connect = connect();
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                id = rs.getInt("kierros_id");
+            }
+            connect.close();
+            return id;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public static void LisaaOttelu(Ottelu ottelu) {
+        String query = "Insert into ottelu (kierros_id) values (?)";
+        try {
+            Connection conn = connect(); 
+            PreparedStatement stmt = conn.prepareStatement(query); 
+            stmt.setInt(1, ottelu.getKierros());
+            stmt.executeUpdate(); 
+            conn.close();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public static int HaeUusinOtteluID() {
+        Statement stmt = null; 
+        String query = "Select ottelu_id, MAX([ottelu_id]) from ottelu"; 
+        int id = -1; 
+        try {
+            Connection connect = connect();
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                id = rs.getInt("ottelu_id");
+            }
+            connect.close();
+            return id;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+
+    public static void PelaajatOtteluun(Ottelu o){
         String eka = "INSERT INTO pelaaja_ottelu (pelaaja_id,ottelu_id) "+
                       "VALUES (?,?)";
         String toka = "INSERT INTO pelaaja_ottelu (pelaaja_id,ottelu_id) "+
@@ -390,22 +473,17 @@ public class Tietokanta {
 
         int eka_id = -1;
         int toka_id = -1;
-        int laskuri = 1;
         try {
             Connection conn = connect();
-            for (Ottelu o : kierros){
-                PreparedStatement stmt_eka = conn.prepareStatement(eka);
-                PreparedStatement stmt_toka = conn.prepareStatement(toka);
-                stmt_eka.setInt(1, PelaajanId(o.getPelaaja1().getNimi()));
-                stmt_eka.setInt(2, laskuri);
-                stmt_toka.setInt(1, PelaajanId(o.getPelaaja2().getNimi()));
-                stmt_toka.setInt(2, laskuri);
-                stmt_eka.executeUpdate();
-                stmt_toka.executeUpdate();
-                laskuri++;
-            }
+            PreparedStatement stmt_eka = conn.prepareStatement(eka);
+            PreparedStatement stmt_toka = conn.prepareStatement(toka);
+            stmt_eka.setInt(1, o.getPelaaja1().getId());
+            stmt_eka.setInt(2, o.getID());
+            stmt_toka.setInt(1, o.getPelaaja2().getId());
+            stmt_toka.setInt(2, o.getID());
+            stmt_eka.executeUpdate();
+            stmt_toka.executeUpdate();
             conn.close();
-
         } catch (SQLException e) {
 
             e.printStackTrace();

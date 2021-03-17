@@ -29,6 +29,9 @@ public class Kierros {
         return true; 
     }
 
+    public void setTurnaus(Turnaus t) {
+        this.turnaus = t; 
+    }
     public Turnaus getTurnaus() {
         return this.turnaus; 
     }

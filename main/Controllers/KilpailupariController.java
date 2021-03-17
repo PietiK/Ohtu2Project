@@ -1,8 +1,10 @@
 package main.Controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.beans.value.ChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ import javafx.stage.Stage;
 import main.Pelaaja;
 import main.Pelaajataulu;
 import main.Tietokanta;
+import main.Kierros;
 import main.Ottelu;
 
 public class KilpailupariController{
@@ -53,9 +56,17 @@ public class KilpailupariController{
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
         //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat());
-
-
-
+        try {
+             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/TulevatTurnaukset.fxml"));
+            Parent root = (Parent) fxmlLoader.load();          
+            TulevatTurnauksetController ttcontroller = fxmlLoader.<TulevatTurnauksetController>getController();
+            ObservableList<Ottelu> ottelut = ttcontroller.getOttelut(); 
+            TableView.setItems(ottelut); 
+        }  
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*
         TableView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observableValue, oldValue, newValue) -> {
             if (TableView.getSelectionModel().getSelectedItem() != null) {
                 Ottelu ottelu = TableView.getSelectionModel().getSelectedItem();
@@ -63,7 +74,8 @@ public class KilpailupariController{
                 //Pelaaja toka = ottelu.getPelaaja2();
 
             }
-        });
+        }); 
+        */
     }
 
     
@@ -92,4 +104,17 @@ public class KilpailupariController{
         window.setScene(AloitusS);
         window.show();
     }
+
+/*
+    public KilpailupariController(FXMLLoader fxmlLoader, Parent root, TulevatTurnauksetController ttcontroller) {
+        this.fxmlLoader = fxmlLoader;
+        this.root = root;
+        this.ttcontroller = ttcontroller;
+    }
+
+
+    public KilpailupariController(FXMLLoader fxmlLoader) {
+        this.fxmlLoader = fxmlLoader;
+    }
+    */
 }

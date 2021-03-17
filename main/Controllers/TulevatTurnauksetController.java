@@ -1,5 +1,7 @@
 package main.Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +26,11 @@ public class TulevatTurnauksetController {
     public static Pelaajataulu pelaajat = new Pelaajataulu();
     public static Turnaus turnaus = new Turnaus();
     public static ArrayList<Pelaaja> pel;
-    List<Ottelu> kierros = new ArrayList();
+    ArrayList<Ottelu> kierros = new ArrayList<Ottelu>();
 
+    public ObservableList<Ottelu> getOttelut() {
+       return FXCollections.observableList(this.kierros);
+    }
 
     public static Pelaajataulu getPelaajat(){
         return pelaajat;
@@ -118,18 +123,43 @@ public class TulevatTurnauksetController {
         for (Pelaaja pip : turnauksenpelaajat) {
             System.out.println(pip.getNimi() + pip.getPeliNro());
         }
-         
-
+        /*
         for (Pelaaja p : pel){
             pelaajat.setPelaaja(p);
         }
-
         turnaus.setPelaajat(pel);
-        Kierros uusi_kierros = new Kierros();
+        */
 
-        pelaajat.jaaOtteluparit();
-        kierros = pelaajat.getKierros();
-        Tietokanta.PelaajatOtteluun(kierros);
+        Kierros uusi_kierros = new Kierros();
+        uusi_kierros.setTurnaus(turnaus);
+
+        Tietokanta.LisaaKierros(uusi_kierros);
+        int kid = Tietokanta.HaeUusinKierrosID();
+         
+        for (Pelaaja pelaaja : turnauksenpelaajat) {
+            pelaajat.setPelaaja(pelaaja); 
+        } 
+        
+        //pelaajat.jaaOtteluparit();
+
+        ArrayList<Pelaaja> ptaulu = pelaajat.getPelaajat();
+        ArrayList<Ottelu> ottelut = new ArrayList<Ottelu>(); 
+       
+        for (int i = 0; i < ptaulu.size(); i = i+2) {
+            Ottelu o = new Ottelu(); 
+            o.setKierros(kid);
+            o.setPelaaja1(ptaulu.get(i));
+            o.setPelaaja2(ptaulu.get(i+1));
+            ottelut.add(o); 
+            kierros.add(o);
+        }
+
+        for (Ottelu ot : ottelut) {
+            Tietokanta.LisaaOttelu(ot);
+            ot.setID(Tietokanta.HaeUusinOtteluID());
+            Tietokanta.PelaajatOtteluun(ot);
+        }
+        //kierros = pelaajat.getKierros(); mikä tämä on
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
