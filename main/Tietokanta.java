@@ -196,7 +196,7 @@ public class Tietokanta {
     //Nyt löytää ottelun pelaajien nimetkin (jos tää toimii kai)
     //mutta pelinumeroiden haku vielä vaiheessa
     //-Pieti
-    public static ObservableList<Pelaaja>haeKilpailuparinPelaajat(int ottelu_id){
+    public static ArrayList<Pelaaja>haeKilpailuparinPelaajat(int ottelu_id){
         PreparedStatement stmt = null;
         //String query = "Select * From ottelu"; //tietokanta?
         String nimet = "SELECT nimi FROM pelaaja "
@@ -204,7 +204,7 @@ public class Tietokanta {
         + "JOIN ottelu USING(ottelu_id) "
         + "WHERE ottelu.ottelu_id = ?";
 
-        List<Pelaaja> lista = new ArrayList<>();
+        ArrayList<Pelaaja> lista = new ArrayList<>();
 
         try {
             Connection connect = connect();
@@ -218,7 +218,7 @@ public class Tietokanta {
             }
 
             connect.close();
-            return FXCollections.observableList(lista);
+            return lista;
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -328,11 +328,7 @@ public class Tietokanta {
             e.printStackTrace();
         }
     }
-/*
-    public static ArrayList<Ottelu> KierroksenOttelut(Kierros k) {
-        String query = "Select pelaaja.nimi, pelaaja.pelaaja_id, pelaaja_ottelu.ottelu_id, pelaaja_turnaus.pelinro"
-    }
-*/
+
     public static ArrayList<Pelaaja> TurnauksenPelaajat(Turnaus t){
         Pelaajataulu pelaajat = new Pelaajataulu();
         ArrayList<Pelaaja> pel = new ArrayList<>();
@@ -502,6 +498,28 @@ public class Tietokanta {
   public static void main(String[] args) {  
     
   }
+
+public static ArrayList<Integer> getKierroksenOttelut(int kierros_id) {
+    Statement stmt = null; 
+    String query = "Select ottelu_id from ottelu where kierros_id = " + kierros_id; 
+    try {
+        Connection connect = connect();
+        stmt = connect.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        ArrayList<Integer> idt = new ArrayList<Integer>(); 
+        while (rs.next()) {
+            idt.add(rs.getInt("ottelu_id")); 
+        }
+        connect.close();
+        return idt; 
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return null;
+    
+}
 
 
 }

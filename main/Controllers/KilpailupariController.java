@@ -2,8 +2,10 @@ package main.Controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,17 +57,27 @@ public class KilpailupariController{
     void initialize() {
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
-        //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat());
-        try {
-             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/TulevatTurnaukset.fxml"));
-            Parent root = (Parent) fxmlLoader.load();          
-            TulevatTurnauksetController ttcontroller = fxmlLoader.<TulevatTurnauksetController>getController();
-            ObservableList<Ottelu> ottelut = ttcontroller.getOttelut(); 
-            TableView.setItems(ottelut); 
-        }  
-        catch (IOException e) {
-            e.printStackTrace();
+        //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat())
+        int id = .getKierrosId();
+        System.out.println("kierroksen id " + id);
+        ArrayList<Integer> ottelu_idt = new ArrayList<Integer>(); 
+        
+        ottelu_idt = Tietokanta.getKierroksenOttelut(id); 
+        System.out.println("ottelut idt " + ottelu_idt); 
+        ObservableList<Ottelu> ottelut = FXCollections.observableArrayList(); 
+
+        for (Integer i : ottelu_idt) {
+            Ottelu o = new Ottelu(); 
+            o.setID(i);
+                ArrayList<Pelaaja> pelaajat = Tietokanta.haeKilpailuparinPelaajat(i); 
+                o.setPelaaja1(pelaajat.get(0));
+                System.out.println("pelaaja1  " + o.getPelaaja1().getNimi()); 
+                o.setPelaaja2(pelaajat.get(1));
+                ottelut.add(o); 
         }
+        TableView.setItems(ottelut);
+    }  
+
         /*
         TableView.getSelectionModel().selectedIndexProperty().addListener((ChangeListener) (observableValue, oldValue, newValue) -> {
             if (TableView.getSelectionModel().getSelectedItem() != null) {
@@ -76,7 +88,6 @@ public class KilpailupariController{
             }
         }); 
         */
-    }
 
     
     @FXML

@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 
 public class Kierros {
+    private int id; 
     private Turnaus turnaus; 
     private ArrayList<Ottelu> ottelut; 
     private int jnum; 
@@ -31,6 +32,10 @@ public class Kierros {
 
     public void setTurnaus(Turnaus t) {
         this.turnaus = t; 
+    }
+
+    public int getID() {
+        return this.id; 
     }
     public Turnaus getTurnaus() {
         return this.turnaus; 

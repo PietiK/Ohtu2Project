@@ -24,12 +24,16 @@ import java.util.List;
 
 public class TulevatTurnauksetController {
     public static Pelaajataulu pelaajat = new Pelaajataulu();
-    public static Turnaus turnaus = new Turnaus();
+    public static Turnaus turnaus;
     public static ArrayList<Pelaaja> pel;
-    ArrayList<Ottelu> kierros = new ArrayList<Ottelu>();
+    public int kierros_id; 
 
-    public ObservableList<Ottelu> getOttelut() {
-       return FXCollections.observableList(this.kierros);
+    public void setKierros_id(int id) {
+        this.kierros_id = id; 
+    }
+
+    public int  getKierrosId() {
+        return this.kierros_id;
     }
 
     public static Pelaajataulu getPelaajat(){
@@ -135,6 +139,9 @@ public class TulevatTurnauksetController {
 
         Tietokanta.LisaaKierros(uusi_kierros);
         int kid = Tietokanta.HaeUusinKierrosID();
+        setKierros_id(kid);
+        System.out.println("kierroksen id ensin " + kierros_id);
+
          
         for (Pelaaja pelaaja : turnauksenpelaajat) {
             pelaajat.setPelaaja(pelaaja); 
@@ -151,7 +158,6 @@ public class TulevatTurnauksetController {
             o.setPelaaja1(ptaulu.get(i));
             o.setPelaaja2(ptaulu.get(i+1));
             ottelut.add(o); 
-            kierros.add(o);
         }
 
         for (Ottelu ot : ottelut) {
