@@ -385,11 +385,12 @@ public class Tietokanta {
 
 
     public static void LisaaKierros(Kierros kierros) {
-        String query = "Insert into kierros (turnaus_id) values (?) ";
+        String query = "Insert into kierros (turnaus_id, kierros) values (?, ?) ";
         try {
             Connection conn = connect(); 
             PreparedStatement stmt = conn.prepareStatement(query); 
             stmt.setInt(1, kierros.getTurnaus().getId());
+            stmt.setInt(2, kierros.getJnum());
             stmt.executeUpdate(); 
             conn.close();
         } catch (SQLException e) {
@@ -521,5 +522,43 @@ public static ArrayList<Integer> getKierroksenOttelut(int kierros_id) {
     
 }
 
+public static void TurnausKäyntiin(int id) {
+    String query = "Update turnaus set kaynnissa = 1 Where turnaus_id = " + id; 
+    try {
+        Connection conn = connect();
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.executeUpdate();
+        conn.close();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+public static int haeKierrosID() {
+    Statement stmt = null;
+    String query = "SELECT kierros.kierros_id, MAX([kierros]) FROM kierros " + 
+    "Inner join turnaus On kierros.turnaus_id = turnaus.turnaus_id " + 
+    "where turnaus.kaynnissa = 1"; 
+    int id = -1; 
+    try {
+        Connection connect = connect();
+        stmt = connect.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while (rs.next()) {
+            id = rs.getInt("kierros_id");
+        }
+        connect.close();
+        return id; 
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return id;
+}
 
 }

@@ -134,8 +134,10 @@ public class TulevatTurnauksetController {
         turnaus.setPelaajat(pel);
         */
 
+        Tietokanta.TurnausKäyntiin(turnaus.getId()); 
         Kierros uusi_kierros = new Kierros();
         uusi_kierros.setTurnaus(turnaus);
+        uusi_kierros.setKierros(1); 
 
         Tietokanta.LisaaKierros(uusi_kierros);
         int kid = Tietokanta.HaeUusinKierrosID();

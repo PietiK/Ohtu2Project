@@ -58,7 +58,8 @@ public class KilpailupariController{
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
         //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat())
-        int id = .getKierrosId();
+       
+        int id = Tietokanta.haeKierrosID(); 
         System.out.println("kierroksen id " + id);
         ArrayList<Integer> ottelu_idt = new ArrayList<Integer>(); 
         

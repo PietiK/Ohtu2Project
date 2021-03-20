@@ -40,6 +40,14 @@ public class Kierros {
     public Turnaus getTurnaus() {
         return this.turnaus; 
     }
+
+    public void setKierros(int i) {
+        this.jnum = i; 
+    }
+
+    public int getJnum() {
+        return this.jnum;
+    }
 }
 
 
