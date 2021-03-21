@@ -14,7 +14,7 @@ import java.util.List;
 public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
-        String url = "jdbc:sqlite:tietokanta.db";
+        String url = "jdbc:sqlite:src/tietokanta.db";
 
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -560,5 +560,70 @@ public static int haeKierrosID() {
     }
     return id;
 }
+    public static boolean PoistaTurnaus(int id){
+        String eka = "DELETE FROM ottelu WHERE turnaus_id = ?";
+        String toka = "DELETE FROM pelaaja_turnaus WHERE turnaus_id = ?";
+        String kolmas = "DELETE FROM turnaus WHERE turnaus_id = ?";
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt_eka = conn.prepareStatement(eka);
+            PreparedStatement stmt_toka = conn.prepareStatement(toka);
+            PreparedStatement stmt_kolmas = conn.prepareStatement(kolmas);
+            stmt_eka.setInt(1, id);
+            stmt_toka.setInt(1, id);
+            stmt_kolmas.setInt(1, id);
+            stmt_eka.executeUpdate();
+            stmt_toka.executeUpdate();
+            stmt_kolmas.executeUpdate();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public static void PoistaTurnauksenPelaaja_Ottelut(ArrayList<Integer> ottelut){
+        String query = "DELETE FROM pelaaja_ottelu WHERE ottelu_id = ?";
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            for (int i : ottelut){
+                stmt.setInt(1,i);
+                stmt.executeUpdate();
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+    public static ArrayList<Integer> HaeTurnauksenOttelut(int id){
+        String query = "Select ottelu_id FROM ottelu WHERE turnaus_id = ?";
+        ArrayList<Integer> ottelut = new ArrayList<>();
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ottelut.add(rs.getInt(1));
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return ottelut;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ottelut;
+        }
+        return ottelut;
+
+    }
 
 }

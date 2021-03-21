@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.*;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -173,5 +174,35 @@ public class TulevatTurnauksetController {
 
         window.setScene(PariS);
         window.show(); 
+    }
+
+    public void PoistaTurnaus(ActionEvent event) throws IOException {
+        TablePosition pos = TableView.getSelectionModel().getSelectedCells().get(0);
+        int row = pos.getRow();
+        Turnaus item = TableView.getItems().get(row);
+        TableColumn col = TableView.getColumns().get(1);
+        String nimi = (String) col.getCellObservableValue(item).getValue();
+
+        //haetaan turnauksen ID turnauksen nimellä
+        int id = Tietokanta.HaeTurnauksenID(nimi);
+
+        ArrayList<Integer> Poistettavatottelut = Tietokanta.HaeTurnauksenOttelut(id);
+
+        if (Tietokanta.PoistaTurnaus(id)){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Turnaus poistettu");
+            alert.setHeaderText(null);
+            alert.setContentText("Turnaus poistettu");
+            alert.showAndWait();
+            Tietokanta.PoistaTurnauksenPelaaja_Ottelut(Poistettavatottelut);
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Turnaus poistettu");
+            alert.setHeaderText(null);
+            alert.setContentText("Turnausta ei voitu poistaa");
+            alert.showAndWait();
+        }
+        initialize();
     }
 }

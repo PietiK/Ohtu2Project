@@ -32,7 +32,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="PeruPeliBtn" layoutX="427.0" layoutY="508.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Peru turnaus">
+      <Button fx:id="PeruPeliBtn" layoutX="427.0" layoutY="508.0" mnemonicParsing="false" onAction="#PoistaTurnaus" prefHeight="26.0" prefWidth="101.0" text="Peru turnaus">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
