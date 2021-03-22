@@ -9,7 +9,7 @@ public class Pelaajataulu {
     private ArrayList<Pelaaja> pelaajat;
     private ArrayList<Pelaaja> pudonneet;
     int i;
-    List<Ottelu> kierros = new ArrayList<>();
+
 
     public Pelaajataulu() {
         pelaajat = new ArrayList<>();
@@ -116,9 +116,10 @@ public class Pelaajataulu {
     // HUOM! Koska pelaajat haetaan aina tietokannasta, pitää katsoa uudestaan miten tarkistetaan ovatko pelaajat pelannee keskenään.
     // ensimmäinen kierros toimii hyvin parittomilla ja parillisilla määrillä.
 
-    public void jaaOtteluparit() {
+    public List<Ottelu> jaaOtteluparit() {
         // Jos pelaajia on pariton määrä, lisätään pelaaja jolle eie löydy paria tälle listaan
-        kierros.clear();
+        List<Ottelu> kierros = new ArrayList<>();
+        //kierros.clear();
         List<Pelaaja> ylimaarainen = new ArrayList<>();
         Pelaaja temp = pelaajat.get(0);
         //System.out.println(pelaajat.size());
@@ -203,6 +204,7 @@ public class Pelaajataulu {
             }
             //pelaajat.add(o.getPelaaja2());
         }
+        return kierros;
     }
 
     //Metodi joka jakaa pelaajille pelinumerot
@@ -234,7 +236,7 @@ public class Pelaajataulu {
         taulu[i] = a;
       }
     }
-
+    /*
     public List<Ottelu> getKierros() {
         return kierros;
     }
@@ -242,6 +244,8 @@ public class Pelaajataulu {
     public void setKierros(List<Ottelu> kierros) {
         this.kierros = kierros;
     }
+
+     */
     public void Tyhjenna(){
         this.pelaajat.clear();
     }

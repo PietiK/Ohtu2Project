@@ -1,27 +1,22 @@
 package main.Controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.*;
-import javafx.scene.control.*;
-import main.Kierros.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TulevatTurnauksetController {
     public static Pelaajataulu pelaajat = new Pelaajataulu();
@@ -156,19 +151,17 @@ public class TulevatTurnauksetController {
         } 
 
         //otteluparien jako
-        pelaajat.jaaOtteluparit();
-        //pitää tehdä joku haku tietokannasta, että saadaan jo pleatut parit selville.
-        //alkuperäinen taida toimia oikein, kun haetaan pelaajat tietokannasta.
+        List<Ottelu> ottelut  = pelaajat.jaaOtteluparit();
 
+        //pitää tehdä joku haku tietokannasta, että saadaan jo pleatut parit selville.
+        //alkuperäinen ei taida toimia oikein, kun haetaan pelaajat tietokannasta.
 
         ArrayList<Pelaaja> ptaulu = pelaajat.getPelaajat();
 
         //tuodaan jaetut otteluparit Pelaajataulusta
-        List<Ottelu> ottelut = new ArrayList<Ottelu>();
-        ottelut = pelaajat.getKierros();
-
-
-       /*
+        //= new ArrayList<Ottelu>();
+        //ottelut = pelaajat.getKierros();
+        /*
         for (int i = 0; i < ptaulu.size(); i = i+2) {
             Ottelu o = new Ottelu();
             o.setKierros(kid);
@@ -177,8 +170,6 @@ public class TulevatTurnauksetController {
             ottelut.add(o);
         }
         */
-
-
         for (Ottelu ot : ottelut) {
             ot.setKierros(kid); // asetetaan otteluille kierroksen ID
             Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
@@ -210,23 +201,34 @@ public class TulevatTurnauksetController {
         //haetaan turnauksen ID turnauksen nimellä
         int id = Tietokanta.HaeTurnauksenID(nimi);
 
+
         ArrayList<Integer> Poistettavatottelut = Tietokanta.HaeTurnauksenOttelut(id);
-
-        if (Tietokanta.PoistaTurnaus(id)){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Turnaus poistettu");
-            alert.setHeaderText(null);
-            alert.setContentText("Turnaus poistettu");
-            alert.showAndWait();
-            Tietokanta.PoistaTurnauksenPelaaja_Ottelut(Poistettavatottelut);
-
+        Alert poistetaanko = new Alert(Alert.AlertType.CONFIRMATION);
+        poistetaanko.setTitle("Poistetaanko turnaus");
+        poistetaanko.setHeaderText(null);
+        poistetaanko.setResizable(false);
+        poistetaanko.setContentText("Haluatko varmasti poistaa turnauksen");
+        Optional<ButtonType> result = poistetaanko.showAndWait();
+        ButtonType button = result.orElse(ButtonType.CANCEL);
+        if (button == ButtonType.OK) {
+            if (Tietokanta.PoistaTurnaus(id)){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Turnaus poistettu");
+                alert.setHeaderText(null);
+                alert.setContentText("Turnaus poistettu");
+                alert.showAndWait();
+                Tietokanta.PoistaTurnauksenPelaaja_Ottelut(Poistettavatottelut);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Turnausta ei voitu poistaa");
+                alert.setHeaderText(null);
+                alert.setContentText("Turnausta ei voitu poistaa");
+                alert.showAndWait();
+            }
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Turnaus poistettu");
-            alert.setHeaderText(null);
-            alert.setContentText("Turnausta ei voitu poistaa");
-            alert.showAndWait();
+            System.out.println("canceled");
         }
+
         initialize();
     }
 
