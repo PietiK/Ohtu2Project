@@ -1,27 +1,25 @@
 package main.Controllers;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.animation.AnimationTimer;
 import javafx.util.Duration;
-import main.Pelaaja;
 import main.Ottelu;
+import main.Pelaaja;
 import main.Tietokanta;
 
 import java.io.IOException;
 
 public class PisteenlaskuController {
 
-    // väliaikaiset pelaajat, jotta sai testattua pelaajien pisteitä.
-    Pelaaja pelaaja_1 = new Pelaaja("eka", 2);
-    Pelaaja pelaaja_2 = new Pelaaja("toka", 3);
+
+
+    Ottelu ottelu = KilpailupariController.getOttelu();
+    Pelaaja pelaaja_1 = KilpailupariController.ottelu.getPelaaja1();
+    Pelaaja pelaaja_2 = KilpailupariController.ottelu.getPelaaja2();
 
     //tähän varmaan pitäisi luoda jokin Ottelu?
 
@@ -29,8 +27,9 @@ public class PisteenlaskuController {
     private AnchorPane AnchorPane;
 
     @FXML
-    private TableView<?> TableView;
-
+    private TableView<Pelaaja> TableView;
+    @FXML
+    private TableView<Pelaaja> TableView2;
     @FXML
     private TableColumn<Pelaaja, String> TableColumn1;
 
@@ -54,6 +53,12 @@ public class PisteenlaskuController {
     @FXML
     private Label Sekunnit;
 
+    @FXML
+    private Label p1Label;
+
+    @FXML
+    private Label p2Label;
+
     //Ajastimen hommat
     private static final int SECONDS_PER_DAY = 86400;
     private static final int SECONDS_PER_HOUR = 3600;
@@ -71,7 +76,7 @@ public class PisteenlaskuController {
       //mutta laittakaa takasin jos pilasin jotain toimivuutta
         //TableColumn1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
         //TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
-        
+        System.out.println("ottelu =" + ottelu.getID());
       Minuutit.setText("60");
       Sekunnit.setText("0");
 
@@ -102,24 +107,36 @@ public class PisteenlaskuController {
     public void aloitaKello(ActionEvent event) throws IOException {
       ajastin.start();
     }
+
+
     public void lisaaPelaajalle1(ActionEvent event) throws IOException {
         int pisteet = Integer.valueOf(TextField1.getText());
         pelaaja_1.setPisteet(pisteet);
-        System.out.println(pelaaja_1.getPisteet());
-        //Tietokanta.LisaaPisteita(pelaajaid, otteluid, pisteet);
+        //System.out.println(pelaaja_1.getPisteet());
+        Tietokanta.LisaaPisteita(pelaaja_1.getId(), ottelu.getID(), pelaaja_1.getPisteet());
+
+        TableView.getItems().add(new Pelaaja(Integer.toString(pisteet)));
+        TableColumn1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
         TextField1.setText("");
+
         //initialize();
-        TableColumn1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
+        p1Label.setText(Integer.toString(pelaaja_1.getPisteet()));
+
     }
 
     public void lisaaPelaajalle2(ActionEvent event) throws IOException {
         int pisteet = Integer.valueOf(TextField2.getText());
+
         pelaaja_2.setPisteet(pisteet);
-        System.out.println(pelaaja_2.getPisteet());
-        //Tietokanta.LisaaPisteita(pelaajaid, otteluid, pisteet);
+        //System.out.println(pelaaja_2.getPisteet());
+        Tietokanta.LisaaPisteita(pelaaja_2.getId(), ottelu.getID(), pelaaja_2.getPisteet());
+        TableView2.getItems().add(new Pelaaja(Integer.toString(pisteet)));
+        TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+
         TextField2.setText("");
         //initialize();
-        TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
+        p2Label.setText(Integer.toString(pelaaja_2.getPisteet()));
+
       }
 
     }

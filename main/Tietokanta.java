@@ -27,6 +27,7 @@ public class Tietokanta {
         }
         return conn;
     }
+
         /* En saanut tällä toimimaan, sen vuoksi kommenttina
         try {
             //Tietokannan osoite
@@ -303,10 +304,10 @@ public class Tietokanta {
     }
 
     public static void LisaaPisteita(int pelaajaid, int otteluid, int pisteet){
-        String ottelu_query = "UPDATE pelaaja_ottelu SET pisteet = pisteet + ? " +
+        String ottelu_query = "UPDATE pelaaja_ottelu SET pisteet = ? " +
                 "WHERE ottelu_id = ? " +
                 " AND pelaaja_id = ?";
-        String turnaus_query = "UPDATE pelaaja_turnaus SET turnauspisteet = turnauspisteet + ? "+
+        String turnaus_query = "UPDATE pelaaja_turnaus SET turnauspisteet = ? "+
                 "WHERE pelaaja_id = ?";
         try {
             Connection conn = connect();

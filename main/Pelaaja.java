@@ -11,6 +11,16 @@ public class Pelaaja {
     private int voitto;
     private int tappio;
     private int pisteet;
+
+    public int getSyötetyt() {
+        return syötetyt;
+    }
+
+    public void setSyötetyt(int syötetyt) {
+        this.syötetyt = syötetyt;
+    }
+
+    private int syötetyt;
     private int kokonaispisteet;
     private boolean pelissa; // totuusarvo onko pelaaja vielä pelissä.
     private ArrayList<Pelaaja> pelattu; // lista johon lisätään pelaajat joita vastaan on jo pelattu
@@ -125,7 +135,9 @@ public class Pelaaja {
 
     @Override
     public String toString() {
-        return nimi + " | " + peliNro + " | " + voitto + " | " + tappio + " | ";
+        return nimi;
+        //nää tulostu siihen TableVieWiin mukaan
+        //+ " | " + peliNro + " | " + voitto + " | " + tappio + " | ";
     }
 
     //tällä vertaillaan kahden pelaajan eroa, jotta pelaajat saatiin voittojen mukaan järjestykseen

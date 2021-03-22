@@ -13,11 +13,15 @@
     <Label fx:id="Minuutit" layoutX="225.0" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="Kaksoispiste" layoutX="265.0" layoutY="45.0" text=":"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="Sekunnit" layoutX="280.0" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
-      <TableView fx:id="TableView" layoutX="40.0" layoutY="129.0" prefHeight="244.0" prefWidth="478.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
+      <TableView fx:id="TableView" layoutX="40.0" layoutY="30.0" prefHeight="244.0"  AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="40" AnchorPane.rightAnchor="280" AnchorPane.topAnchor="129.0">
         <columns>
-          <TableColumn fx:id="TableColumn1" prefWidth="231.0" text="Pelaaja 1 pisteet" />
-          <TableColumn fx:id="TableColumn2" prefWidth="246.0" text="Pelaaja 2 pisteet" />
+          <TableColumn fx:id="TableColumn1" prefWidth="230.0" text="Pelaaja 1 pisteet" />
         </columns>
+      </TableView>
+      <TableView fx:id="TableView2" layoutX="40.0" layoutY="30.0" prefHeight="244.0"  AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="280" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
+          <columns>
+              <TableColumn fx:id="TableColumn2" prefWidth="230.0" text="Pelaaja 2 pisteet" />
+          </columns>
       </TableView>
       <TextField fx:id="TextField1" layoutX="48.0" layoutY="455.0" prefHeight="27.0" prefWidth="114.0" />
       <Button fx:id="LisääBtn1" layoutX="172.0" layoutY="455.0" mnemonicParsing="false" onAction="#lisaaPelaajalle1" prefHeight="27.0" prefWidth="54.0" text="Lisää">

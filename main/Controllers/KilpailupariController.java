@@ -20,14 +20,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.Pelaaja;
-import main.Pelaajataulu;
-import main.Tietokanta;
-import main.Kierros;
-import main.Ottelu;
+import main.*;
 
 public class KilpailupariController{
 
+
+    public static Ottelu ottelu;
+    public static int OtteluId;
+
+    public static Ottelu getOttelu() {
+        return ottelu;
+    }
+
+    public static int getOtteluId() {
+        return OtteluId;
+    }
 
     @FXML
     private AnchorPane AnchorPane;
@@ -63,15 +70,15 @@ public class KilpailupariController{
         int testi = TulevatTurnauksetController.getKierrosId();
 
         //hakee aina kierroksen 10?
-        int id = Tietokanta.haeKierrosID(); 
-        System.out.println("kierroksen id " + id + "testi = " + testi);
+        //int id = Tietokanta.haeKierrosID();
+        //System.out.println("kierroksen id " + id + "testi = " + testi);
 
         ArrayList<Integer> ottelu_idt = new ArrayList<Integer>();
 
         //edellisellä näytöllä jaetut otteluiden ID:t.
         ottelu_idt = Tietokanta.getKierroksenOttelut(testi);
 
-        System.out.println("ottelut idt " + ottelu_idt);
+        //System.out.println("ottelut idt " + ottelu_idt);
 
         ObservableList<Ottelu> ottelut = FXCollections.observableArrayList(); 
 
@@ -101,6 +108,12 @@ public class KilpailupariController{
     
     @FXML
     public void Pelaa(ActionEvent event) throws IOException {
+
+        ottelu = TableView.getSelectionModel().getSelectedItem();
+        OtteluId = ottelu.getID();
+        //System.out.println(ottelu.getID());
+
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/Pisteenlaskunäkymä.fxml"));
         Parent AloitusNayttoP = loader.load();
