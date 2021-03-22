@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.*?>
-
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.PisteenlaskuController">
   <children>
-    <Label fx:id="Minuutit" layoutX="225.0" layoutY="45.0"><font><Font name="Arial" size="30"/></font></Label>
-    <Label fx:id="Kaksoispiste" text=":" layoutX="265.0" layoutY="45.0"><font><Font name="Arial" size="30"/></font></Label>
-    <Label fx:id="Sekunnit" layoutX="280.0" layoutY="45.0"><font><Font name="Arial" size="30"/></font></Label>
-      <TableView fx:id="TableView" layoutX="40.0" layoutY="129.0" prefHeight="310.0" prefWidth="478.0" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
+    <Label fx:id="Minuutit" layoutX="225.0" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
+    <Label fx:id="Kaksoispiste" layoutX="265.0" layoutY="45.0" text=":"><font><Font name="Arial" size="30" /></font></Label>
+    <Label fx:id="Sekunnit" layoutX="280.0" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
+      <TableView fx:id="TableView" layoutX="40.0" layoutY="129.0" prefHeight="244.0" prefWidth="478.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="231.0" text="Pelaaja 1 pisteet" />
           <TableColumn fx:id="TableColumn2" prefWidth="246.0" text="Pelaaja 2 pisteet" />
@@ -23,18 +22,30 @@
       <TextField fx:id="TextField1" layoutX="48.0" layoutY="455.0" prefHeight="27.0" prefWidth="114.0" />
       <Button fx:id="LisääBtn1" layoutX="172.0" layoutY="455.0" mnemonicParsing="false" onAction="#lisaaPelaajalle1" prefHeight="27.0" prefWidth="54.0" text="Lisää">
       </Button>
-      <Button fx:id="SeuraavaBtn" layoutX="239.0" layoutY="507.0" mnemonicParsing="false" text="Seuraava">
+      <Button fx:id="SeuraavaBtn" layoutX="426.0" layoutY="507.0" mnemonicParsing="false" text="Seuraava">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
       <Button fx:id="LisääBtn2" layoutX="452.0" layoutY="455.0" mnemonicParsing="false" onAction="#lisaaPelaajalle2" prefHeight="27.0" prefWidth="54.0" text="Lisää">
       </Button>
-      <Button fx:id="AloitaKelloBtn" layoutX="231.0" layoutY="86.0" mnemonicParsing="false" text="Aloita kello" onAction="#aloitaKello">
+      <Button fx:id="AloitaKelloBtn" layoutX="231.0" layoutY="86.0" mnemonicParsing="false" onAction="#aloitaKello" text="Aloita kello">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
       <TextField fx:id="TextField2" layoutX="327.0" layoutY="455.0" prefHeight="25.0" prefWidth="114.0" />
+      <Button fx:id="PeruutaBtn" layoutX="48.0" layoutY="507.0" mnemonicParsing="false" text="Peruuta">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="239.0" layoutY="401.0" text="Yhteensä">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="p1Label" layoutX="66.0" layoutY="388.0" prefHeight="26.0" prefWidth="104.0" AnchorPane.leftAnchor="66.0" AnchorPane.topAnchor="388.0" />
+      <Label fx:id="p2Label" layoutX="354.0" layoutY="388.0" prefHeight="26.0" prefWidth="104.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="388.0" />
    </children>
 </AnchorPane>
