@@ -18,7 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.*;
 import javafx.scene.control.*;
-
+import main.Kierros.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +27,14 @@ public class TulevatTurnauksetController {
     public static Pelaajataulu pelaajat = new Pelaajataulu();
     public static Turnaus turnaus;
     public static ArrayList<Pelaaja> pel;
-    public int kierros_id; 
+    public static int kierros_id;
 
     public void setKierros_id(int id) {
         this.kierros_id = id; 
     }
 
-    public int  getKierrosId() {
-        return this.kierros_id;
+    public static int getKierrosId() {
+        return kierros_id;
     }
 
     public static Pelaajataulu getPelaajat(){
@@ -102,17 +102,15 @@ public class TulevatTurnauksetController {
 
     @FXML
     public void Pelaa(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/main/Kilpailuparinäkymä.fxml"));
-        Parent AloitusNayttoP = loader.load();
-        Scene PariS = new Scene(AloitusNayttoP);
-
+        //kun aloitetaan uusi turnaus, tyhjennetään pelaajalista
+        pelaajat.Tyhjenna();
         Turnaus turnaus = TableView.getSelectionModel().getSelectedItem();
-    
+
+        //tämän saikin yksinkertaisemmin.
+        // nämä rivit ovat nyt turhat?
         /* Haetaan turnauksen nimi valitusta rivistä.
         https://stackoverflow.com/questions/29090583/javafx-tableview-how-to-get-cells-data
-        */
-         /*
+
         TablePosition pos = TableView.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         Turnaus item = TableView.getItems().get(row);
@@ -123,12 +121,15 @@ public class TulevatTurnauksetController {
         int id = Tietokanta.HaeTurnauksenID(nimi);
         */
 
+        //turnauksen pelaajat turnauksen perusteella
         ArrayList<Pelaaja> turnauksenpelaajat =  Tietokanta.TurnauksenPelaajat(turnaus);
-        System.out.println(turnaus.getId()); 
+
+        //System.out.println(turnaus.getId());
+        /*
         for (Pelaaja pip : turnauksenpelaajat) {
             System.out.println(pip.getNimi() + pip.getPeliNro());
         }
-        /*
+
         for (Pelaaja p : pel){
             pelaajat.setPelaaja(p);
         }
@@ -138,37 +139,60 @@ public class TulevatTurnauksetController {
         Tietokanta.TurnausKäyntiin(turnaus.getId()); 
         Kierros uusi_kierros = new Kierros();
         uusi_kierros.setTurnaus(turnaus);
-        uusi_kierros.setKierros(1); 
 
+        //kierroksen ID on auto increment tietokannassa.
+        //vaikka kierros olisikin 1, tietokannasta tulee joku ihan eri numero.
+        uusi_kierros.setKierros(1);
         Tietokanta.LisaaKierros(uusi_kierros);
         int kid = Tietokanta.HaeUusinKierrosID();
         setKierros_id(kid);
+
         System.out.println("kierroksen id ensin " + kierros_id);
 
          
         for (Pelaaja pelaaja : turnauksenpelaajat) {
-            pelaajat.setPelaaja(pelaaja); 
+            pelaajat.setPelaaja(pelaaja);
+            //System.out.println("nimi = " + pelaaja.getNimi());
         } 
-        
-        //pelaajat.jaaOtteluparit();
+
+        //otteluparien jako
+        pelaajat.jaaOtteluparit();
+        //pitää tehdä joku haku tietokannasta, että saadaan jo pleatut parit selville.
+        //alkuperäinen taida toimia oikein, kun haetaan pelaajat tietokannasta.
+
 
         ArrayList<Pelaaja> ptaulu = pelaajat.getPelaajat();
-        ArrayList<Ottelu> ottelut = new ArrayList<Ottelu>(); 
-       
+
+        //tuodaan jaetut otteluparit Pelaajataulusta
+        List<Ottelu> ottelut = new ArrayList<Ottelu>();
+        ottelut = pelaajat.getKierros();
+
+
+       /*
         for (int i = 0; i < ptaulu.size(); i = i+2) {
-            Ottelu o = new Ottelu(); 
+            Ottelu o = new Ottelu();
             o.setKierros(kid);
             o.setPelaaja1(ptaulu.get(i));
             o.setPelaaja2(ptaulu.get(i+1));
-            ottelut.add(o); 
+            ottelut.add(o);
         }
+        */
+
 
         for (Ottelu ot : ottelut) {
-            Tietokanta.LisaaOttelu(ot);
-            ot.setID(Tietokanta.HaeUusinOtteluID());
-            Tietokanta.PelaajatOtteluun(ot);
+            ot.setKierros(kid); // asetetaan otteluille kierroksen ID
+            Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
+            ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
+            Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
         }
+
+        //taitaa olla turha
         //kierros = pelaajat.getKierros(); mikä tämä on
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/Kilpailuparinäkymä.fxml"));
+        Parent AloitusNayttoP = loader.load();
+        Scene PariS = new Scene(AloitusNayttoP);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
@@ -205,4 +229,5 @@ public class TulevatTurnauksetController {
         }
         initialize();
     }
+
 }

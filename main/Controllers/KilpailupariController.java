@@ -58,13 +58,21 @@ public class KilpailupariController{
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
         //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat())
-       
+
+        //hakee edellisessä näytössä olleen kierroksen ID:n
+        int testi = TulevatTurnauksetController.getKierrosId();
+
+        //hakee aina kierroksen 10?
         int id = Tietokanta.haeKierrosID(); 
-        System.out.println("kierroksen id " + id);
-        ArrayList<Integer> ottelu_idt = new ArrayList<Integer>(); 
-        
-        ottelu_idt = Tietokanta.getKierroksenOttelut(id); 
-        System.out.println("ottelut idt " + ottelu_idt); 
+        System.out.println("kierroksen id " + id + "testi = " + testi);
+
+        ArrayList<Integer> ottelu_idt = new ArrayList<Integer>();
+
+        //edellisellä näytöllä jaetut otteluiden ID:t.
+        ottelu_idt = Tietokanta.getKierroksenOttelut(testi);
+
+        System.out.println("ottelut idt " + ottelu_idt);
+
         ObservableList<Ottelu> ottelut = FXCollections.observableArrayList(); 
 
         for (Integer i : ottelu_idt) {

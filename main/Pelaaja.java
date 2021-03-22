@@ -113,6 +113,7 @@ public class Pelaaja {
 
     // Lisätään pelaaja pelattujen listaan
     public void setPelattu(Pelaaja pelaaja){
+        this.pelattu = new ArrayList<>();
         this.pelattu.add(pelaaja);
     }
 
@@ -121,6 +122,7 @@ public class Pelaaja {
             System.out.print(p.getNimi() + ", ");
         }
     }
+
     @Override
     public String toString() {
         return nimi + " | " + peliNro + " | " + voitto + " | " + tappio + " | ";
