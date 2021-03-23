@@ -3,7 +3,12 @@ package main.Controllers;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -65,6 +70,7 @@ public class PisteenlaskuController {
     private static final int SECONDS_PER_MINUTE = 60;
     @FXML private TextField minutes;
     @FXML private TextField seconds;
+    @FXML private ToggleButton PauseBtn;
     private Duration kesto;
     private long lastTimerCall;
     private AnimationTimer ajastin;
@@ -85,21 +91,23 @@ public class PisteenlaskuController {
       lastTimerCall = System.nanoTime();
       ajastin = new AnimationTimer() {
         @Override public void handle(final long NOW) {
-          if (NOW > lastTimerCall + 1_000_000_000l) {
-            kesto = kesto.subtract(Duration.seconds(1));
+          if (!PauseBtn.isSelected()) {
+            if (NOW > lastTimerCall + 1_000_000_000l) {
+              kesto = kesto.subtract(Duration.seconds(1));
 
-            int remainingSeconds = (int) kesto.toSeconds();
-            int m = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
-            int s = (((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE);
+              int remainingSeconds = (int) kesto.toSeconds();
+              int m = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
+              int s = (((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE);
 
-            if (m == 0 && s == 0) { 
-              ajastin.stop(); 
+              if (m == 0 && s == 0) { 
+                ajastin.stop(); 
+              }
+
+              Minuutit.setText(String.format("%02d", m));
+              Sekunnit.setText(String.format("%02d", s));
+
+              lastTimerCall = NOW;
             }
-
-            Minuutit.setText(String.format("%02d", m));
-            Sekunnit.setText(String.format("%02d", s));
-
-            lastTimerCall = NOW;
           }
         }
       };
@@ -107,7 +115,6 @@ public class PisteenlaskuController {
     public void aloitaKello(ActionEvent event) throws IOException {
       ajastin.start();
     }
-
 
     public void lisaaPelaajalle1(ActionEvent event) throws IOException {
         int pisteet = Integer.valueOf(TextField1.getText());

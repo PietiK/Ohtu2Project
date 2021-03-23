@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -38,6 +39,11 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
+      <ToggleButton fx:id="PauseBtn" layoutX="360.0" layoutY="86.0" mnemonicParsing="false" text="Tauko">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </ToggleButton>
       <TextField fx:id="TextField2" layoutX="327.0" layoutY="455.0" prefHeight="25.0" prefWidth="114.0" />
       <Button fx:id="PeruutaBtn" layoutX="48.0" layoutY="507.0" mnemonicParsing="false" text="Peruuta">
          <font>
