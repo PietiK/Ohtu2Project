@@ -538,6 +538,21 @@ public static void TurnausKäyntiin(int id) {
     }
 }
 
+public static void TurnausEiKäyntiin (int id) {
+    String query = "Update turnaus set kaynnissa = 0 Where turnaus_id = " + id; 
+    try {
+        Connection conn = connect();
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.executeUpdate();
+        conn.close();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 public static int haeKierrosID() {
     Statement stmt = null;
     String query = "SELECT kierros.kierros_id, MAX([kierros]) FROM kierros " + 
