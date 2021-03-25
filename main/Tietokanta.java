@@ -200,7 +200,7 @@ public class Tietokanta {
     public static ArrayList<Pelaaja>haeKilpailuparinPelaajat(int ottelu_id){
         PreparedStatement stmt = null;
         //String query = "Select * From ottelu"; //tietokanta?
-        String nimet = "SELECT nimi FROM pelaaja "
+        String nimet = "SELECT nimi, pelaaja_id FROM pelaaja "
         + "JOIN pelaaja_ottelu USING(pelaaja_id) "
         + "JOIN ottelu USING(ottelu_id) "
         + "WHERE ottelu.ottelu_id = ?";
@@ -214,7 +214,9 @@ public class Tietokanta {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
-              Pelaaja temp = new Pelaaja(rs.getString("nimi"));
+              Pelaaja temp = new Pelaaja(); 
+              temp.setNimi(rs.getString("nimi"));
+              temp.setId(rs.getInt("pelaaja_id"));
               lista.add(temp);
             }
 
@@ -638,6 +640,7 @@ public static int haeKierrosID() {
 
         }
     }
+
     public static ArrayList<Integer> HaeTurnauksenOttelut(int id){
         String query = "Select ottelu_id FROM ottelu WHERE turnaus_id = ?";
         ArrayList<Integer> ottelut = new ArrayList<>();

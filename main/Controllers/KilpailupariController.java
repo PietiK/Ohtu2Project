@@ -111,7 +111,8 @@ public class KilpailupariController{
 
         ottelu = TableView.getSelectionModel().getSelectedItem();
         OtteluId = ottelu.getID();
-        //System.out.println(ottelu.getID());
+
+        System.out.println("Pelaajat: " + ottelu.getPelaaja1().getId());
 
 
         FXMLLoader loader = new FXMLLoader();

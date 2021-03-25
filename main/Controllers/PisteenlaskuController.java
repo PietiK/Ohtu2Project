@@ -23,8 +23,8 @@ public class PisteenlaskuController {
 
 
     Ottelu ottelu = KilpailupariController.getOttelu();
-    Pelaaja pelaaja_1 = KilpailupariController.ottelu.getPelaaja1();
-    Pelaaja pelaaja_2 = KilpailupariController.ottelu.getPelaaja2();
+    Pelaaja pelaaja_1 = ottelu.getPelaaja1();
+    Pelaaja pelaaja_2 = ottelu.getPelaaja2();
 
     //tähän varmaan pitäisi luoda jokin Ottelu?
 
@@ -154,6 +154,8 @@ public class PisteenlaskuController {
           voittaja = pelaaja_1;
         } else { voittaja = pelaaja_2; }
 
+        System.out.println("Pelaaja1id: " + pelaaja_1.getId());
+        System.out.println("Pelaaja2id: " + pelaaja_2.getId()); 
         System.out.println("Voittaja: " + voittaja.getNimi()); 
         Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
       }
