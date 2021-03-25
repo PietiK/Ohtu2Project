@@ -119,7 +119,8 @@ public class KilpailupariController{
         Parent AloitusNayttoP = loader.load();
         Scene PisteS = new Scene(AloitusNayttoP);
 
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        Stage window = new Stage(); 
 
         window.setScene(PisteS);
         window.show(); 
