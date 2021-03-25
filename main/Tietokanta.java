@@ -688,4 +688,30 @@ public static int haeKierrosID() {
         return ottelut;
     }
 
+    public static ArrayList<Kierros> haeTurnauksenKierrokset(int id) {
+        String query = "Select kierros_id, kierros from kierros where turnaus_id = " + id; 
+        ArrayList<Kierros> kierrokset = new ArrayList<>();
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Kierros k = new Kierros(); 
+                k.setID(rs.getInt("kierros_id")); 
+                k.setKierros(rs.getInt("kierros"));
+                kierrokset.add(k); 
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return kierrokset;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return kierrokset;
+        }
+        return kierrokset;
+    }
+
+
+
 }

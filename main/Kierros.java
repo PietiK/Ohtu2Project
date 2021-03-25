@@ -30,6 +30,10 @@ public class Kierros {
         return true; 
     }
 
+    public void setID(int id) {
+        this.id = id; 
+    }
+
     public void setTurnaus(Turnaus t) {
         this.turnaus = t; 
     }

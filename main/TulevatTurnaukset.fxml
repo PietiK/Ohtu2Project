@@ -22,7 +22,7 @@
             <TableColumn fx:id="TableColumnLopetuspäivämäärä" prefWidth="132.0" text="Lopetuspäivämäärä" />
         </columns>
       </TableView>
-      <Button fx:id="NäytäPeliBtn" layoutX="427.0" layoutY="421.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="26.0" prefWidth="101.0" text="Näytä peli">
+      <Button fx:id="NäytäPeliBtn" layoutX="427.0" layoutY="421.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="26.0" prefWidth="101.0" text="Pelaa">
          <font>
             <Font name="Arial" size="14.0" />
          </font>

@@ -97,98 +97,62 @@ public class TulevatTurnauksetController {
 
     @FXML
     public void Pelaa(ActionEvent event) throws IOException {
-        //kun aloitetaan uusi turnaus, tyhjennetään pelaajalista
-        pelaajat.Tyhjenna();
-        Turnaus turnaus = TableView.getSelectionModel().getSelectedItem();
 
-        //tämän saikin yksinkertaisemmin.
-        // nämä rivit ovat nyt turhat?
-        /* Haetaan turnauksen nimi valitusta rivistä.
-        https://stackoverflow.com/questions/29090583/javafx-tableview-how-to-get-cells-data
-
-        TablePosition pos = TableView.getSelectionModel().getSelectedCells().get(0);
-        int row = pos.getRow();
-        Turnaus item = TableView.getItems().get(row);
-        TableColumn col = TableView.getColumns().get(1);
-        String nimi = (String) col.getCellObservableValue(item).getValue();
-
-        //haetaan turnauksen ID turnauksen nimellä
-        int id = Tietokanta.HaeTurnauksenID(nimi);
-        */
-
-        //turnauksen pelaajat turnauksen perusteella
-        ArrayList<Pelaaja> turnauksenpelaajat =  Tietokanta.TurnauksenPelaajat(turnaus);
-
-        //System.out.println(turnaus.getId());
+        Turnaus turnaus = TableView.getSelectionModel().getSelectedItem(); 
+        ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId()); 
         /*
-        for (Pelaaja pip : turnauksenpelaajat) {
-            System.out.println(pip.getNimi() + pip.getPeliNro());
-        }
-
-        for (Pelaaja p : pel){
-            pelaajat.setPelaaja(p);
-        }
-        turnaus.setPelaajat(pel);
+        Tässä testataan, onko turnaus jo aloitettu aiemmin, eli onko sille luotu vielä kierroksia.
+        Jos ei, niin luodaan ensimmäinen kierros
+        Ensimmäisen kierroksen peliparit tulee vaan suoraan turnauksen pelaajat listasta
         */
+        if (turnauksenkierrokset.isEmpty()) {
+            //turnauksen pelaajat turnauksen perusteella
+            ArrayList<Pelaaja> turnauksenpelaajat =  Tietokanta.TurnauksenPelaajat(turnaus);
 
-        Tietokanta.TurnausKäyntiin(turnaus.getId()); 
-        Kierros uusi_kierros = new Kierros();
-        uusi_kierros.setTurnaus(turnaus);
+            Tietokanta.TurnausKäyntiin(turnaus.getId()); 
+            Kierros uusi_kierros = new Kierros();
+            uusi_kierros.setTurnaus(turnaus);
 
-        //kierroksen ID on auto increment tietokannassa.
-        //vaikka kierros olisikin 1, tietokannasta tulee joku ihan eri numero.
-        uusi_kierros.setKierros(1);
-        Tietokanta.LisaaKierros(uusi_kierros);
-        int kid = Tietokanta.HaeUusinKierrosID();
-        setKierros_id(kid);
+            //asetetaan kierroksen järjestysnumero ja lisätään kierros tietokantaan
+            uusi_kierros.setKierros(1);
+            Tietokanta.LisaaKierros(uusi_kierros);
+            int kid = Tietokanta.HaeUusinKierrosID();
+            setKierros_id(kid);
+            ArrayList<Ottelu> ottelut = new ArrayList<Ottelu>(); 
+        
+            
+            for (int i = 0; i < turnauksenpelaajat.size(); i = i+2) {
+                Ottelu o = new Ottelu();
+                o.setKierros(kid);
+                o.setPelaaja1(turnauksenpelaajat.get(i));
+                o.setPelaaja2(turnauksenpelaajat.get(i+1));
+                ottelut.add(o);
+            }
+        
+            for (Ottelu ot : ottelut) {
+                ot.setKierros(kid); // asetetaan otteluille kierroksen ID
+                Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
+                ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
+                Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
+            }
 
-        System.out.println("kierroksen id ensin " + kierros_id);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/Kilpailuparinäkymä.fxml"));
+            Parent AloitusNayttoP = loader.load();
+            Scene PariS = new Scene(AloitusNayttoP);
 
-         
-        for (Pelaaja pelaaja : turnauksenpelaajat) {
-            pelaajat.setPelaaja(pelaaja);
-            //System.out.println("nimi = " + pelaaja.getNimi());
-        } 
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        //otteluparien jako
-        List<Ottelu> ottelut  = pelaajat.jaaOtteluparit();
-
-        //pitää tehdä joku haku tietokannasta, että saadaan jo pleatut parit selville.
-        //alkuperäinen ei taida toimia oikein, kun haetaan pelaajat tietokannasta.
-
-        ArrayList<Pelaaja> ptaulu = pelaajat.getPelaajat();
-
-        //tuodaan jaetut otteluparit Pelaajataulusta
-        //= new ArrayList<Ottelu>();
-        //ottelut = pelaajat.getKierros();
+            window.setScene(PariS);
+            window.show(); 
+        } else {
         /*
-        for (int i = 0; i < ptaulu.size(); i = i+2) {
-            Ottelu o = new Ottelu();
-            o.setKierros(kid);
-            o.setPelaaja1(ptaulu.get(i));
-            o.setPelaaja2(ptaulu.get(i+1));
-            ottelut.add(o);
-        }
+        Tässä etsitään jo aloitetun turnauksen tiedot tietokannasta, eli kierros jolla ollaan keskeytetty.
+        Sen kierroksen id asetetaan kierros_id:ksi, jotta kierrosnäkymä
+        voi etsiä oikeat ottelut. 
+        Tässä pitää todnäk tehdä muutakin mutta nyt en muista enää mitä  
         */
-        for (Ottelu ot : ottelut) {
-            ot.setKierros(kid); // asetetaan otteluille kierroksen ID
-            Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
-            ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
-            Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
         }
-
-        //taitaa olla turha
-        //kierros = pelaajat.getKierros(); mikä tämä on
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/main/Kilpailuparinäkymä.fxml"));
-        Parent AloitusNayttoP = loader.load();
-        Scene PariS = new Scene(AloitusNayttoP);
-
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-        window.setScene(PariS);
-        window.show(); 
     }
 
     public void PoistaTurnaus(ActionEvent event) throws IOException {
