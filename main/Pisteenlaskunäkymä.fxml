@@ -34,12 +34,7 @@
       </Button>
       <Button fx:id="LisääBtn2" layoutX="452.0" layoutY="455.0" mnemonicParsing="false" onAction="#lisaaPelaajalle2" prefHeight="27.0" prefWidth="54.0" text="Lisää">
       </Button>
-      <Button fx:id="AloitaKelloBtn" layoutX="231.0" layoutY="86.0" mnemonicParsing="false" onAction="#aloitaKello" text="Aloita kello">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Button>
-      <ToggleButton fx:id="PauseBtn" layoutX="360.0" layoutY="86.0" mnemonicParsing="false" text="Tauko">
+      <ToggleButton fx:id="TaukoBtn" layoutX="231.0" layoutY="86.0" mnemonicParsing="false"  text="Tauko">
          <font>
             <Font name="Arial" size="14.0" />
          </font>

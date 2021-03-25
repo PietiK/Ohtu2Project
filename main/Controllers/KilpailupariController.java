@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,6 +22,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.*;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class KilpailupariController{
 
@@ -124,6 +128,7 @@ public class KilpailupariController{
 
         window.setScene(PisteS);
         window.show(); 
+        luoIlmoitus();
     }
     //siirry TulevatPelit näkymään
     @FXML
@@ -151,4 +156,15 @@ public class KilpailupariController{
         this.fxmlLoader = fxmlLoader;
     }
     */
+    public void luoIlmoitus(){
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setContentText("Paina ok aloittaaksesi ottelu");
+      alert.setTitle("Ottelun aloitus");
+      alert.setHeaderText("Aloita ottelu");
+      alert.showAndWait();
+      if(alert.getResult() == ButtonType.OK){
+        PisteenlaskuController.aloitaKello();
+      }
+    }
 }
+

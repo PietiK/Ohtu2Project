@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import main.Ottelu;
@@ -70,10 +71,10 @@ public class PisteenlaskuController {
     private static final int SECONDS_PER_MINUTE = 60;
     @FXML private TextField minutes;
     @FXML private TextField seconds;
-    @FXML private ToggleButton PauseBtn;
+    @FXML private ToggleButton TaukoBtn;
     private Duration kesto;
     private long lastTimerCall;
-    private AnimationTimer ajastin;
+    private static AnimationTimer ajastin;
 
     @FXML
     void initialize() {
@@ -91,7 +92,7 @@ public class PisteenlaskuController {
       lastTimerCall = System.nanoTime();
       ajastin = new AnimationTimer() {
         @Override public void handle(final long NOW) {
-          if (!PauseBtn.isSelected()) {
+          if (!TaukoBtn.isSelected()) {
             if (NOW > lastTimerCall + 1_000_000_000l) {
               kesto = kesto.subtract(Duration.seconds(1));
 
@@ -112,9 +113,11 @@ public class PisteenlaskuController {
         }
       };
     }
-    public void aloitaKello(ActionEvent event) throws IOException {
+    public static void aloitaKello() {
       ajastin.start();
     }
+
+    
 
     public void lisaaPelaajalle1(ActionEvent event) throws IOException {
         int pisteet = Integer.valueOf(TextField1.getText());
@@ -145,5 +148,5 @@ public class PisteenlaskuController {
         p2Label.setText(Integer.toString(pelaaja_2.getPisteet()));
 
       }
-
+      
     }
