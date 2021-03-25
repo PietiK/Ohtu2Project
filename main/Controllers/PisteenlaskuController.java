@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.Ottelu;
 import main.Pelaaja;
@@ -161,6 +162,9 @@ public class PisteenlaskuController {
         System.out.println("Pelaaja2id: " + pelaaja_2.getId()); 
         System.out.println("Voittaja: " + voittaja.getNimi()); 
         Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
+
+        Stage window = (Stage) TableView.getScene().getWindow(); 
+        window.close();
       }
 
     }
