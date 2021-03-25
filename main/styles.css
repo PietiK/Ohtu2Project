@@ -1,3 +1,7 @@
 .button{
     -fx-text: 14px "Tahoma";
 }
+
+.root{
+    -fx-background-color: #2e7d32;
+}
