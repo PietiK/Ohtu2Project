@@ -148,5 +148,17 @@ public class PisteenlaskuController {
         p2Label.setText(Integer.toString(pelaaja_2.getPisteet()));
 
       }
-      
+
+      public void Seuraava(ActionEvent event) throws IOException {
+        Pelaaja voittaja; 
+        String p1p = p1Label.getText(); 
+        String p2p = p2Label.getText(); 
+        if (Integer.parseInt(p1p) > Integer.parseInt(p2p)) {
+          voittaja = pelaaja_1;
+        } else { voittaja = pelaaja_2; }
+
+        System.out.println("Voittaja: " + voittaja.getNimi()); 
+        Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
+      }
+
     }
