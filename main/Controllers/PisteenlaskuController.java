@@ -55,11 +55,7 @@ public class PisteenlaskuController {
     @FXML
     private TextField TextField2;
 
-    @FXML
-    private Label Minuutit;
-    @FXML
-    private Label Sekunnit;
-
+   
     @FXML
     private Label p1Label;
 
@@ -70,12 +66,16 @@ public class PisteenlaskuController {
     private static final int SECONDS_PER_DAY = 86400;
     private static final int SECONDS_PER_HOUR = 3600;
     private static final int SECONDS_PER_MINUTE = 60;
-    @FXML private TextField minutes;
-    @FXML private TextField seconds;
     @FXML private ToggleButton TaukoBtn;
+    @FXML private Label Minuutit;
+    @FXML private Label Sekunnit;
+    @FXML private Label taukominuutit;
+    @FXML private Label taukosekunnit;
     private Duration kesto;
-    private long lastTimerCall;
+    private Duration taukoKesto;
+    private long edellinenAika;
     private static AnimationTimer ajastin;
+    private static AnimationTimer taukoajastin;
 
     @FXML
     void initialize() {
@@ -86,39 +86,66 @@ public class PisteenlaskuController {
         //TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
         System.out.println("ottelu =" + ottelu.getID());
       Minuutit.setText("60");
-      Sekunnit.setText("0");
+      Sekunnit.setText("00");
 
-      kesto = Duration.minutes(60);
-
-      lastTimerCall = System.nanoTime();
+      kesto = Duration.minutes(60);   //Ottelun kesto
+      edellinenAika = System.nanoTime();
+      //Luodaan ajastin
       ajastin = new AnimationTimer() {
         @Override public void handle(final long NOW) {
-          if (!TaukoBtn.isSelected()) {
-            if (NOW > lastTimerCall + 1_000_000_000l) {
+          if(!TaukoBtn.isSelected()){       //Jos taukonappi on valittuna niin ollaan tauolla
+            if (NOW > edellinenAika + 1_000_000_000l) {
               kesto = kesto.subtract(Duration.seconds(1));
-
+              //Jäljellä oleva aika
               int remainingSeconds = (int) kesto.toSeconds();
               int m = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
               int s = (((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE);
-
+              //Lopetetaan jos menee nollille
               if (m == 0 && s == 0) { 
                 ajastin.stop(); 
               }
-
+              //asetetaan tekstit labeleihin
               Minuutit.setText(String.format("%02d", m));
               Sekunnit.setText(String.format("%02d", s));
-
-              lastTimerCall = NOW;
+              //nykyhetki viimeiseksi mittaukseksi
+              edellinenAika = NOW;
             }
           }
         }
       };
+      //Tauon ajastin
+      //Toiminnallisuus oikeastaan sama kuin ylemmässä ajastimessa, kesto vain 5min
+        taukominuutit.setText("5");
+        taukosekunnit.setText("00");
+        taukoKesto = Duration.minutes(5);
+        taukoajastin = new AnimationTimer(){
+          @Override public void handle(final long NOW) {
+              if(NOW > edellinenAika + 1_000_000_000l){
+                taukoKesto = taukoKesto.subtract(Duration.seconds(1));
+  
+                int remainingSeconds = (int) taukoKesto.toSeconds();
+                int mi = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
+                int ss = (((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE);
+  
+                if (mi == 0 && ss == 0) { 
+                  taukoajastin.stop(); 
+                }
+                
+                taukominuutit.setText(String.format("%02d", mi));
+                taukosekunnit.setText(String.format("%02d", ss));
+                edellinenAika = NOW;
+              }  
+            }
+        };        
     }
-    public static void aloitaKello() {
+
+    public static void aloitaKello() {  //Aloittaa pelin kellon
       ajastin.start();
     }
 
-    
+    public void aloitaTauko(){  //Aloittaa tauon kellon
+      taukoajastin.start();
+    }
 
     public void lisaaPelaajalle1(ActionEvent event) throws IOException {
         int pisteet = Integer.valueOf(TextField1.getText());
@@ -166,5 +193,4 @@ public class PisteenlaskuController {
         Stage window = (Stage) TableView.getScene().getWindow(); 
         window.close();
       }
-
-    }
+}
