@@ -523,6 +523,21 @@ public static ArrayList<Integer> getKierroksenOttelut(int kierros_id) {
     
 }
 
+public static void OttelunVoittaja(int otteluid, int pelaajaid) {
+    String query = "Update ottelu set voittaja = " + pelaajaid + " Where ottelu_id = " + otteluid; 
+    try {
+        Connection conn = connect();
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.executeUpdate();
+        conn.close();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 public static void TurnausKäyntiin(int id) {
     String query = "Update turnaus set kaynnissa = 1 Where turnaus_id = " + id; 
     try {
