@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.KilpailupariController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.KilpailupariController">
    <children>
       <Text fx:id="EnsimmäinenTxt" layoutX="154.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ensimmäinen kierros" wrappingWidth="234.47412109375">
          <font>
@@ -16,11 +16,11 @@
       </Text>
       <TableView fx:id="TableView" layoutX="110.0" layoutY="115.0" prefHeight="336.0" prefWidth="338.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="115.0">
         <columns>
-          <TableColumn fx:id="TableColmun1" prefWidth="167.0" text="Pelaaja1"/>
-          <TableColumn fx:id="TableColumn2" prefWidth="170.0" text="Pelaaja2"/>
+          <TableColumn fx:id="TableColmun1" prefWidth="167.0" text="Pelaaja1" />
+          <TableColumn fx:id="TableColumn2" prefWidth="170.0" text="Pelaaja2" />
         </columns>
       </TableView>
-      <Button fx:id="TakaisinBtn" layoutX="67.0" layoutY="483.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="87.0" text="Takaisin" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="430.0" AnchorPane.topAnchor="483.0">
+      <Button fx:id="TakaisinBtn" layoutX="40.0" layoutY="483.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="87.0" text="Takaisin" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="431.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
