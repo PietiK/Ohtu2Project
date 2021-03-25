@@ -525,6 +525,31 @@ public static ArrayList<Integer> getKierroksenOttelut(int kierros_id) {
     
 }
 
+public static boolean OnkoVoittajaa(int id) {
+    String query = "Select voittaja from ottelu where ottelu_id = " + id; 
+    Statement stmt = null; 
+    boolean voitto = false; 
+    try {
+        Connection connect = connect();
+        stmt = connect.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while (rs.next()) {
+            if (rs.getInt("voittaja") == 0) {
+                voitto = false; 
+            } else { voitto = true; }
+        }
+        connect.close();
+        return voitto; 
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return voitto;
+
+}
+
 public static void OttelunVoittaja(int otteluid, int pelaajaid) {
     String query = "Update ottelu set voittaja = " + pelaajaid + " Where ottelu_id = " + otteluid; 
     try {

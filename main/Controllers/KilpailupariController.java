@@ -114,7 +114,10 @@ public class KilpailupariController{
 
         ottelu = TableView.getSelectionModel().getSelectedItem();
         OtteluId = ottelu.getID();
-
+        
+        if (Tietokanta.OnkoVoittajaa(OtteluId)) {
+            Estä(); 
+        } else {
         System.out.println("Pelaajat: " + ottelu.getPelaaja1().getId());
 
 
@@ -129,7 +132,19 @@ public class KilpailupariController{
         window.setScene(PisteS);
         window.show(); 
         luoIlmoitus();
+        }
     }
+    private void Estä() {   
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setContentText("Tämä ottelu on jo pelattu!");
+        alert.setTitle("Ottelun pelattu");
+        alert.setHeaderText("");
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.OK){
+          alert.close();;
+        }
+    }
+
     //siirry TulevatPelit näkymään
     @FXML
     public void SiirryTakaisin(ActionEvent event) throws IOException {
