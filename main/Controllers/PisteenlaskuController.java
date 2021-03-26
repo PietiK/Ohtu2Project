@@ -1,5 +1,6 @@
 package main.Controllers;
 
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,8 +63,6 @@ public class PisteenlaskuController {
     private Label p2Label;
 
     //Ajastimien hommat
-    private static final int SECONDS_PER_DAY = 86400;
-    private static final int SECONDS_PER_HOUR = 3600;
     private static final int SECONDS_PER_MINUTE = 60;
     @FXML private ToggleButton TaukoBtn;
     @FXML private Label Minuutit;
@@ -82,54 +81,13 @@ public class PisteenlaskuController {
       System.out.println("ottelu =" + ottelu.getID());
       Minuutit.setText("60");
       Sekunnit.setText("00");
-
       kesto = Duration.minutes(60);   //Ottelun kesto
+      //taukoKesto = Duration.minutes(5); //tauon kesto
       edellinenAika = System.nanoTime();
       //Luodaan ajastin
-      ajastin = new AnimationTimer() {
-        @Override public void handle(final long NOW) {
-          if(!TaukoBtn.isSelected()){       //Jos taukonappi on valittuna niin ollaan tauolla
-            if (NOW > edellinenAika + 1_000_000_000l) {
-              kesto = kesto.subtract(Duration.seconds(1));
-              //Jäljellä oleva aika
-              int remainingSeconds = (int) kesto.toSeconds();
-              int m = remainingSeconds / SECONDS_PER_MINUTE;
-              int s = remainingSeconds % SECONDS_PER_MINUTE;
-              //Lopetetaan jos menee nollille
-              if (m == 0 && s == 0) { 
-                ajastin.stop(); 
-              }
-              //asetetaan tekstit labeleihin
-              Minuutit.setText(String.format("%02d", m));
-              Sekunnit.setText(String.format("%02d", s));
-              //nykyhetki viimeiseksi mittaukseksi
-              edellinenAika = NOW;
-            }
-          }
-        }
-      };
+      ajastin = new Ajastin();
       //Tauon ajastin
-      //Toiminnallisuus oikeastaan sama kuin ylemmässä ajastimessa, kesto vain 5min
-        taukoKesto = Duration.minutes(5);
-        taukoajastin = new AnimationTimer(){
-          @Override public void handle(final long NOW) {
-              if(NOW > edellinenAika + 1_000_000_000l){
-                taukoKesto = taukoKesto.subtract(Duration.seconds(1));
-  
-                int remainingSeconds = (int) taukoKesto.toSeconds();
-                int mi = remainingSeconds / SECONDS_PER_MINUTE;
-                int ss = remainingSeconds % SECONDS_PER_MINUTE;
-  
-                if (mi == 0 && ss == 0) { 
-                  taukoajastin.stop(); 
-                }
-                
-                taukominuutit.setText(String.format("%02d", mi));
-                taukosekunnit.setText(String.format("%02d", ss));
-                edellinenAika = NOW;
-              }  
-            }
-        };        
+      taukoajastin = new Taukoajastin();
     }
 
     public static void aloitaKello() {  //Aloittaa pelin kellon
@@ -138,19 +96,20 @@ public class PisteenlaskuController {
 
     public void aloitaTauko() {  //Aloittaa tauon kellon
       if (taukolaskuri < 2){
+        taukoKesto = Duration.minutes(5);
         taukoajastin.start();
         if (TaukoBtn.isSelected()) {
           taukominuutit.setVisible(true);
           taukosekunnit.setVisible(true);
         }
-        else {
-          taukominuutit.setVisible(false);
-          taukosekunnit.setVisible(false);
-          taukolaskuri++;
-          if (taukolaskuri >= 2) {
-            TaukoBtn.setVisible(false);
-          }
+      else {
+        taukominuutit.setVisible(false);
+        taukosekunnit.setVisible(false);
+        taukolaskuri++;
+        if (taukolaskuri >= 2) {
+          TaukoBtn.setVisible(false);
         }
+      }
       }
     }
 
@@ -182,20 +141,71 @@ public class PisteenlaskuController {
 
       }
 
-      public void Seuraava(ActionEvent event) throws IOException {
-        Pelaaja voittaja; 
-        String p1p = p1Label.getText(); 
-        String p2p = p2Label.getText(); 
-        if (Integer.parseInt(p1p) > Integer.parseInt(p2p)) {
-          voittaja = pelaaja_1;
-        } else { voittaja = pelaaja_2; }
+    public void Seuraava(ActionEvent event) throws IOException {
+      Pelaaja voittaja; 
+      String p1p = p1Label.getText(); 
+      String p2p = p2Label.getText(); 
+      if (Integer.parseInt(p1p) > Integer.parseInt(p2p)) {
+        voittaja = pelaaja_1;
+      } else { voittaja = pelaaja_2; }
 
-        System.out.println("Pelaaja1id: " + pelaaja_1.getId());
-        System.out.println("Pelaaja2id: " + pelaaja_2.getId()); 
-        System.out.println("Voittaja: " + voittaja.getNimi()); 
-        Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
+      System.out.println("Pelaaja1id: " + pelaaja_1.getId());
+      System.out.println("Pelaaja2id: " + pelaaja_2.getId()); 
+      System.out.println("Voittaja: " + voittaja.getNimi()); 
+      Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
 
-        Stage window = (Stage) TableView.getScene().getWindow(); 
-        window.close();
+      Stage window = (Stage) TableView.getScene().getWindow(); 
+      window.close();
+    }
+    //Ottelun kello
+    class Ajastin extends AnimationTimer {
+      @Override public void handle(final long NOW) {
+        if(!TaukoBtn.isSelected()){       //Jos taukonappi on valittuna niin ollaan tauolla
+          if (NOW > edellinenAika + 1_000_000_000l) {
+            kesto = kesto.subtract(Duration.seconds(1));
+            //Jäljellä oleva aika
+            int remainingSeconds = (int) kesto.toSeconds();
+            int m = remainingSeconds / SECONDS_PER_MINUTE;
+            int s = remainingSeconds % SECONDS_PER_MINUTE;
+            //Lopetetaan jos menee nollille
+            if (m == 0 && s == 0) { 
+              ajastin.stop(); 
+            }
+            //asetetaan tekstit labeleihin
+            Minuutit.setText(String.format("%02d", m));
+            Sekunnit.setText(String.format("%02d", s));
+            //nykyhetki viimeiseksi mittaukseksi
+            edellinenAika = NOW;
+          }
+        }
       }
+    }
+    //Tauon kello
+    class Taukoajastin extends AnimationTimer {
+      @Override public void handle(final long NOW) {
+        if(NOW > edellinenAika + 1_000_000_000l){
+          taukoKesto = taukoKesto.subtract(Duration.seconds(1));
+
+          int remainingSeconds = (int) taukoKesto.toSeconds();
+          int mi = remainingSeconds / SECONDS_PER_MINUTE;
+          int ss = remainingSeconds % SECONDS_PER_MINUTE;
+
+          if (mi == 0 && ss == 0) { //Jos aika loppuu niin tauko päättyy
+            taukoajastin.stop(); 
+            TaukoBtn.setSelected(false);
+            taukominuutit.setVisible(false);
+            taukosekunnit.setVisible(false);
+            taukolaskuri++;
+            //Jos ollut jo kaksi taukoa niin poistetaan tauko-nappi
+            if (taukolaskuri >= 2) {
+              TaukoBtn.setVisible(false);
+            }
+          }
+          
+          taukominuutit.setText(String.format("%02d", mi));
+          taukosekunnit.setText(String.format("%02d", ss));
+          edellinenAika = NOW;
+        }  
+      }
+    }
 }
