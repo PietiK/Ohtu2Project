@@ -689,7 +689,7 @@ public static int haeKierrosID() {
     }
 
     public static ArrayList<Kierros> haeTurnauksenKierrokset(int id) {
-        String query = "Select kierros_id, kierros from kierros where turnaus_id = " + id; 
+        String query = "Select kierros_id, kierros, turnaus_id from kierros where turnaus_id = " + id; 
         ArrayList<Kierros> kierrokset = new ArrayList<>();
         try {
             Connection conn = connect();
@@ -699,6 +699,7 @@ public static int haeKierrosID() {
                 Kierros k = new Kierros(); 
                 k.setID(rs.getInt("kierros_id")); 
                 k.setKierros(rs.getInt("kierros"));
+                k.setTurnaus(Tietokanta.haeTurnaus(rs.getInt("turnaus_id")));
                 kierrokset.add(k); 
             }
             conn.close();
@@ -710,6 +711,30 @@ public static int haeKierrosID() {
             return kierrokset;
         }
         return kierrokset;
+    }
+
+    private static Turnaus haeTurnaus(int int1) {
+       String query = "Select turnaus_id, nimi, aloituspvm, lopetuspvm from turnaus where turnaus_id = " + int1; 
+       Turnaus t = new Turnaus(); 
+       try {
+           Connection conn = connect();
+           PreparedStatement stmt = conn.prepareStatement(query);
+           ResultSet rs = stmt.executeQuery();
+           while (rs.next()) {
+                t.setAloituspvm(rs.getString("aloituspvm"));
+                t.setNimi(rs.getString("nimi"));
+                t.setId(rs.getInt("turnaus_id"));
+                t.setLopetuspvm(rs.getString("lopetuspvm")); 
+           }
+           conn.close();
+       } catch (SQLException e) {
+           e.printStackTrace();
+           return t;
+       } catch (Exception e) {
+           e.printStackTrace();
+           return t;
+       }
+       return t;
     }
 
 

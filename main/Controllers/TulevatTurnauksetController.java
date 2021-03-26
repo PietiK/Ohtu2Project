@@ -15,6 +15,7 @@ import main.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -102,7 +103,8 @@ public class TulevatTurnauksetController {
         ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId()); 
         /*
         Tässä testataan, onko turnaus jo aloitettu aiemmin, eli onko sille luotu vielä kierroksia.
-        Jos ei, niin luodaan ensimmäinen kierros
+        Jos ei, niin luodaan ensimmäinen kierros sekä sen ottelut. Tätä voidaan käyttää myös
+        seuraavalle kierrokselle siirtyessä sen kierroksen ja otteluiden luomiseen. 
         Ensimmäisen kierroksen peliparit tulee vaan suoraan turnauksen pelaajat listasta
         */
         if (turnauksenkierrokset.isEmpty()) {
@@ -146,12 +148,32 @@ public class TulevatTurnauksetController {
             window.setScene(PariS);
             window.show(); 
         } else {
-        /*
-        Tässä etsitään jo aloitetun turnauksen tiedot tietokannasta, eli kierros jolla ollaan keskeytetty.
-        Sen kierroksen id asetetaan kierros_id:ksi, jotta kierrosnäkymä
-        voi etsiä oikeat ottelut. 
-        Tässä pitää todnäk tehdä muutakin mutta nyt en muista enää mitä  
-        */
+            /*
+            Tässä etsitään jo aloitetun turnauksen tiedot tietokannasta, eli kierros jolla ollaan keskeytetty.
+            Sen kierroksen id asetetaan kierros_id:ksi, jotta kierrosnäkymä
+            voi etsiä oikeat ottelut. 
+            Tässä pitää todnäk tehdä muutakin mutta nyt en muista enää mitä  
+            */
+            ArrayList<Integer> k = new ArrayList<Integer>(); 
+            for (Kierros ki : turnauksenkierrokset) {
+                k.add(ki.getJnum()); 
+            }
+            Integer max = Collections.max(k); 
+            for (Kierros kie : turnauksenkierrokset) {
+                if (kie.getJnum() == max) { 
+                    setKierros_id(kie.getID());
+                }
+            }
+            Tietokanta.TurnausKäyntiin(turnaus.getId());
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/Kilpailuparinäkymä.fxml"));
+            Parent AloitusNayttoP = loader.load();
+            Scene PariS = new Scene(AloitusNayttoP);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(PariS);
+            window.show(); 
         }
     }
 
