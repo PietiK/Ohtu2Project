@@ -22,8 +22,6 @@ import java.io.IOException;
 
 public class PisteenlaskuController {
 
-
-
     Ottelu ottelu = KilpailupariController.getOttelu();
     Pelaaja pelaaja_1 = ottelu.getPelaaja1();
     Pelaaja pelaaja_2 = ottelu.getPelaaja2();
@@ -35,8 +33,10 @@ public class PisteenlaskuController {
 
     @FXML
     private TableView<Pelaaja> TableView;
+
     @FXML
     private TableView<Pelaaja> TableView2;
+
     @FXML
     private TableColumn<Pelaaja, String> TableColumn1;
 
@@ -55,14 +55,13 @@ public class PisteenlaskuController {
     @FXML
     private TextField TextField2;
 
-   
     @FXML
     private Label p1Label;
 
     @FXML
     private Label p2Label;
 
-    //Ajastimen hommat
+    //Ajastimien hommat
     private static final int SECONDS_PER_DAY = 86400;
     private static final int SECONDS_PER_HOUR = 3600;
     private static final int SECONDS_PER_MINUTE = 60;
@@ -76,15 +75,11 @@ public class PisteenlaskuController {
     private long edellinenAika;
     private static AnimationTimer ajastin;
     private static AnimationTimer taukoajastin;
+    private int taukolaskuri = 0;
 
     @FXML
     void initialize() {
-      //Kommentoin nää pois koska muuten jokasella pisteiden lisäyksellä kello nollaantu 
-      //ja siirsin nää hommat suoraan noihi lisaaPelaajalle metodeihi
-      //mutta laittakaa takasin jos pilasin jotain toimivuutta
-        //TableColumn1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
-        //TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("pisteet"));
-        System.out.println("ottelu =" + ottelu.getID());
+      System.out.println("ottelu =" + ottelu.getID());
       Minuutit.setText("60");
       Sekunnit.setText("00");
 
@@ -98,8 +93,8 @@ public class PisteenlaskuController {
               kesto = kesto.subtract(Duration.seconds(1));
               //Jäljellä oleva aika
               int remainingSeconds = (int) kesto.toSeconds();
-              int m = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
-              int s = (((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE);
+              int m = remainingSeconds / SECONDS_PER_MINUTE;
+              int s = remainingSeconds % SECONDS_PER_MINUTE;
               //Lopetetaan jos menee nollille
               if (m == 0 && s == 0) { 
                 ajastin.stop(); 
@@ -122,8 +117,8 @@ public class PisteenlaskuController {
                 taukoKesto = taukoKesto.subtract(Duration.seconds(1));
   
                 int remainingSeconds = (int) taukoKesto.toSeconds();
-                int mi = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
-                int ss = (((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) % SECONDS_PER_MINUTE);
+                int mi = remainingSeconds / SECONDS_PER_MINUTE;
+                int ss = remainingSeconds % SECONDS_PER_MINUTE;
   
                 if (mi == 0 && ss == 0) { 
                   taukoajastin.stop(); 
@@ -142,14 +137,20 @@ public class PisteenlaskuController {
     }
 
     public void aloitaTauko() {  //Aloittaa tauon kellon
-      taukoajastin.start();
-      if (TaukoBtn.isSelected()) {
-        taukominuutit.setVisible(true);
-        taukosekunnit.setVisible(true);
-      }
-      else {
-        taukominuutit.setVisible(false);
-        taukosekunnit.setVisible(false);
+      if (taukolaskuri < 2){
+        taukoajastin.start();
+        if (TaukoBtn.isSelected()) {
+          taukominuutit.setVisible(true);
+          taukosekunnit.setVisible(true);
+        }
+        else {
+          taukominuutit.setVisible(false);
+          taukosekunnit.setVisible(false);
+          taukolaskuri++;
+          if (taukolaskuri >= 2) {
+            TaukoBtn.setVisible(false);
+          }
+        }
       }
     }
 
@@ -163,7 +164,6 @@ public class PisteenlaskuController {
         TableColumn1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
         TextField1.setText("");
 
-        //initialize();
         p1Label.setText(Integer.toString(pelaaja_1.getPisteet()));
 
     }
@@ -178,7 +178,6 @@ public class PisteenlaskuController {
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
 
         TextField2.setText("");
-        //initialize();
         p2Label.setText(Integer.toString(pelaaja_2.getPisteet()));
 
       }
