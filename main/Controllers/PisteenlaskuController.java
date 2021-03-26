@@ -115,8 +115,6 @@ public class PisteenlaskuController {
       };
       //Tauon ajastin
       //Toiminnallisuus oikeastaan sama kuin ylemmässä ajastimessa, kesto vain 5min
-        taukominuutit.setText("5");
-        taukosekunnit.setText("00");
         taukoKesto = Duration.minutes(5);
         taukoajastin = new AnimationTimer(){
           @Override public void handle(final long NOW) {
@@ -143,8 +141,16 @@ public class PisteenlaskuController {
       ajastin.start();
     }
 
-    public void aloitaTauko(){  //Aloittaa tauon kellon
+    public void aloitaTauko() {  //Aloittaa tauon kellon
       taukoajastin.start();
+      if (TaukoBtn.isSelected()) {
+        taukominuutit.setVisible(true);
+        taukosekunnit.setVisible(true);
+      }
+      else {
+        taukominuutit.setVisible(false);
+        taukosekunnit.setVisible(false);
+      }
     }
 
     public void lisaaPelaajalle1(ActionEvent event) throws IOException {
