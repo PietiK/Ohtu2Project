@@ -143,20 +143,32 @@ public class PisteenlaskuController {
 
     public void Seuraava(ActionEvent event) throws IOException {
       Pelaaja voittaja; 
+      Pelaaja häviäjä; 
       String p1p = p1Label.getText(); 
       String p2p = p2Label.getText(); 
+      int p1pis = Integer.parseInt(p1p);
+      int p2pis = Integer.parseInt(p2p); 
+      
       if (Integer.parseInt(p1p) > Integer.parseInt(p2p)) {
         voittaja = pelaaja_1;
-      } else { voittaja = pelaaja_2; }
-
-      System.out.println("Pelaaja1id: " + pelaaja_1.getId());
-      System.out.println("Pelaaja2id: " + pelaaja_2.getId()); 
-      System.out.println("Voittaja: " + voittaja.getNimi()); 
+        häviäjä = pelaaja_2; 
+      } else { voittaja = pelaaja_2; häviäjä = pelaaja_1; }
+      int turnausid = TulevatTurnauksetController.getTurnaus_id();
+      int vanhat1pisteet = Tietokanta.HaeTPisteet(turnausid, pelaaja_1.getId());
+      int vanhat2pisteet = Tietokanta.HaeTPisteet(turnausid, pelaaja_2.getId());
+      int tappiot = Tietokanta.HaeTappiot(turnausid, häviäjä.getId()); 
+      System.out.println("Tappiot: " + tappiot);
+      int lisatty = tappiot +1; 
+      System.out.println("Lisatty tappio: " + lisatty); 
       Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
+      Tietokanta.LisaaTappio(turnausid, häviäjä.getId(), lisatty);
+      Tietokanta.LisaaTPisteita(turnausid, pelaaja_1.getId(), p1pis + vanhat1pisteet);
+      Tietokanta.LisaaTPisteita(turnausid, pelaaja_2.getId(), p2pis + vanhat2pisteet); 
 
       Stage window = (Stage) TableView.getScene().getWindow(); 
       window.close();
     }
+
     //Ottelun kello
     class Ajastin extends AnimationTimer {
       @Override public void handle(final long NOW) {

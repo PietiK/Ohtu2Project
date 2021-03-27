@@ -148,6 +148,7 @@ public class KilpailupariController{
     //siirry TulevatPelit näkymään
     @FXML
     public void SiirryTakaisin(ActionEvent event) throws IOException {
+        Tietokanta.TurnausEiKäyntiin();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/TulevatTurnaukset.fxml"));
         Parent AloitusNayttoP = loader.load();
@@ -159,7 +160,38 @@ public class KilpailupariController{
         window.show();
     }
 
-/*
+    @FXML
+    public void SeuraavaKierros(ActionEvent event) throws IOException {
+        int kid = TulevatTurnauksetController.getKierrosId();
+        ArrayList<Integer> ottelut = Tietokanta.getKierroksenOttelut(kid); 
+        boolean valmis = true; 
+        for (Integer i : ottelut) {
+            if (!Tietokanta.OnkoVoittajaa(i)) {
+                valmis = false; 
+            }
+        }
+        if (!valmis) {
+            Estä2();
+        } else {
+            /*
+            Tässä luodaan uusi kierros ja sen ottelut, tableviewin pitäsi päivittyä 
+            */
+        }
+
+    }
+
+    private void Estä2() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setContentText("Kierroksen kaikkia otteluita ei ole vielä pelattu!");
+        alert.setTitle("Kierros kesken");
+        alert.setHeaderText("");
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.OK) {
+            alert.close();;
+        }
+    }
+
+    /*
     public KilpailupariController(FXMLLoader fxmlLoader, Parent root, TulevatTurnauksetController ttcontroller) {
         this.fxmlLoader = fxmlLoader;
         this.root = root;

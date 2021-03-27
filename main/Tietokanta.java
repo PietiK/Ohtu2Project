@@ -565,6 +565,82 @@ public static void OttelunVoittaja(int otteluid, int pelaajaid) {
     }
 }
 
+public static void LisaaTappio(int turnaus_id, int pelaaja_id, int tappiot) {
+    String query = "Update pelaaja_turnaus set tappiot = ? " +
+    "where pelaaja_id = " + pelaaja_id + " and turnaus_id = " + turnaus_id; 
+    
+    try {
+        Connection conn = connect();
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, tappiot);
+        stmt.executeUpdate();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+public static void LisaaTPisteita(int turnaus_id, int pelaaja_id, int pisteet) {
+    String query = "Update pelaaja_turnaus set turnauspisteet = ?"; 
+    try {
+        Connection conn = connect();
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, pisteet);
+        stmt.executeUpdate();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+public static int HaeTPisteet(int turnaus_id, int pelaaja_id) {
+    String query = "Select turnauspisteet from pelaaja_turnaus where turnaus_id = " + turnaus_id +
+    " and pelaaja_id = " + pelaaja_id; 
+    Statement stmt;
+    int tappiot = -1;
+    try {
+        Connection connect = connect();
+        stmt = connect.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            tappiot = rs.getInt("turnauspisteet"); 
+        }
+        connect.close();
+        return tappiot; 
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return tappiot;
+}
+
+public static int HaeTappiot(int turnaus_id, int pelaaja_id) {
+    String query = "Select tappiot from pelaaja_turnaus where turnaus_id = " + turnaus_id +
+    " and pelaaja_id = " + pelaaja_id; 
+    Statement stmt;
+    int tappiot = 0;
+    try {
+        Connection connect = connect();
+        stmt = connect.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            tappiot = rs.getInt("tappiot"); 
+        }
+        connect.close();
+        return tappiot; 
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return tappiot;
+}
+
 public static void TurnausKäyntiin(int id) {
     String query = "Update turnaus set kaynnissa = 1 Where turnaus_id = " + id; 
     try {
@@ -580,8 +656,8 @@ public static void TurnausKäyntiin(int id) {
     }
 }
 
-public static void TurnausEiKäyntiin (int id) {
-    String query = "Update turnaus set kaynnissa = 0 Where turnaus_id = " + id; 
+public static void TurnausEiKäyntiin () {
+    String query = "Update turnaus set kaynnissa = 0 Where kaynnissa = 1"; 
     try {
         Connection conn = connect();
         PreparedStatement stmt = conn.prepareStatement(query);

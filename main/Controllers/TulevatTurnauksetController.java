@@ -24,9 +24,18 @@ public class TulevatTurnauksetController {
     public static Turnaus turnaus;
     public static ArrayList<Pelaaja> pel;
     public static int kierros_id;
+    public static int turnaus_id; 
 
-    public void setKierros_id(int id) {
-        this.kierros_id = id; 
+    public static void setKierros_id(int id) {
+        kierros_id = id; 
+    }
+
+    public static void setTurnaus_id(int id) {
+        turnaus_id = id; 
+    }
+
+    public static int getTurnaus_id() {
+        return turnaus_id; 
     }
 
     public static int getKierrosId() {
@@ -112,6 +121,7 @@ public class TulevatTurnauksetController {
             ArrayList<Pelaaja> turnauksenpelaajat =  Tietokanta.TurnauksenPelaajat(turnaus);
 
             Tietokanta.TurnausKäyntiin(turnaus.getId()); 
+            setTurnaus_id(turnaus.getId());
             Kierros uusi_kierros = new Kierros();
             uusi_kierros.setTurnaus(turnaus);
 
