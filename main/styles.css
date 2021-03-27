@@ -1,7 +1,8 @@
 .button{
-    -fx-text: 14px "Tahoma";
+-fx-font: 14px "Tahoma";
+    -fx-background-radius: 8;
 }
 
 .root{
-    -fx-background-color: #2e7d32;
+    -fx-background-color: #d6e9d8;
 }
