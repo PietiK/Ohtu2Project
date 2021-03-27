@@ -1,6 +1,5 @@
 package main.Controllers;
 
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.scene.layout.AnchorPane;
@@ -22,6 +22,7 @@ import main.Pelaaja;
 import main.Tietokanta;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class PisteenlaskuController {
 
@@ -71,6 +72,7 @@ public class PisteenlaskuController {
     @FXML private Label Sekunnit;
     @FXML private Label taukominuutit;
     @FXML private Label taukosekunnit;
+    @FXML private Button muutaAikaaBtn;
     private Duration kesto;
     private Duration taukoKesto;
     private long edellinenAika;
@@ -83,8 +85,7 @@ public class PisteenlaskuController {
       System.out.println("ottelu =" + ottelu.getID());
       Minuutit.setText("60");
       Sekunnit.setText("00");
-      kesto = Duration.minutes(0.1);   //Ottelun kesto
-      //taukoKesto = Duration.minutes(5); //tauon kesto
+      kesto = Duration.minutes(60);   //Ottelun kesto
       edellinenAika = System.nanoTime();
       //Luodaan ajastin
       ajastin = new Ajastin();
@@ -195,6 +196,24 @@ public class PisteenlaskuController {
         }
       }
     }
+    
+    //Näyttää käyttäjälle textfieldin, johon voi syöttää uuden ajan kelloon
+    public void muutaAikaa(){
+      //Luodaan ilmoitus
+      TextInputDialog dialog = new TextInputDialog();
+      dialog.setTitle("Muuta ottelun kelloa");
+      dialog.getEditor().setPromptText("Esim. 54");
+      dialog.setHeaderText("Aseta uusi aika minuuteissa:");
+      //Näytetään ilmoitus ja odotetaan vastausta
+      Optional<String> result = dialog.showAndWait();
+      result.ifPresent(uusiAika -> {
+        //Poistetaan muut kuin numerot
+        uusiAika = uusiAika.replaceAll("[^0-9]", "");
+        //Muutetaan ottelun kesto
+        kesto = Duration.minutes(Integer.parseInt(uusiAika));
+    });
+    }
+
     //Tauon kello
     class Taukoajastin extends AnimationTimer {
       @Override public void handle(final long NOW) {
