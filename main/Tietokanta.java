@@ -789,7 +789,7 @@ public static int haeKierrosID() {
         return kierrokset;
     }
 
-    private static Turnaus haeTurnaus(int int1) {
+    public static Turnaus haeTurnaus(int int1) {
        String query = "Select turnaus_id, nimi, aloituspvm, lopetuspvm from turnaus where turnaus_id = " + int1; 
        Turnaus t = new Turnaus(); 
        try {
@@ -813,6 +813,53 @@ public static int haeKierrosID() {
        return t;
     }
 
+    public static int HaeSuurinKierrosnumero(int tid) {
+        String query = "Select kierros, MAX[(kierros)] from kierros where turnaus_id = " + tid; 
+        Statement stmt;
+        int kierros = 0;
+        try {
+            Connection connect = connect();
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                kierros = rs.getInt("kierros"); 
+            }
+            connect.close();
+            return kierros; 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kierros;
+    }
 
+    public static ArrayList<Pelaaja> haeJäljelläPelaajat(int turnaus_id) {
+        String query = "SELECT pelaaja.nimi, pelaaja_turnaus.pelaaja_id, pelaaja_turnaus.pelinro " + 
+        "FROM pelaaja_turnaus" +
+        " INNER JOIN pelaaja ON pelaaja_turnaus.pelaaja_id = pelaaja.pelaaja_id" + 
+        " WHERE pelaaja_turnaus.turnaus_id = " + turnaus_id + " and tappiot < 2";
+        ArrayList<Pelaaja> pel = new ArrayList<Pelaaja>(); 
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Pelaaja p = new Pelaaja(); 
+                p.setId(rs.getInt("pelaaja_id"));
+                p.setNimi(rs.getString("nimi"));
+                p.setPeliNro(rs.getInt("pelinro"));
+                //System.out.println(p.getNimi());
+                pel.add(p); 
+            }
+            conn.close();
+            return pel;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pel;
+    }
 
 }

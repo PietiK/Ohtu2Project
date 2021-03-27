@@ -173,11 +173,20 @@ public class KilpailupariController{
         if (!valmis) {
             Estä2();
         } else {
-            /*
+             /*
             Tässä luodaan uusi kierros ja sen ottelut, tableviewin pitäsi päivittyä 
             */
+            Kierros uusi = new Kierros (); 
+            int tid = TulevatTurnauksetController.getTurnaus_id();
+            uusi.setTurnaus(Tietokanta.haeTurnaus(tid));
+            int k = Tietokanta.HaeSuurinKierrosnumero(tid) + 1; 
+            uusi.setKierros(k);
+            Tietokanta.LisaaKierros(uusi);
+            uusi.setID(Tietokanta.HaeUusinKierrosID());
+            ArrayList<Pelaaja> pelaajatjäljellä = Tietokanta.haeJäljelläPelaajat(tid); 
+            /* kesken, tähän tarvitaan pelaajien paritus */
+          
         }
-
     }
 
     private void Estä2() {
