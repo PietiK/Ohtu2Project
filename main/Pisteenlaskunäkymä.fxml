@@ -14,6 +14,11 @@
     <Label fx:id="Minuutit" layoutX="225.0" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="Kaksoispiste" layoutX="265.0" layoutY="45.0" text=":"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="Sekunnit" layoutX="280.0" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
+    <Button fx:id="muutaAikaaBtn" layoutX="265" layoutY="10" mnemonicParsing="false" onAction="#muutaAikaa" prefHeight="26.0" text="Muuta aikaa" >
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
     <Label fx:id="taukominuutit" layoutX="10" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="taukosekunnit" layoutX="50" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label> 
       <TableView fx:id="TableView" layoutX="40.0" layoutY="30.0" prefHeight="244.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="40" AnchorPane.rightAnchor="280" AnchorPane.topAnchor="129.0">
