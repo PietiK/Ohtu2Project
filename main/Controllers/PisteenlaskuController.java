@@ -4,8 +4,10 @@ import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -81,7 +83,7 @@ public class PisteenlaskuController {
       System.out.println("ottelu =" + ottelu.getID());
       Minuutit.setText("60");
       Sekunnit.setText("00");
-      kesto = Duration.minutes(60);   //Ottelun kesto
+      kesto = Duration.minutes(0.1);   //Ottelun kesto
       //taukoKesto = Duration.minutes(5); //tauon kesto
       edellinenAika = System.nanoTime();
       //Luodaan ajastin
@@ -182,6 +184,7 @@ public class PisteenlaskuController {
             //Lopetetaan jos menee nollille
             if (m == 0 && s == 0) { 
               ajastin.stop(); 
+              aikaLoppui();
             }
             //asetetaan tekstit labeleihin
             Minuutit.setText(String.format("%02d", m));
@@ -220,4 +223,12 @@ public class PisteenlaskuController {
         }  
       }
     }
+    //Näyttää ilmoituksen kun pelin aika loppuu
+    public void aikaLoppui(){
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setHeaderText("HUOMIO");
+      alert.setContentText("Aika loppui");
+      alert.show();
+    }
+
 }
