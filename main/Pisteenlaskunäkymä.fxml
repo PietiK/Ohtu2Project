@@ -11,16 +11,16 @@
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.PisteenlaskuController">
   <children>
-    <Label fx:id="Minuutit" layoutX="225.0" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
-    <Label fx:id="Kaksoispiste" layoutX="265.0" layoutY="45.0" text=":"><font><Font name="Arial" size="30" /></font></Label>
-    <Label fx:id="Sekunnit" layoutX="280.0" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
-    <Button fx:id="muutaAikaaBtn" layoutX="265" layoutY="10" mnemonicParsing="false" onAction="#muutaAikaa" prefHeight="26.0" text="Muuta aikaa" >
+    <Label fx:id="Minuutit" alignment="CENTER_RIGHT" layoutX="178.0" layoutY="47.0" prefWidth="94.0"><font><Font name="Arial" size="30" /></font></Label>
+    <Label fx:id="Kaksoispiste" layoutX="274.0" layoutY="47.0" text=":"><font><Font name="Arial" size="30" /></font></Label>
+    <Label fx:id="Sekunnit" layoutX="283.0" layoutY="47.0"><font><Font name="Arial" size="30" /></font></Label>
+    <Button fx:id="muutaAikaaBtn" layoutX="230" layoutY="10" mnemonicParsing="false" onAction="#muutaAikaa" prefHeight="26.0" text="Muuta aikaa" >
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-    <Label fx:id="taukominuutit" layoutX="10" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label>
-    <Label fx:id="taukosekunnit" layoutX="50" layoutY="45.0"><font><Font name="Arial" size="30" /></font></Label> 
+    <Label fx:id="taukominuutit" layoutX="393" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label>
+    <Label fx:id="taukosekunnit" layoutX="434" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label> 
       <TableView fx:id="TableView" layoutX="40.0" layoutY="30.0" prefHeight="244.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="40" AnchorPane.rightAnchor="280" AnchorPane.topAnchor="129.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="230.0" text="Pelaaja 1 pisteet" />
@@ -41,7 +41,7 @@
       </Button>
       <Button fx:id="LisääBtn2" layoutX="458.0" layoutY="449.0" mnemonicParsing="false" onAction="#lisaaPelaajalle2" prefHeight="27.0" prefWidth="59.0" text="Lisää" AnchorPane.rightAnchor="41.5">
       </Button>
-      <ToggleButton fx:id="TaukoBtn" layoutX="231.0" layoutY="86.0" mnemonicParsing="false" onAction="#aloitaTauko" text="Tauko">
+      <ToggleButton fx:id="TaukoBtn" layoutX="247.0" layoutY="86.0" mnemonicParsing="false" onAction="#aloitaTauko" text="Tauko">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
