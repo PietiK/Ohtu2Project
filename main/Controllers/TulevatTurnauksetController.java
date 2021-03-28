@@ -16,7 +16,6 @@ import main.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 public class TulevatTurnauksetController {
@@ -132,7 +131,7 @@ public class TulevatTurnauksetController {
             setKierros_id(kid);
             ArrayList<Ottelu> ottelut = new ArrayList<Ottelu>(); 
         
-            
+            /*
             for (int i = 0; i < turnauksenpelaajat.size(); i = i+2) {
                 Ottelu o = new Ottelu();
                 o.setKierros(kid);
@@ -140,7 +139,11 @@ public class TulevatTurnauksetController {
                 o.setPelaaja2(turnauksenpelaajat.get(i+1));
                 ottelut.add(o);
             }
-        
+
+
+             */
+            ottelut = Ekatkierrokset(turnauksenpelaajat,kid);
+
             for (Ottelu ot : ottelut) {
                 ot.setKierros(kid); // asetetaan otteluille kierroksen ID
                 Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
@@ -226,6 +229,40 @@ public class TulevatTurnauksetController {
         }
 
         initialize();
+    }
+
+    public ArrayList<Ottelu> Ekatkierrokset(ArrayList<Pelaaja> turnauksenpelaajat, int kid) {
+        ArrayList<Ottelu> ottelut = new ArrayList<>();
+        ArrayList<Pelaaja> temp = turnauksenpelaajat;
+        if (temp.size() % 2 == 0){
+            for (int i = 0; i < temp.size();i = i+2){
+                Ottelu o = new Ottelu();
+                o.setKierros(kid);
+                o.setPelaaja1(temp.get(i));
+                o.setPelaaja2(temp.get(i+1));
+                ottelut.add(o);
+            }
+            temp.clear();
+            for (Ottelu o : ottelut) {
+                if (!temp.contains(o.getPelaaja1())) {
+                    temp.add(o.getPelaaja1());
+                }
+            }
+            for (Ottelu o : ottelut){
+                if (!temp.contains(o.getPelaaja2())) {
+                    temp.add(o.getPelaaja2());
+                }
+            }
+            int tokakierros = kid+1;
+            for (int i = 0; i < temp.size();i = i+2){
+                Ottelu o = new Ottelu();
+                o.setKierros(tokakierros);
+                o.setPelaaja1(temp.get(i));
+                o.setPelaaja2(temp.get(i+1));
+                ottelut.add(o);
+            }
+        }
+        return ottelut;
     }
 
 }
