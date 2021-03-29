@@ -1,30 +1,23 @@
 package main.Controllers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.*;
-import main.Controllers.TulevatTurnauksetController;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class KilpailupariController{
 
@@ -68,7 +61,7 @@ public class KilpailupariController{
     //
     @FXML
     void initialize() {
-        //TableColmun0.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("kierros"));
+        TableColmun0.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("kierros"));
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
         //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat())
@@ -77,15 +70,11 @@ public class KilpailupariController{
         int viimeisein_kierros = TulevatTurnauksetController.getKierrosId();
         int turnauksen_id = TulevatTurnauksetController.getTurnaus_id();
 
-        System.out.println(viimeisein_kierros + " " + turnauksen_id);
-
         ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnauksen_id);
-        System.out.println(kierrokset.size());
 
-        ArrayList<Integer> ottelu_idt = new ArrayList<Integer>();
+        ArrayList<Integer> ottelu_idt = Tietokanta.getKierroksenOttelut(viimeisein_kierros);
 
         //edellisellä näytöllä jaetut otteluiden ID:t.
-        ottelu_idt = Tietokanta.getKierroksenOttelut(viimeisein_kierros);
         //jos kierroksia on alle 3 haetaan myös ensimmäinen kierros.
         if (kierrokset.size()<3){
             ArrayList<Integer> eka_kierros_idt = Tietokanta.getKierroksenOttelut(viimeisein_kierros-1);
@@ -98,8 +87,6 @@ public class KilpailupariController{
 
         ObservableList<Ottelu> ottelut = FXCollections.observableArrayList();
 
-        //jos samaa näyttöä käytetään myöhäisemmillä kierroksilla
-        //tähän pitää kehittää joku if lause, että jos viimeisin kierros on 2, niin lista pitää jakaa kahtia.
         if (kierrokset.size()<3){
             for (int i = 0; i < ottelu_idt.size()/2;i++){
                 Ottelu o = new Ottelu();
@@ -130,7 +117,7 @@ public class KilpailupariController{
                 ottelut.add(o);
             }
         }
-        System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros()); 
+        System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros());
         TableView.setItems(ottelut);
     }  
 
@@ -225,7 +212,7 @@ public class KilpailupariController{
             uusi.setID(kieid);
             ArrayList<Ottelu> uudetottelut = new ArrayList<Ottelu>(); 
             ArrayList<Pelaaja> pelaajatjäljellä = Tietokanta.haeJäljelläPelaajat(tid); 
-            TulevatTurnauksetController.JaaParit(pelaajatjäljellä, kieid, turnaus); 
+            TulevatTurnauksetController.JaaParit(pelaajatjäljellä, kieid, turnaus);
             ObservableList<Ottelu> seuraavatottelut = FXCollections.observableArrayList();
             for (Ottelu ot : uudetottelut) {
                 //ot.setKierros(kid); // asetetaan otteluille kierroksen ID

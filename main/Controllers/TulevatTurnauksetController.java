@@ -240,9 +240,10 @@ public class TulevatTurnauksetController {
         ArrayList<Ottelu> ottelut = new ArrayList<>();
         ArrayList<Pelaaja> temp = turnauksenpelaajat;
         ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());
+
         //jos kierroksia on alle 3, niin jaetaan 2 ensimmäistä kierrosta.
         if(kierrokset.size() < 3){
-            System.out.println(kid);
+            //parillinen parien jako.
             if (temp.size() % 2 == 0){
                 for (int i = 0; i < temp.size();i = i+2){
                     Ottelu o = new Ottelu();
@@ -251,6 +252,7 @@ public class TulevatTurnauksetController {
                     o.setPelaaja2(temp.get(i+1));
                     ottelut.add(o);
                 }
+                //tyhjennetään väliaikainen lista ja tuodaan pelaajat takaisin.
                 temp.clear();
                 for (Ottelu o : ottelut) {
                     if (!temp.contains(o.getPelaaja1())) {
@@ -262,15 +264,15 @@ public class TulevatTurnauksetController {
                         temp.add(o.getPelaaja2());
                     }
                 }
+                //luodan uusi kierros
                 Kierros uusi_kierros = new Kierros();
                 uusi_kierros.setTurnaus(turnaus);
 
                 //asetetaan kierroksen järjestysnumero ja lisätään kierros tietokantaan
-                uusi_kierros.setKierros(kid+1);
+                uusi_kierros.setKierros(kierrokset.size()+1);
                 Tietokanta.LisaaKierros(uusi_kierros);
                 int tokakierros = Tietokanta.HaeUusinKierrosID();
                 setKierros_id(tokakierros);
-                System.out.println(tokakierros);
 
                 for (int i = 0; i < temp.size();i = i+2){
                     Ottelu o = new Ottelu();
@@ -279,9 +281,11 @@ public class TulevatTurnauksetController {
                     o.setPelaaja2(temp.get(i+1));
                     ottelut.add(o);
                 }
+            //pariton jako
             } else {
-                Pelaaja temp_pelaaja = temp.get(0);
+                //otetaan "viimeinen" pelaaja talteen
                 Pelaaja vika_pelaaja = temp.get(temp.size()-1);
+                //jaetaan pelaajat
                 for (int i = 0; i < temp.size()-1;i = i+2){
                     Ottelu o = new Ottelu();
                     o.setKierros(kid);
@@ -289,6 +293,7 @@ public class TulevatTurnauksetController {
                     o.setPelaaja2(temp.get(i+1));
                     ottelut.add(o);
                 }
+                //tyhjennetään lista ja lisätään "viimeinen" ja tuodaan loput pelaajat
                 temp.clear();
                 temp.add(vika_pelaaja);
                 for (Ottelu o : ottelut) {
@@ -301,12 +306,15 @@ public class TulevatTurnauksetController {
                         temp.add(o.getPelaaja2());
                     }
                 }
+                //lisätään viimeinen uudestaan, näin hänelle tulee 2 peliä toisella kierroksella
+                //ja kaikki pelaajat pelaavat yhtä monta ensimmäisen kahden kierroksen aikana
                 temp.add(vika_pelaaja);
+
                 Kierros uusi_kierros = new Kierros();
                 uusi_kierros.setTurnaus(turnaus);
 
                 //asetetaan kierroksen järjestysnumero ja lisätään kierros tietokantaan
-                uusi_kierros.setKierros(kid+1);
+                uusi_kierros.setKierros(kierrokset.size()+1);
                 Tietokanta.LisaaKierros(uusi_kierros);
                 int tokakierros = Tietokanta.HaeUusinKierrosID();
                 setKierros_id(tokakierros);
@@ -319,7 +327,8 @@ public class TulevatTurnauksetController {
                     ottelut.add(o);
                 }
             }
-        } //tähän voi tehdä ELSEn loppu pelien jakoon.
+        } //tähän voi tehdä ELSEn siihen että jaetaan loput pelit.
+        // pitää jotenkin tarkistaa, että ketkä ovat jo pelanneet vastakkain.
 
         return ottelut;
     }
