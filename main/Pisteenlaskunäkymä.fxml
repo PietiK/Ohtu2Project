@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.PisteenlaskuController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.PisteenlaskuController">
   <children>
     <Label fx:id="Minuutit" alignment="CENTER_RIGHT" layoutX="178.0" layoutY="47.0" prefWidth="94.0"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="Kaksoispiste" layoutX="274.0" layoutY="47.0" text=":"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="Sekunnit" layoutX="283.0" layoutY="47.0"><font><Font name="Arial" size="30" /></font></Label>
-    <Button fx:id="muutaAikaaBtn" layoutX="230" layoutY="10" mnemonicParsing="false" onAction="#muutaAikaa" prefHeight="26.0" text="Muuta aikaa" >
+    <Button fx:id="muutaAikaaBtn" layoutX="230" layoutY="10" mnemonicParsing="false" onAction="#muutaAikaa" prefHeight="26.0" text="Muuta aikaa">
          <font>
             <Font name="Arial" size="14.0" />
          </font>

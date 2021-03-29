@@ -1,8 +1,30 @@
 .button{
--fx-font: 14px "Tahoma";
+    -fx-font:"Tahoma";
+    -fx-font-size:14px;
     -fx-background-radius: 8;
 }
 
 .root{
-    -fx-background-color: #d6e9d8;
+    -fx-background-color: #5cd15c
+
+}
+
+.label{
+    -fx-font: "Tahoma";
+}
+.text-field{
+    -fx-background-radius: 8;
+}
+
+.date-picker{
+    -fx-background-radius: 8;
+}
+.menu-button{
+    -fx-background-radius: 8;
+}
+.table-view{
+    -fx-background-radius: 8;
+}
+.scroll-bar{
+    -fx-background-color: transparent;
 }
