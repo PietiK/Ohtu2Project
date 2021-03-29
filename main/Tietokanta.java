@@ -12,6 +12,7 @@ public class Tietokanta {
         Connection conn = null;
         //String url = "jdbc:sqlite:src/tietokanta.db";
         String url = "jdbc:sqlite:tietokanta.db";
+        
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
             conn = DriverManager.getConnection(url);
