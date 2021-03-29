@@ -67,7 +67,7 @@ public class KilpailupariController{
     //
     @FXML
     void initialize() {
-        TableColmun0.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("kierros"));
+        //TableColmun0.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("kierros"));
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
         //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat())
@@ -129,7 +129,7 @@ public class KilpailupariController{
                 ottelut.add(o);
             }
         }
-
+        System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros()); 
         TableView.setItems(ottelut);
     }  
 

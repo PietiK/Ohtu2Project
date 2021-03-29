@@ -16,7 +16,7 @@
       </Text>
       <TableView fx:id="TableView" layoutX="110.0" layoutY="115.0" prefHeight="336.0" prefWidth="380" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="115.0">
         <columns>
-           <TableColumn fx:id="TableColmun0" prefWidth="80" text="Kierros" />
+         <TableColumn fx:id="TableColmun0" prefWidth="80" text="Kierros" />
           <TableColumn fx:id="TableColmun1" prefWidth="150" text="Pelaaja1" />
           <TableColumn fx:id="TableColumn2" prefWidth="150" text="Pelaaja2" />
         </columns>
