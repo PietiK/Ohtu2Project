@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -248,6 +249,35 @@ public class PisteenlaskuController {
       alert.setHeaderText("HUOMIO");
       alert.setContentText("Aika loppui");
       alert.show();
+    }
+    //Kysyy käyttäjältä varmistuksen luovutuksesta
+    public void luovutusIlmoitus1(){  //Vasemman pelaajan luovutus
+      Alert alert = new Alert(AlertType.CONFIRMATION);
+      alert.setContentText("Haluatko luovuttaa pelin?");
+      alert.setHeaderText("HUOMIO");
+      alert.setTitle("Luovutus");
+      
+      alert.showAndWait();
+      //TODO
+      //Jos OK niin luovuttaa
+      if(alert.getResult() == ButtonType.OK){
+        //Tietokanta.OttelunVoittaja(otteluid, pelaajaid);
+        //Tietokanta.LisaaTappio(turnaus_id, pelaaja_id, tappiot);
+      }
+    }
+    public void luovutusIlmoitus2(){  //Oikean pelaajan luovutus
+      Alert alert = new Alert(AlertType.CONFIRMATION);
+      alert.setContentText("Haluatko luovuttaa pelin?");
+      alert.setHeaderText("HUOMIO");
+      alert.setTitle("Luovutus");
+      
+      alert.showAndWait();
+      //TODO
+      //Jos OK niin luovuttaa
+      if(alert.getResult() == ButtonType.OK){
+        //Tietokanta.OttelunVoittaja(otteluid, pelaajaid);
+        //Tietokanta.LisaaTappio(turnaus_id, pelaaja_id, tappiot);
+      }
     }
 
 }
