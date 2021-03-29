@@ -158,16 +158,17 @@ public class PisteenlaskuController {
         häviäjä = pelaaja_2; 
       } else { voittaja = pelaaja_2; häviäjä = pelaaja_1; }
       int turnausid = TulevatTurnauksetController.getTurnaus_id();
-      int vanhat1pisteet = Tietokanta.HaeTPisteet(turnausid, pelaaja_1.getId());
-      int vanhat2pisteet = Tietokanta.HaeTPisteet(turnausid, pelaaja_2.getId());
-      int tappiot = Tietokanta.HaeTappiot(turnausid, häviäjä.getId()); 
-      System.out.println("Tappiot: " + tappiot);
-      int lisatty = tappiot +1; 
-      System.out.println("Lisatty tappio: " + lisatty); 
+
+      //int tappiot = Tietokanta.HaeTappiot(turnausid, häviäjä.getId()); 
+      System.out.println("Tappiot: " + Tietokanta.HaeTappiot(turnausid, häviäjä.getId()));
+      Tietokanta.LisaaTappio(turnausid, häviäjä.getId());
+      System.out.println("Lisatty tappio: " + Tietokanta.HaeTappiot(turnausid, häviäjä.getId())); 
+      //Tietokanta.LisaaTappio(turnausid, häviäjä.getId(), lisatty);
+      //int lisatty = tappiot +1; 
+
       Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
-      Tietokanta.LisaaTappio(turnausid, häviäjä.getId(), lisatty);
-      Tietokanta.LisaaTPisteita(turnausid, pelaaja_1.getId(), p1pis + vanhat1pisteet);
-      Tietokanta.LisaaTPisteita(turnausid, pelaaja_2.getId(), p2pis + vanhat2pisteet); 
+      Tietokanta.LisaaTPisteita(turnausid, pelaaja_1.getId(), p1pis);
+      Tietokanta.LisaaTPisteita(turnausid, pelaaja_2.getId(), p2pis); 
 
       Stage window = (Stage) TableView.getScene().getWindow(); 
       window.close();
@@ -251,32 +252,35 @@ public class PisteenlaskuController {
       alert.show();
     }
     //Kysyy käyttäjältä varmistuksen luovutuksesta
-    public void luovutusIlmoitus1(){  //Vasemman pelaajan luovutus
+    public void luovutusIlmoitus1(){  //Vasemmanpuoleisen pelaajan luovutus
       Alert alert = new Alert(AlertType.CONFIRMATION);
-      alert.setContentText("Haluatko luovuttaa pelin?");
-      alert.setHeaderText("HUOMIO");
       alert.setTitle("Luovutus");
-      
+      alert.setHeaderText("HUOMIO");
+      alert.setContentText("Haluatko luovuttaa pelin?");
+
       alert.showAndWait();
-      //TODO
       //Jos OK niin luovuttaa
       if(alert.getResult() == ButtonType.OK){
-        //Tietokanta.OttelunVoittaja(otteluid, pelaajaid);
-        //Tietokanta.LisaaTappio(turnaus_id, pelaaja_id, tappiot);
+        Tietokanta.OttelunVoittaja(ottelu.getID(), pelaaja_2.getId());
+        Tietokanta.LisaaTappio(TulevatTurnauksetController.getTurnaus_id(), pelaaja_1.getId());
+        Stage window = (Stage) TableView.getScene().getWindow(); 
+        window.close();
       }
     }
-    public void luovutusIlmoitus2(){  //Oikean pelaajan luovutus
+
+    public void luovutusIlmoitus2(){  //Oikeanpuoleisen pelaajan luovutus
       Alert alert = new Alert(AlertType.CONFIRMATION);
-      alert.setContentText("Haluatko luovuttaa pelin?");
-      alert.setHeaderText("HUOMIO");
       alert.setTitle("Luovutus");
+      alert.setHeaderText("HUOMIO");
+      alert.setContentText("Haluatko luovuttaa pelin?");
       
       alert.showAndWait();
-      //TODO
       //Jos OK niin luovuttaa
       if(alert.getResult() == ButtonType.OK){
-        //Tietokanta.OttelunVoittaja(otteluid, pelaajaid);
-        //Tietokanta.LisaaTappio(turnaus_id, pelaaja_id, tappiot);
+        Tietokanta.OttelunVoittaja(ottelu.getID(), pelaaja_1.getId());
+        Tietokanta.LisaaTappio(TulevatTurnauksetController.getTurnaus_id(), pelaaja_2.getId());
+        Stage window = (Stage) TableView.getScene().getWindow(); 
+        window.close();
       }
     }
 

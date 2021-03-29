@@ -10,8 +10,8 @@ import java.util.List;
 public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
-        String url = "jdbc:sqlite:src/tietokanta.db";
-
+        //String url = "jdbc:sqlite:src/tietokanta.db";
+        String url = "jdbc:sqlite:tietokanta.db";
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
             conn = DriverManager.getConnection(url);
@@ -561,14 +561,16 @@ public static void OttelunVoittaja(int otteluid, int pelaajaid) {
     }
 }
 
-public static void LisaaTappio(int turnaus_id, int pelaaja_id, int tappiot) {
-    String query = "Update pelaaja_turnaus set tappiot = ? " +
+public static void LisaaTappio(int turnaus_id, int pelaaja_id) {
+    //String query = "Update pelaaja_turnaus set tappiot = ? " +
+    //"where pelaaja_id = " + pelaaja_id + " and turnaus_id = " + turnaus_id; 
+    //Kasvattaa tappioita yhdellä
+    String query = "Update pelaaja_turnaus set tappiot = tappiot + 1 " +        
     "where pelaaja_id = " + pelaaja_id + " and turnaus_id = " + turnaus_id; 
-    
+
     try {
         Connection conn = connect();
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, tappiot);
         stmt.executeUpdate();
         conn.close();
     } catch (SQLException e) {
@@ -579,7 +581,9 @@ public static void LisaaTappio(int turnaus_id, int pelaaja_id, int tappiot) {
 }
 
 public static void LisaaTPisteita(int turnaus_id, int pelaaja_id, int pisteet) {
-    String query = "Update pelaaja_turnaus set turnauspisteet = ?"; 
+  //Lisää vanhoihin pisteisiin "pisteet" muuttujan arvon
+    String query = "Update pelaaja_turnaus set turnauspisteet = turnauspisteet + ? "
+    + "WHERE pelaaja_id = " + pelaaja_id + " AND turnaus_id = " + turnaus_id; 
     try {
         Connection conn = connect();
         PreparedStatement stmt = conn.prepareStatement(query);
