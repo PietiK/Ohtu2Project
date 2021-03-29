@@ -236,7 +236,7 @@ public class TulevatTurnauksetController {
         initialize();
     }
 
-    public ArrayList<Ottelu> JaaParit(ArrayList<Pelaaja> turnauksenpelaajat, int kid,Turnaus turnaus) {
+    public static ArrayList<Ottelu> JaaParit(ArrayList<Pelaaja> turnauksenpelaajat, int kid,Turnaus turnaus) {
         ArrayList<Ottelu> ottelut = new ArrayList<>();
         ArrayList<Pelaaja> temp = turnauksenpelaajat;
         ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());

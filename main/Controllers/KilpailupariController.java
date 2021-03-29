@@ -24,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.*;
+import main.Controllers.TulevatTurnauksetController;
 
 public class KilpailupariController{
 
@@ -214,16 +215,30 @@ public class KilpailupariController{
             */
             Kierros uusi = new Kierros (); 
             int tid = TulevatTurnauksetController.getTurnaus_id();
-            uusi.setTurnaus(Tietokanta.haeTurnaus(tid));
+            Turnaus turnaus = Tietokanta.haeTurnaus(tid);
+            uusi.setTurnaus(turnaus);
+
             int k = Tietokanta.HaeSuurinKierrosnumero(tid) + 1; 
             uusi.setKierros(k);
             Tietokanta.LisaaKierros(uusi);
-            uusi.setID(Tietokanta.HaeUusinKierrosID());
+            int kieid = Tietokanta.HaeUusinKierrosID();
+            uusi.setID(kieid);
+            ArrayList<Ottelu> uudetottelut = new ArrayList<Ottelu>(); 
             ArrayList<Pelaaja> pelaajatjäljellä = Tietokanta.haeJäljelläPelaajat(tid); 
-            /* kesken, tähän tarvitaan pelaajien paritus */
-          
+            TulevatTurnauksetController.JaaParit(pelaajatjäljellä, kieid, turnaus); 
+            ObservableList<Ottelu> seuraavatottelut = FXCollections.observableArrayList();
+            for (Ottelu ot : uudetottelut) {
+                //ot.setKierros(kid); // asetetaan otteluille kierroksen ID
+                Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
+                ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
+                Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
+                System.out.println(ot.toString());
+                seuraavatottelut.add(ot);
+            }
+            TableView.setItems(seuraavatottelut); 
         }
     }
+
 
     private void Estä2() {
         Alert alert = new Alert(AlertType.INFORMATION);
