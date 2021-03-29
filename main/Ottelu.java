@@ -96,7 +96,7 @@ public class Ottelu {
 
     @Override
     public String toString() {
-        return "Ottelu{" +
+        return "Kierros = " +kierros + " Ottelu{" +
                 "Pelaaja1 = " + pelaaja1.getNimi() +
                 "Pisteet = " + pelaaja1.getPisteet() +
                 ", Pelaaja2 = " + pelaaja2.getNimi() +

@@ -14,10 +14,11 @@
             <Font name="Arial" size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="TableView" layoutX="110.0" layoutY="115.0" prefHeight="336.0" prefWidth="338.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="115.0">
+      <TableView fx:id="TableView" layoutX="110.0" layoutY="115.0" prefHeight="336.0" prefWidth="380" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="115.0">
         <columns>
-          <TableColumn fx:id="TableColmun1" prefWidth="167.0" text="Pelaaja1" />
-          <TableColumn fx:id="TableColumn2" prefWidth="170.0" text="Pelaaja2" />
+           <TableColumn fx:id="TableColmun0" prefWidth="80" text="Kierros" />
+          <TableColumn fx:id="TableColmun1" prefWidth="150" text="Pelaaja1" />
+          <TableColumn fx:id="TableColumn2" prefWidth="150" text="Pelaaja2" />
         </columns>
       </TableView>
       <Button fx:id="TakaisinBtn" layoutX="40.0" layoutY="483.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="87.0" text="Takaisin" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="431.0" AnchorPane.topAnchor="483.0">

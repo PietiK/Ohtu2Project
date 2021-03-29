@@ -49,6 +49,8 @@ public class KilpailupariController{
     private TableView<Ottelu> TableView;
 
     @FXML
+    private TableColumn<Ottelu, Integer> TableColmun0;
+    @FXML
     private TableColumn<Ottelu, String> TableColmun1;
 
     @FXML
@@ -65,35 +67,69 @@ public class KilpailupariController{
     //
     @FXML
     void initialize() {
+        TableColmun0.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("kierros"));
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
         //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat())
 
-        //hakee edellisessä näytössä olleen kierroksen ID:n
-        int testi = TulevatTurnauksetController.getKierrosId();
+        //hakee edellisessä näytössä olleen kierroksen ja turnauksen ID:n
+        int viimeisein_kierros = TulevatTurnauksetController.getKierrosId();
+        int turnauksen_id = TulevatTurnauksetController.getTurnaus_id();
 
-        //hakee aina kierroksen 10?
-        //int id = Tietokanta.haeKierrosID();
-        //System.out.println("kierroksen id " + id + "testi = " + testi);
+        System.out.println(viimeisein_kierros + " " + turnauksen_id);
+
+        ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnauksen_id);
+        System.out.println(kierrokset.size());
 
         ArrayList<Integer> ottelu_idt = new ArrayList<Integer>();
 
         //edellisellä näytöllä jaetut otteluiden ID:t.
-        ottelu_idt = Tietokanta.getKierroksenOttelut(testi);
-
-        //System.out.println("ottelut idt " + ottelu_idt);
-
-        ObservableList<Ottelu> ottelut = FXCollections.observableArrayList(); 
-
-        for (Integer i : ottelu_idt) {
-            Ottelu o = new Ottelu(); 
-            o.setID(i);
-                ArrayList<Pelaaja> pelaajat = Tietokanta.haeKilpailuparinPelaajat(i); 
-                o.setPelaaja1(pelaajat.get(0));
-                System.out.println("pelaaja1  " + o.getPelaaja1().getNimi()); 
-                o.setPelaaja2(pelaajat.get(1));
-                ottelut.add(o); 
+        ottelu_idt = Tietokanta.getKierroksenOttelut(viimeisein_kierros);
+        //jos kierroksia on alle 3 haetaan myös ensimmäinen kierros.
+        if (kierrokset.size()<3){
+            ArrayList<Integer> eka_kierros_idt = Tietokanta.getKierroksenOttelut(viimeisein_kierros-1);
+            int indexi = 0;
+            for (Integer i :eka_kierros_idt){
+                ottelu_idt.add(indexi,i);
+                indexi++;
+            }
         }
+
+        ObservableList<Ottelu> ottelut = FXCollections.observableArrayList();
+
+        //jos samaa näyttöä käytetään myöhäisemmillä kierroksilla
+        //tähän pitää kehittää joku if lause, että jos viimeisin kierros on 2, niin lista pitää jakaa kahtia.
+        if (kierrokset.size()<3){
+            for (int i = 0; i < ottelu_idt.size()/2;i++){
+                Ottelu o = new Ottelu();
+                o.setID(ottelu_idt.get(i));
+                ArrayList<Pelaaja> pelaajat = Tietokanta.haeKilpailuparinPelaajat(ottelu_idt.get(i));
+                o.setPelaaja1(pelaajat.get(0));
+                o.setPelaaja2(pelaajat.get(1));
+                o.setKierros(kierrokset.size()/2);
+                ottelut.add(o);
+            }
+            for (int i = ottelu_idt.size()/2;i < ottelu_idt.size();i++){
+                Ottelu o = new Ottelu();
+                o.setID(ottelu_idt.get(i));
+                ArrayList<Pelaaja> pelaajat = Tietokanta.haeKilpailuparinPelaajat(ottelu_idt.get(i));
+                o.setPelaaja1(pelaajat.get(0));
+                o.setPelaaja2(pelaajat.get(1));
+                o.setKierros(kierrokset.size());
+                ottelut.add(o);
+            }
+        } else {
+            for (Integer i : ottelu_idt) {
+                Ottelu o = new Ottelu();
+                o.setID(i);
+                ArrayList<Pelaaja> pelaajat = Tietokanta.haeKilpailuparinPelaajat(i);
+                o.setPelaaja1(pelaajat.get(0));
+                o.setPelaaja2(pelaajat.get(1));
+                o.setKierros(kierrokset.size());
+                ottelut.add(o);
+            }
+        }
+
         TableView.setItems(ottelut);
     }  
 

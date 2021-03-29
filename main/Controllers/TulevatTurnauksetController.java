@@ -23,7 +23,8 @@ public class TulevatTurnauksetController {
     public static Turnaus turnaus;
     public static ArrayList<Pelaaja> pel;
     public static int kierros_id;
-    public static int turnaus_id; 
+    public static int turnaus_id;
+    //public static Turnaus turnaus;
 
     public static void setKierros_id(int id) {
         kierros_id = id; 
@@ -34,7 +35,7 @@ public class TulevatTurnauksetController {
     }
 
     public static int getTurnaus_id() {
-        return turnaus_id; 
+        return turnaus.getId();
     }
 
     public static int getKierrosId() {
@@ -107,7 +108,8 @@ public class TulevatTurnauksetController {
     @FXML
     public void Pelaa(ActionEvent event) throws IOException {
 
-        Turnaus turnaus = TableView.getSelectionModel().getSelectedItem(); 
+        turnaus = TableView.getSelectionModel().getSelectedItem();
+        System.out.println(turnaus.getId());
         ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId()); 
         /*
         Tässä testataan, onko turnaus jo aloitettu aiemmin, eli onko sille luotu vielä kierroksia.
@@ -125,8 +127,9 @@ public class TulevatTurnauksetController {
             uusi_kierros.setTurnaus(turnaus);
 
             //asetetaan kierroksen järjestysnumero ja lisätään kierros tietokantaan
+
             uusi_kierros.setKierros(1);
-            Tietokanta.LisaaKierros(uusi_kierros);
+            Tietokanta.LisaaKierros(uusi_kierros); //Tietokannan kierros_id on auto increment
             int kid = Tietokanta.HaeUusinKierrosID();
             setKierros_id(kid);
             ArrayList<Ottelu> ottelut = new ArrayList<Ottelu>(); 
@@ -142,13 +145,15 @@ public class TulevatTurnauksetController {
 
 
              */
-            ottelut = Ekatkierrokset(turnauksenpelaajat,kid);
+
+            ottelut = JaaParit(turnauksenpelaajat,kid,turnaus);
 
             for (Ottelu ot : ottelut) {
-                ot.setKierros(kid); // asetetaan otteluille kierroksen ID
+                //ot.setKierros(kid); // asetetaan otteluille kierroksen ID
                 Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
                 ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
                 Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
+                System.out.println(ot.toString());
             }
 
             FXMLLoader loader = new FXMLLoader();
@@ -231,37 +236,91 @@ public class TulevatTurnauksetController {
         initialize();
     }
 
-    public ArrayList<Ottelu> Ekatkierrokset(ArrayList<Pelaaja> turnauksenpelaajat, int kid) {
+    public ArrayList<Ottelu> JaaParit(ArrayList<Pelaaja> turnauksenpelaajat, int kid,Turnaus turnaus) {
         ArrayList<Ottelu> ottelut = new ArrayList<>();
         ArrayList<Pelaaja> temp = turnauksenpelaajat;
-        if (temp.size() % 2 == 0){
-            for (int i = 0; i < temp.size();i = i+2){
-                Ottelu o = new Ottelu();
-                o.setKierros(kid);
-                o.setPelaaja1(temp.get(i));
-                o.setPelaaja2(temp.get(i+1));
-                ottelut.add(o);
-            }
-            temp.clear();
-            for (Ottelu o : ottelut) {
-                if (!temp.contains(o.getPelaaja1())) {
-                    temp.add(o.getPelaaja1());
+        ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());
+        //jos kierroksia on alle 3, niin jaetaan 2 ensimmäistä kierrosta.
+        if(kierrokset.size() < 3){
+            System.out.println(kid);
+            if (temp.size() % 2 == 0){
+                for (int i = 0; i < temp.size();i = i+2){
+                    Ottelu o = new Ottelu();
+                    o.setKierros(kid);
+                    o.setPelaaja1(temp.get(i));
+                    o.setPelaaja2(temp.get(i+1));
+                    ottelut.add(o);
+                }
+                temp.clear();
+                for (Ottelu o : ottelut) {
+                    if (!temp.contains(o.getPelaaja1())) {
+                        temp.add(o.getPelaaja1());
+                    }
+                }
+                for (Ottelu o : ottelut){
+                    if (!temp.contains(o.getPelaaja2())) {
+                        temp.add(o.getPelaaja2());
+                    }
+                }
+                Kierros uusi_kierros = new Kierros();
+                uusi_kierros.setTurnaus(turnaus);
+
+                //asetetaan kierroksen järjestysnumero ja lisätään kierros tietokantaan
+                uusi_kierros.setKierros(kid+1);
+                Tietokanta.LisaaKierros(uusi_kierros);
+                int tokakierros = Tietokanta.HaeUusinKierrosID();
+                setKierros_id(tokakierros);
+                System.out.println(tokakierros);
+
+                for (int i = 0; i < temp.size();i = i+2){
+                    Ottelu o = new Ottelu();
+                    o.setKierros(tokakierros);
+                    o.setPelaaja1(temp.get(i));
+                    o.setPelaaja2(temp.get(i+1));
+                    ottelut.add(o);
+                }
+            } else {
+                Pelaaja temp_pelaaja = temp.get(0);
+                Pelaaja vika_pelaaja = temp.get(temp.size()-1);
+                for (int i = 0; i < temp.size()-1;i = i+2){
+                    Ottelu o = new Ottelu();
+                    o.setKierros(kid);
+                    o.setPelaaja1(temp.get(i));
+                    o.setPelaaja2(temp.get(i+1));
+                    ottelut.add(o);
+                }
+                temp.clear();
+                temp.add(vika_pelaaja);
+                for (Ottelu o : ottelut) {
+                    if (!temp.contains(o.getPelaaja1())) {
+                        temp.add(o.getPelaaja1());
+                    }
+                }
+                for (Ottelu o : ottelut){
+                    if (!temp.contains(o.getPelaaja2())) {
+                        temp.add(o.getPelaaja2());
+                    }
+                }
+                temp.add(vika_pelaaja);
+                Kierros uusi_kierros = new Kierros();
+                uusi_kierros.setTurnaus(turnaus);
+
+                //asetetaan kierroksen järjestysnumero ja lisätään kierros tietokantaan
+                uusi_kierros.setKierros(kid+1);
+                Tietokanta.LisaaKierros(uusi_kierros);
+                int tokakierros = Tietokanta.HaeUusinKierrosID();
+                setKierros_id(tokakierros);
+                System.out.println(tokakierros);
+                for (int i = 0; i < temp.size();i = i+2){
+                    Ottelu o = new Ottelu();
+                    o.setKierros(tokakierros);
+                    o.setPelaaja1(temp.get(i));
+                    o.setPelaaja2(temp.get(i+1));
+                    ottelut.add(o);
                 }
             }
-            for (Ottelu o : ottelut){
-                if (!temp.contains(o.getPelaaja2())) {
-                    temp.add(o.getPelaaja2());
-                }
-            }
-            int tokakierros = kid+1;
-            for (int i = 0; i < temp.size();i = i+2){
-                Ottelu o = new Ottelu();
-                o.setKierros(tokakierros);
-                o.setPelaaja1(temp.get(i));
-                o.setPelaaja2(temp.get(i+1));
-                ottelut.add(o);
-            }
-        }
+        } //tähän voi tehdä ELSEn loppu pelien jakoon.
+
         return ottelut;
     }
 
