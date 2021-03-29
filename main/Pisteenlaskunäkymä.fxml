@@ -57,8 +57,8 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="p1Label" layoutX="134.0" layoutY="397.0" prefHeight="26.0" prefWidth="36.0" text="13" textAlignment="CENTER" AnchorPane.leftAnchor="134.0" AnchorPane.topAnchor="397.0" />
-      <Label fx:id="p2Label" layoutX="385.0" layoutY="397.0" prefHeight="27.0" prefWidth="29.0" text="14" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="397.0" />
+      <Label fx:id="p1Label" layoutX="134.0" layoutY="397.0" prefHeight="26.0" prefWidth="36.0" text="0" textAlignment="CENTER" AnchorPane.leftAnchor="134.0" AnchorPane.topAnchor="397.0" />
+      <Label fx:id="p2Label" layoutX="385.0" layoutY="397.0" prefHeight="27.0" prefWidth="29.0" text="0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="397.0" />
       <Button fx:id="LuovutaBtn1" layoutX="38.0" layoutY="397.0" onAction="#luovutusIlmoitus1" mnemonicParsing="false" text="Luovuta" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="39.5" />
       <Button fx:id="LuovutaBtn2" layoutX="447.0" layoutY="397.0" onAction="#luovutusIlmoitus2" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Luovuta" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="447.0" AnchorPane.rightAnchor="42.0" />
    </children>
