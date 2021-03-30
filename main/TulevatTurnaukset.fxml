@@ -11,7 +11,7 @@
    <children>
       <Text fx:id="TulevatTurnauksetTxt" layoutX="117.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulevat turnaukset">
          <font>
-            <Font name="Arial" size="36.0" />
+            <Font name="Tahoma" size="36.0" />
          </font>
       </Text>
       <TableView fx:id="TableView" layoutX="32.0" layoutY="107.0" prefHeight="296.0" prefWidth="483.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
@@ -22,14 +22,14 @@
             <TableColumn fx:id="TableColumnLopetuspäivämäärä" prefWidth="132.0" text="Lopetuspäivämäärä" />
         </columns>
       </TableView>
-      <Button fx:id="NäytäPeliBtn" layoutX="427.0" layoutY="421.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="26.0" prefWidth="101.0" text="Pelaa">
+      <Button fx:id="NäytäPeliBtn" layoutX="427.0" layoutY="433.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="26.0" prefWidth="101.0" text="Pelaa">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="MuokkaaBtn" layoutX="427.0" layoutY="469.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Muokkaa">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="PeruPeliBtn" layoutX="427.0" layoutY="508.0" mnemonicParsing="false" onAction="#PoistaTurnaus" prefHeight="26.0" prefWidth="101.0" text="Peru turnaus">
@@ -37,7 +37,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="TakaisinBtn" layoutX="73.0" layoutY="495.0" mnemonicParsing="false" onAction="#SiirryTakaisin" text="Takaisin">
+      <Button fx:id="TakaisinBtn" layoutX="46.0" layoutY="496.0" mnemonicParsing="false" onAction="#SiirryTakaisin" text="Takaisin">
          <font>
             <Font name="Arial" size="14.0" />
          </font>

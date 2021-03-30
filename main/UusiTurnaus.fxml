@@ -46,7 +46,7 @@
       <DatePicker fx:id="DatePicker1" layoutX="392.0" layoutY="119.0" AnchorPane.topAnchor="119.0" />
       <Text fx:id="AloituspäivämääräTxt" layoutX="399.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aloituspäivämäärä" wrappingWidth="172.5400390625">
          <font>
-            <Font name="Arial" size="18.0" />
+            <Font name="Tahoma" size="18.0" />
          </font>
       </Text>
       <Button fx:id="TakaisinBtn" layoutX="498.0" layoutY="617.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="78.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="498.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="617.0">
