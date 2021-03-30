@@ -546,6 +546,27 @@ public static boolean OnkoVoittajaa(int id) {
     return voitto;
 
 }
+//Hakee ottelun voittajan id:n
+public static int getOttelunVoittaja(int otteluid) {
+  String query = "SELECT voittaja FROM ottelu WHERE ottelu_id = " + otteluid; 
+    try {
+        Connection conn = connect();
+        PreparedStatement stmt = conn.prepareStatement(query);
+        ResultSet rs = stmt.executeQuery(query);
+        int voittaja = -1;
+        if (rs.next()) {
+            voittaja = rs.getInt("voittaja");
+        }
+        conn.close();
+        return voittaja;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    //Palauttaa -1 jos ottelulla ei ole voittajaa
+    return -1;
+}
 
 public static void OttelunVoittaja(int otteluid, int pelaajaid) {
     String query = "Update ottelu set voittaja = " + pelaajaid + " Where ottelu_id = " + otteluid; 

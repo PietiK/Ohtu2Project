@@ -14,10 +14,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import main.*;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class KilpailupariController{
 
@@ -118,7 +121,8 @@ public class KilpailupariController{
             }
         }
         System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros());
-        TableView.setItems(ottelut);
+        TableView.setItems(ottelut);    
+        
     }  
 
         /*
@@ -161,7 +165,7 @@ public class KilpailupariController{
     private void Estä() {   
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setContentText("Tämä ottelu on jo pelattu!");
-        alert.setTitle("Ottelun pelattu");
+        alert.setTitle("Ottelu on pelattu");
         alert.setHeaderText("");
         alert.showAndWait();
         if(alert.getResult() == ButtonType.OK){
@@ -260,5 +264,13 @@ public class KilpailupariController{
         PisteenlaskuController.aloitaKello();
       }
     }
+
+    //TODO
+    //Voittajan väritys
+    //public void varita(TableColumn<Ottelu, String> column1, TableColumn<Ottelu, String> column2){
+    //}
+      
+      
+        
 }
 
