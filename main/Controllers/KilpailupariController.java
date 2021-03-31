@@ -20,6 +20,8 @@ import main.*;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class KilpailupariController{
@@ -67,6 +69,7 @@ public class KilpailupariController{
         TableColmun0.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("kierros"));
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
+        
         //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat())
 
         //hakee edellisessä näytössä olleen kierroksen ja turnauksen ID:n
@@ -122,7 +125,7 @@ public class KilpailupariController{
         }
         System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros());
         TableView.setItems(ottelut);    
-        
+      
     }  
 
         /*

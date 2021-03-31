@@ -37,17 +37,17 @@ public class AloitusController {
 
     @FXML
     private MenuItem MenuItemSnooker;
-
+    
     @FXML
     public void SiirryPelinLuontiin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/UusiTurnaus.fxml"));
         Parent AloitusNayttoP = loader.load();
         Scene UusipeliS = new Scene(AloitusNayttoP);
-
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(UusipeliS);
+        window.centerOnScreen();
         window.show();
     }
 

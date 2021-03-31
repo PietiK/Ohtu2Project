@@ -30,26 +30,17 @@
           <TableColumn id="TableColmunMäärä" fx:id="TableColumnLuku" prefWidth="71.0" />
         </columns>
       </TableView>
-      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="78.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
+      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="498.0" layoutY="617.0" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="78.0" text="Valmis" AnchorPane.leftAnchor="498.0" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="617.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font></Button>
-      <MenuButton fx:id="ValitsePeliBtn" layoutX="46.0" layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Valitse peli" AnchorPane.topAnchor="189.0">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Kaisa" />
-          <MenuItem mnemonicParsing="false" text="Snooker" />
-        </items>
-         <font>
-            <Font name="Tahoma" size="13.0" />
-         </font>
-      </MenuButton>
       <DatePicker fx:id="DatePicker1" layoutX="392.0" layoutY="119.0" AnchorPane.topAnchor="119.0" />
       <Text fx:id="AloituspäivämääräTxt" layoutX="399.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aloituspäivämäärä" wrappingWidth="172.5400390625">
          <font>
             <Font name="Tahoma" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="TakaisinBtn" layoutX="498.0" layoutY="617.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="78.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="498.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="617.0">
+      <Button fx:id="TakaisinBtn" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="78.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
@@ -66,10 +57,5 @@
          </font>
       </Text>
       <TextField id="TextField" fx:id="TextField1" layoutX="35.0" layoutY="118.0" prefHeight="11.0" prefWidth="173.0" />
-      <Button id="LisääBtn" fx:id="LisääBtn1" layoutX="223.0" layoutY="120.0" mnemonicParsing="false" text="Lisää">
-         <font>
-            <Font name="Arial" size="13.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

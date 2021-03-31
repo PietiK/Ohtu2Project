@@ -28,6 +28,7 @@ import main.Turnaus;
 import main.PelaajaNumerot;
 
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 
 public class UusiTurnausController {
 
@@ -114,9 +115,13 @@ public class UusiTurnausController {
     
     public void LuoTurnaus(ActionEvent event) throws IOException {
         Turnaus uusiturnaus = new Turnaus(); 
-        uusiturnaus.setNimi(TextField1.getText()); 
-        uusiturnaus.setAloituspvm(DatePicker1.getAccessibleText());
-        uusiturnaus.setLopetuspvm(DatePicker2.getAccessibleText());
+        uusiturnaus.setNimi(TextField1.getText());
+
+        String Aloitus = DatePicker1.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String Lopetus = DatePicker2.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); 
+        uusiturnaus.setAloituspvm(Aloitus);
+        uusiturnaus.setLopetuspvm(Lopetus);
+        
         ObservableList<Pelaaja> p = TableView.getItems();
         ArrayList<Pelaaja> pelaajat = new ArrayList<Pelaaja>(); 
         for (Pelaaja pe : p) {
