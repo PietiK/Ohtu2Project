@@ -884,4 +884,43 @@ public static int haeKierrosID() {
         return pel;
     }
 
+    //Hakee pelaajan jo pelaamat vastustajat
+    public static ArrayList<Integer> haePelatut(int pelaaja_id){
+      String ottelut = "SELECT ottelu_id FROM pelaaja_ottelu WHERE pelaaja_id = ?";
+      ArrayList<Integer> ottelulista = new ArrayList<>();
+      String vastustajat = "SELECT pelaaja_id FROM pelaaja_ottelu WHERE ottelu_id = ? "
+      + "AND pelaaja_id != ?";
+      ArrayList<Integer> pelatut = new ArrayList<>();
+      try {
+          Connection conn = connect();
+          PreparedStatement stmt = conn.prepareStatement(ottelut);
+          stmt.setInt(1,pelaaja_id);
+          ResultSet rsOttelut = stmt.executeQuery();
+          //Haetaan pelaajan pelaamat ottelut listaan
+          while (rsOttelut.next()) {
+              ottelulista.add(rsOttelut.getInt("ottelu_id"));
+          }
+          //Haetaan pelaajan pelaamien otteluiden toinen pelaaja (eli se vastustaja) toiseen listaan
+          if(!ottelulista.isEmpty()){
+            //Käydään otteluiden lista läpi
+            for(int o : ottelulista){
+              PreparedStatement stmtVastustajat = conn.prepareStatement(vastustajat);
+              //Jokaisella loopilla ottelun id vaihtuu mutta pelaaja pysyy samana
+              stmtVastustajat.setInt(1, o);
+              stmtVastustajat.setInt(2, pelaaja_id);
+              ResultSet rsVastustajat = stmt.executeQuery();
+              while(rsVastustajat.next())
+                pelatut.add(rsVastustajat.getInt("pelaaja_id"));
+            }
+          }
+          conn.close();
+          return pelatut;
+      } catch (SQLException e) {
+          e.printStackTrace();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+      return pelatut;
+    }
+
 }
