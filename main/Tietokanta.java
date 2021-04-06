@@ -908,7 +908,7 @@ public static int haeKierrosID() {
               //Jokaisella loopilla ottelun id vaihtuu mutta pelaaja pysyy samana
               stmtVastustajat.setInt(1, o);
               stmtVastustajat.setInt(2, pelaaja_id);
-              ResultSet rsVastustajat = stmt.executeQuery();
+              ResultSet rsVastustajat = stmtVastustajat.executeQuery();
               while(rsVastustajat.next())
                 pelatut.add(rsVastustajat.getInt("pelaaja_id"));
             }
