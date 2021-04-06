@@ -61,6 +61,9 @@ public class KilpailupariController{
     @FXML
     private Button SeuraavaBtn;
 
+    @FXML
+    private Button tuloksetButton;
+
     //HUOM! KESKEN
     //
     //
@@ -165,6 +168,19 @@ public class KilpailupariController{
         luoIlmoitus();
         }
     }
+
+    @FXML
+    public void Tulokset(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/Tulosnäyttö.fxml"));
+        Parent AloitusNayttoP = loader.load();
+        Scene PisteS = new Scene(AloitusNayttoP);
+        Stage window = new Stage(); 
+        window.setScene(PisteS);
+        window.show(); 
+    }
+
     private void Estä() {   
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setContentText("Tämä ottelu on jo pelattu!");
