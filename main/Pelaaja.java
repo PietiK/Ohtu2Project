@@ -127,6 +127,10 @@ public class Pelaaja {
         this.pelattu.add(pelaaja);
     }
 
+    public void addPelattu(Pelaaja pel){
+      this.pelattu.add(pel);
+    }
+
     public void printPelattu (Pelaaja pelaaja){
         for (Pelaaja p : pelattu){
             System.out.print(p.getNimi() + ", ");

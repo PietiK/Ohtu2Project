@@ -38,6 +38,16 @@ public class Pelaajataulu {
         }
         return temp;
     }
+
+    //Haetaan pelaa idllä
+    public Pelaaja getPelaajaWithID(int id){
+      Pelaaja temp = new Pelaaja();
+      for(int i=0; i<this.pelaajat.size(); i++){
+        if(this.pelaajat.get(i).getId() == id)
+          temp = this.pelaajat.get(i);
+      }
+      return temp;
+    }
     
     public ArrayList<Pelaaja> getPelaajat() {
         return this.pelaajat; 
@@ -208,17 +218,47 @@ public class Pelaajataulu {
     }
     //TODO
     //Jakaa jäljellä olevista pelaajista parit
-    /* Iha kesken vielä
+    //Parametrina jaettavat pelaajat
     public ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelurit){
-      ArrayList<Ottelu> seuraava = new ArrayList<>();
-      
+      ArrayList<Ottelu> seuraavat = new ArrayList<>();
+      int laskuri = 0; //Apumuuttuja vastustajien laskuun
+      //Hakee jokaisen pelaajan entiset vastustajat
       for(Pelaaja p : pelurit) {
-        Tietokanta.haePelatut(p.getId());
+        ArrayList<Integer> temp = Tietokanta.haePelatut(p.getId());
+        for(int i : temp) {   //Lisätään pelaajan pelattuihin jos ei ole jo siellä
+          if(!p.getPelattu().contains(getPelaajaWithID(i))){
+            p.addPelattu(getPelaajaWithID(i));
+          }
+        }
+      }
+      //Katsoo onko pelaajia joilla on muita vähemmän otteluita
+      ArrayList<Pelaaja> pelinTarpeessa = new ArrayList<>(); //Lista pelaajille joilla on vähiten pelejä
+      ArrayList<Integer> numero = new ArrayList<>();
+      
+      for(int i=0; i<=pelurit.size(); i++){
+        numero.add(pelurit.get(i).getPelattu().size()); //Pelaajan otteluiden määrä
+      }
+      int suurin = Collections.max(numero);
+      //Käydään otteluiden määrät läpi ja katsotaan onko jollain vähemmän kuin muilla
+      for(int i=0; i<=pelurit.size(); i++){
+        //Jos vähemmän kuin suurin niin lisätään peliä tarvitsevien listalle
+        if(pelurit.get(i).getPelattu().size() < suurin){
+          pelinTarpeessa.add(pelurit.get(i));
+        } 
       }
 
-      return seuraava;
+      //Kaikki pelannut jo kaikkia vastaan
+      if (laskuri == 0){
+
+      }
+      //VÄHÄ TODOITA
+        //-Se parien jako
+        //Jos jollain vähemmän pelejä ku muilla niin sen pitää päästä pelaa
+        //-Jos kaikki pelannut kaikkia vastaan niin silloin voi pelata uudestaan samaa
+        //-Jos pelaajia <=4 niin sillo se manuaalinen jako
+
+      return seuraavat;
     }
-    */
 
     //Metodi joka jakaa pelaajille pelinumerot
 	public void arvoNumerot(ArrayList<Pelaaja> pelaajat) {
