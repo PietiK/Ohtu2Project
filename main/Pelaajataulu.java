@@ -206,6 +206,19 @@ public class Pelaajataulu {
         }
         return kierros;
     }
+    //TODO
+    //Jakaa jäljellä olevista pelaajista parit
+    /* Iha kesken vielä
+    public ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelurit){
+      ArrayList<Ottelu> seuraava = new ArrayList<>();
+      
+      for(Pelaaja p : pelurit) {
+        Tietokanta.haePelatut(p.getId());
+      }
+
+      return seuraava;
+    }
+    */
 
     //Metodi joka jakaa pelaajille pelinumerot
 	public void arvoNumerot(ArrayList<Pelaaja> pelaajat) {
