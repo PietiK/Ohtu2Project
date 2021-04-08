@@ -126,8 +126,9 @@ public class PisteenlaskuController {
         TableView.getItems().add(new Pelaaja(Integer.toString(pisteet)));
         TableColumn1.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
         TextField1.setText("");
-
+        System.out.println(pelaaja_1.getId() + " = " + ottelu.getID());
         p1Label.setText(Integer.toString(pelaaja_1.getPisteet()));
+
 
     }
 

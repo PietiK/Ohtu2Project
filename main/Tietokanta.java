@@ -922,5 +922,23 @@ public static int haeKierrosID() {
       }
       return pelatut;
     }
-
+    public static int get_pelaaja_ottelu_pisteet(int pelaaja_id, int ottelu_id){
+        String query = "SELECT pisteet FROM pelaaja_ottelu WHERE pelaaja_id = ? AND ottelu_id = ?";
+        int pisteet = 0;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,pelaaja_id);
+            stmt.setInt(2,ottelu_id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                pisteet = rs.getInt("pisteet");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pisteet;
+    }
 }

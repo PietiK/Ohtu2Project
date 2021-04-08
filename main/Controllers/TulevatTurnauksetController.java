@@ -45,6 +45,8 @@ public class TulevatTurnauksetController {
     public static Pelaajataulu getPelaajat(){
         return pelaajat;
     }
+
+
     @FXML
     private AnchorPane AnchorPane;
 

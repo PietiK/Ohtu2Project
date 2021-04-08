@@ -29,7 +29,8 @@ public class KilpailupariController{
 
     public static Ottelu ottelu;
     public static int OtteluId;
-
+    public static int turnauksen_id;
+    public static ObservableList<Ottelu> ottelut;
     public static Ottelu getOttelu() {
         return ottelu;
     }
@@ -37,6 +38,8 @@ public class KilpailupariController{
     public static int getOtteluId() {
         return OtteluId;
     }
+
+
 
     @FXML
     private AnchorPane AnchorPane;
@@ -64,6 +67,10 @@ public class KilpailupariController{
     @FXML
     private Button tuloksetButton;
 
+    public static ObservableList<Ottelu> get_ottelut() {
+        return ottelut;
+    }
+
     //HUOM! KESKEN
     //
     //
@@ -77,7 +84,7 @@ public class KilpailupariController{
 
         //hakee edellisessä näytössä olleen kierroksen ja turnauksen ID:n
         int viimeisein_kierros = TulevatTurnauksetController.getKierrosId();
-        int turnauksen_id = TulevatTurnauksetController.getTurnaus_id();
+        turnauksen_id = TulevatTurnauksetController.getTurnaus_id();
 
         ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnauksen_id);
 
@@ -94,7 +101,7 @@ public class KilpailupariController{
             }
         }
 
-        ObservableList<Ottelu> ottelut = FXCollections.observableArrayList();
+        ottelut = FXCollections.observableArrayList();
 
         if (kierrokset.size()<3){
             for (int i = 0; i < ottelu_idt.size()/2;i++){
