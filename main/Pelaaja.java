@@ -131,6 +131,14 @@ public class Pelaaja {
       this.pelattu.add(pel);
     }
 
+    public ArrayList<Integer> getPelattujenIdt(){ //Palauttaa pelaajan vastustajien id:t
+      ArrayList<Integer> idt = new ArrayList<>();
+      for(Pelaaja p : this.pelattu) {
+        idt.add(p.getId());
+      }
+      return idt;
+    }
+
     public void printPelattu (Pelaaja pelaaja){
         for (Pelaaja p : pelattu){
             System.out.print(p.getNimi() + ", ");
