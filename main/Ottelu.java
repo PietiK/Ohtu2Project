@@ -23,6 +23,14 @@ public class Ottelu {
         this.pelattu = false; 
     }
 
+    //Väliaikainen ottelu yhdellä pelaajalla, jos pelaajat eivät mene tasan parien jaossa
+    //Ei vielä käytössä enkä vielä tiiä tuleeko tarpeeseen
+    public Ottelu(Pelaaja eka, int kierros) {
+      this.pelaaja1 = eka;
+      this.pelaaja2 = null;
+      this.kierros = kierros;
+    }
+
     public void setID(int id) {
         this.ottelu_id = id; 
     }
@@ -33,7 +41,7 @@ public class Ottelu {
 
 
     public Ottelu(Pelaaja pelaaja, Pelaaja pelaaja3) {
-	}
+	  }
 
     public Ottelu() {
     }
