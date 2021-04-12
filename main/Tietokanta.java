@@ -882,7 +882,7 @@ public static int haeKierrosID() {
     }
 
     public static int HaeSuurinKierrosnumero(int tid) {
-        String query = "Select MAX[(kierrosluku)] from kierros where turnaus_id = " + tid; 
+        String query = "Select kierrosluku, MAX[(kierrosluku)] from kierros where turnaus_id = " + tid; 
         Statement stmt;
         int kierros = 0;
         try {
