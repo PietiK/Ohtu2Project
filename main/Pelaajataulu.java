@@ -40,11 +40,13 @@ public class Pelaajataulu {
     }
 
     //Haetaan pelaaja idllä
-    public Pelaaja getPelaajaWithID(int id){
+    public static Pelaaja getPelaajaWithID(int id){
       Pelaaja temp = null;
-      for(int i=0; i<this.pelaajat.size(); i++){
-        if(this.pelaajat.get(i).getId() == id)
-          temp = this.pelaajat.get(i);
+      ArrayList<Pelaaja> pel = new ArrayList<>();
+      pel.addAll(Tietokanta.getTurnauksenPelaajat());
+      for(int i=0; i<pel.size(); i++){
+        if(pel.get(i).getId() == id)
+          temp = pel.get(i);
       }
       return temp;
     }
@@ -219,7 +221,7 @@ public class Pelaajataulu {
     
     //Jakaa jäljellä olevista pelaajista parit
     //Parametrina jaettavat pelaajat ja kierros
-    public ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelaajat, int kierrosluku){
+    public static ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelaajat, int kierrosluku){
       ArrayList<Ottelu> seuraavat = new ArrayList<>();  //Seuraavien otteluiden lista
       ArrayList<Pelaaja> pelurit = new ArrayList<>();
       pelurit.addAll(pelaajat);

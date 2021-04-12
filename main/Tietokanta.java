@@ -187,6 +187,52 @@ public class Tietokanta {
         return null;
     }
 
+    public static ArrayList<Pelaaja> getTurnauksenPelaajat(){
+      Statement stmt = null;
+      String query = "Select * From pelaaja";
+      ArrayList<Pelaaja> lista = new ArrayList<>();
+      try {
+          Connection connect = connect();
+          stmt = connect.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()){
+              Pelaaja temp = new Pelaaja(rs.getString("nimi"));
+              temp.setId(rs.getInt("pelaaja_id"));
+              lista.add(temp);
+          }
+          connect.close();
+          return lista;
+      } catch (SQLException e) {
+          e.printStackTrace();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+      return null;
+  }
+
+    //Hakee pelaajan jonka id on id
+    public static Pelaaja getPelaaja(int id) {  
+      PreparedStatement stmt = null;
+        String query = "SELECT * From pelaaja WHERE pelaaja_id = ?";
+        Pelaaja temp = null;
+        try {
+            Connection connect = connect();
+            stmt = connect.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                temp = new Pelaaja(rs.getString("nimi"));
+                temp.setId(rs.getInt("pelaaja_id"));
+            }
+            connect.close();
+            return temp;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     //HUOM! KESKEN
     //en keksinyt miten pelaajan nimet saataisiin pelaajan_idn avulla.
     //nyt haetaan  pelaaja_id nimeksi
@@ -385,7 +431,7 @@ public class Tietokanta {
 
 
     public static void LisaaKierros(Kierros kierros) {
-        String query = "Insert into kierros (turnaus_id, kierros) values (?, ?) ";
+        String query = "Insert into kierros (turnaus_id, kierrosluku) values (?, ?) ";
         try {
             Connection conn = connect(); 
             PreparedStatement stmt = conn.prepareStatement(query); 
@@ -695,7 +741,7 @@ public static void TurnausEiKäyntiin () {
 
 public static int haeKierrosID() {
     Statement stmt = null;
-    String query = "SELECT kierros.kierros_id, MAX([kierros]) FROM kierros " + 
+    String query = "SELECT kierros.kierros_id, MAX([kierrosluku]) FROM kierros " + 
     "Inner join turnaus On kierros.turnaus_id = turnaus.turnaus_id " + 
     "where turnaus.kaynnissa = 1"; 
     int id = -1; 
@@ -787,7 +833,7 @@ public static int haeKierrosID() {
     }
 
     public static ArrayList<Kierros> haeTurnauksenKierrokset(int id) {
-        String query = "Select kierros_id, kierros, turnaus_id from kierros where turnaus_id = " + id; 
+        String query = "Select kierros_id, kierrosluku, turnaus_id from kierros where turnaus_id = " + id; 
         ArrayList<Kierros> kierrokset = new ArrayList<>();
         try {
             Connection conn = connect();
@@ -796,7 +842,7 @@ public static int haeKierrosID() {
             while (rs.next()) {
                 Kierros k = new Kierros(); 
                 k.setID(rs.getInt("kierros_id")); 
-                k.setKierros(rs.getInt("kierros"));
+                k.setKierros(rs.getInt("kierrosluku"));
                 k.setTurnaus(Tietokanta.haeTurnaus(rs.getInt("turnaus_id")));
                 kierrokset.add(k); 
             }
@@ -836,7 +882,7 @@ public static int haeKierrosID() {
     }
 
     public static int HaeSuurinKierrosnumero(int tid) {
-        String query = "Select kierros, MAX[(kierros)] from kierros where turnaus_id = " + tid; 
+        String query = "Select MAX[(kierrosluku)] from kierros where turnaus_id = " + tid; 
         Statement stmt;
         int kierros = 0;
         try {
@@ -844,7 +890,7 @@ public static int haeKierrosID() {
             stmt = connect.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                kierros = rs.getInt("kierros"); 
+                kierros = rs.getInt("kierrosluku"); 
             }
             connect.close();
             return kierros; 
