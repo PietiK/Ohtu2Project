@@ -270,6 +270,8 @@ public class Pelaajataulu {
               }
             }
           }
+          pelurit.removeAll(paritetut);   //Poistetaan jo paritetut listoilta
+          pelinTarpeessa.removeAll(paritetut);
 
           //Jaetaan loput pelaajat
           for(Pelaaja p : pelurit) {  //Käydään pelaajat läpi
@@ -285,7 +287,6 @@ public class Pelaajataulu {
           }
           //Poistetaan jo paritetut parittamattomien listoilta
           pelurit.removeAll(paritetut);
-          pelinTarpeessa.removeAll(paritetut);
 
           //Jos pelaajia jäi yli tai kaikki jo pelanneet kaikkia vastaan
           if(!pelurit.isEmpty() || !pelinTarpeessa.isEmpty()) {  
@@ -320,15 +321,25 @@ public class Pelaajataulu {
               pelurit.removeAll(paritetut); //Poistetaan loputkin listasta 
             }
     
-            else if(!pelurit.isEmpty() && pelinTarpeessa.isEmpty()) {  //Vain toinen lista ei tyhjä
+            else if(!pelurit.isEmpty() && pelinTarpeessa.isEmpty()) {  //Vain toisella listalla pelaajia jäljellä
+
               if(pelurit.size() < 2){//Yksi pelaaja jäljellä
                 //Lisätään yksinäinen pelaaja kuitenkin seuraavien otteluiden listalle yksinään
                 seuraavat.add(new Ottelu(pelurit.get(0), kierrosluku)); 
                 pelurit.remove(0);
               }
+
               else if(pelurit.size() >= 2) {//Vähintään 2 pelaajaa jäljellä
-                //TODO
                 //Jaa jäljellä olevista parit
+                for(Pelaaja p : pelurit) {
+                  for(Pelaaja a : pelurit) {
+                    if(!paritetut.contains(p) && !paritetut.contains(a) && !p.equals(a)) {
+                      seuraavat.add(new Ottelu(p,a,kierrosluku)); //Luodaan ottelu
+                      paritetut.add(p); //Lisätään paritettuihin
+                      paritetut.add(a);
+                    }
+                  }
+                }
               }
             }
     
