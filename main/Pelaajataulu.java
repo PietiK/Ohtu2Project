@@ -217,18 +217,15 @@ public class Pelaajataulu {
         return kierros;
     }
     
-    //TODO
     //Jakaa jäljellä olevista pelaajista parit
     //Parametrina jaettavat pelaajat ja kierros
-    /*
     public ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelaajat, int kierrosluku){
       ArrayList<Ottelu> seuraavat = new ArrayList<>();  //Seuraavien otteluiden lista
       ArrayList<Pelaaja> pelurit = new ArrayList<>();
       pelurit.addAll(pelaajat);
 
-      //Jos pelaajia vähemmän kuin neljä niin silloin manuaalinen jako
+      //Jos pelaajia enemmän kuin neljä niin jaetaan automaattisesti
       if(pelurit.size() > 4) {
-         
           //Hakee jokaisen pelaajan entiset vastustajat
           for(Pelaaja p : pelurit) {
             ArrayList<Integer> temp = new ArrayList<>();
@@ -246,7 +243,8 @@ public class Pelaajataulu {
           for(int i=0; i<=pelurit.size()-1; i++){
             numero.add(pelurit.get(i).getPelattu().size()); //Pelaajan otteluiden määrä
           }
-          int suurin = Collections.max(numero);
+          int suurin = Collections.max(numero); //Otetaan suurin otteluiden määrä (kaikilla pitäisi olla suunnilleen tämän verran)
+
           //Käydään otteluiden määrät läpi ja katsotaan onko jollain vähemmän kuin muilla
           for(int i=0; i<=pelurit.size()-1; i++){
             //Jos vähemmän kuin suurin niin lisätään peliä tarvitsevien listalle
@@ -257,60 +255,94 @@ public class Pelaajataulu {
           }
 
           //Parien jako
-          int laskuri = 0; //Laskuri sille montako jää ilman paria
-          boolean paritettu = false;  //Löytyikö paria
           ArrayList<Pelaaja> paritetut = new ArrayList<>(); //Lista jo paritetuille pelaajille
 
           //Ensin jaetaan pelin tarpeessa oleville parit
           if(pelinTarpeessa.size() > 0) {
             for(Pelaaja p : pelinTarpeessa) {
-              paritettu = false;
               for(Pelaaja v : pelurit) {
-                if (!p.getPelattu().contains(v) && !p.equals(v) && !paritetut.contains(v) && !paritettu) {
+                if (!p.getPelattu().contains(v) && !p.equals(v)  && !paritetut.contains(p) && !paritetut.contains(v)) {
                   seuraavat.add(new Ottelu(p,v,kierrosluku)); //Luodaan ottelu
                   //Poistetaan pelaajat listoilta
                   paritetut.add(p);
                   paritetut.add(v);
-                  paritettu = true;
                 }
-              }
-              if(!paritettu) {  //Ei löytynyt paria niin kasvatetaan laskuria
-                laskuri++;
               }
             }
           }
 
           //Jaetaan loput pelaajat
           for(Pelaaja p : pelurit) {  //Käydään pelaajat läpi
-            paritettu = false;  //Löytyikö paria
             //Etsitään pari
             for(Pelaaja v : pelurit) {   
               //Jos ei ole vielä pelannut tätä vastaan niin paritetaan
-              if(!p.getPelattu().contains(v) && !p.equals(v) && !paritetut.contains(v) && !paritettu){
+              if(!p.getPelattu().contains(v) && !p.equals(v) && !paritetut.contains(p) && !paritetut.contains(v)){
                 seuraavat.add(new Ottelu(p, v, kierrosluku)); //Lisätään ottelu seuraavien listaan
                 paritetut.add(v);
                 paritetut.add(p);
-                paritettu = true;
               }
             }
-            //Jos ei löytynyt paria niin kasvatetaan laskuria
-            if(!paritettu) {
-              laskuri++;
+          }
+          //Poistetaan jo paritetut parittamattomien listoilta
+          pelurit.removeAll(paritetut);
+          pelinTarpeessa.removeAll(paritetut);
+
+          //Jos pelaajia jäi yli tai kaikki jo pelanneet kaikkia vastaan
+          if(!pelurit.isEmpty() || !pelinTarpeessa.isEmpty()) {  
+
+            if(!pelurit.isEmpty() && !pelinTarpeessa.isEmpty()) { //Molemmissa listoissa vielä pelaajia 
+              //TODO
+              //eli kaikki ovat jo pelanneet kaikkia vastaan??
+              for(Pelaaja p : pelinTarpeessa) { //Jaetaan ensin pelin tarpeessa oleville parit
+                for(Pelaaja a : pelurit) {
+                  if(!paritetut.contains(a) && !paritetut.contains(p) && !p.equals(a)) {
+                    seuraavat.add(new Ottelu(p, a, kierrosluku));
+                    paritetut.add(p);
+                    paritetut.add(a);
+                  }
+                }
+              }
+              //Poistetaan taas paritetut pelaajat listoilta
+              pelurit.removeAll(paritetut);
+              pelinTarpeessa.removeAll(paritetut);
+
+              //Jaetaan loput
+              for(Pelaaja p : pelurit) {
+                for(Pelaaja a : pelurit) {
+                  if(!paritetut.contains(a) && !paritetut.contains(p)) {
+                    seuraavat.add(new Ottelu(p, a, kierrosluku));
+                    paritetut.add(p);
+                    paritetut.add(a);
+                  }
+                }
+              }
+              //Kaikki pitäisi nyt olla jaettu
+              pelurit.removeAll(paritetut); //Poistetaan loputkin listasta 
+            }
+    
+            else if(!pelurit.isEmpty() && pelinTarpeessa.isEmpty()) {  //Vain toinen lista ei tyhjä
+              if(pelurit.size() < 2){//Yksi pelaaja jäljellä
+                //Lisätään yksinäinen pelaaja kuitenkin seuraavien otteluiden listalle yksinään
+                seuraavat.add(new Ottelu(pelurit.get(0), kierrosluku)); 
+                pelurit.remove(0);
+              }
+              else if(pelurit.size() >= 2) {//Vähintään 2 pelaajaa jäljellä
+                //TODO
+                //Jaa jäljellä olevista parit
+              }
+            }
+    
+            else if(!pelinTarpeessa.isEmpty() && pelurit.isEmpty()){
+              //joku pelaaja jolla oli vähemmän pelejä ku muilla jäi ilman paria
+              //Ei pitäs tapahtuu
             }
           }
-          //Jos pelaajia jäi yli tai kaikki jo pelanneet kaikkia vastaan
-          if (!pelurit.isEmpty() && !pelinTarpeessa.isEmpty()) {  
 
-          }
-
-            //VÄHÄ TODOITA
-            //-Se parien jako
-            //Jos jollain vähemmän pelejä ku muilla niin sen pitää päästä pelaa
-            //-Jos kaikki pelannut kaikkia vastaan niin silloin voi pelata uudestaan samaa
-            //-Jos pelaajia <=4 niin sillo se manuaalinen jako
+          //TODO
+          //Jos pelaajia <=4 niin sillo se manuaalinen jako
       }
       return seuraavat;
-    } */
+    } 
 
 
     //Metodi joka jakaa pelaajille pelinumerot
