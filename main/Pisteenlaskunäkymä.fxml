@@ -16,7 +16,7 @@
     <Label fx:id="Sekunnit" layoutX="283.0" layoutY="47.0"><font><Font name="Arial" size="30" /></font></Label>
     <Button fx:id="muutaAikaaBtn" layoutX="230" layoutY="10" mnemonicParsing="false" onAction="#muutaAikaa" prefHeight="26.0" text="Muuta aikaa">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
     <Label fx:id="taukominuutit" layoutX="393" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label>
@@ -33,33 +33,43 @@
       </TableView>
       <TextField fx:id="TextField1" layoutX="38.0" layoutY="449.0" prefHeight="27.0" prefWidth="114.0" AnchorPane.leftAnchor="39.5" />
       <Button fx:id="LisääBtn1" layoutX="159.0" layoutY="449.0" mnemonicParsing="false" onAction="#lisaaPelaajalle1" prefHeight="27.0" prefWidth="54.0" text="Lisää">
-      </Button>
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font></Button>
       <Button fx:id="SeuraavaBtn" layoutX="434.0" layoutY="500.0" mnemonicParsing="false" onAction="#Seuraava" prefHeight="26.0" prefWidth="84.0" text="Seuraava" AnchorPane.leftAnchor="434.0" AnchorPane.rightAnchor="40.0">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="13.0" />
          </font>
       </Button>
       <Button fx:id="LisääBtn2" layoutX="458.0" layoutY="449.0" mnemonicParsing="false" onAction="#lisaaPelaajalle2" prefHeight="27.0" prefWidth="59.0" text="Lisää" AnchorPane.rightAnchor="41.5">
-      </Button>
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font></Button>
       <ToggleButton fx:id="TaukoBtn" layoutX="247.0" layoutY="86.0" mnemonicParsing="false" onAction="#aloitaTauko" text="Tauko">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </ToggleButton>
       <TextField fx:id="TextField2" layoutX="336.0" layoutY="449.0" prefHeight="25.0" prefWidth="114.0" />
       <Button fx:id="PeruutaBtn" layoutX="40.0" layoutY="500.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Peruuta" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="434.0">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="13.0" />
          </font>
       </Button>
       <Label layoutX="239.0" layoutY="394.0" text="Yhteensä">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Label>
       <Label fx:id="p1Label" layoutX="134.0" layoutY="397.0" prefHeight="26.0" prefWidth="36.0" text="0" textAlignment="CENTER" AnchorPane.leftAnchor="134.0" AnchorPane.topAnchor="397.0" />
       <Label fx:id="p2Label" layoutX="385.0" layoutY="397.0" prefHeight="27.0" prefWidth="29.0" text="0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="397.0" />
-      <Button fx:id="LuovutaBtn1" layoutX="38.0" layoutY="397.0" onAction="#luovutusIlmoitus1" mnemonicParsing="false" text="Luovuta" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="39.5" />
-      <Button fx:id="LuovutaBtn2" layoutX="447.0" layoutY="397.0" onAction="#luovutusIlmoitus2" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Luovuta" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="447.0" AnchorPane.rightAnchor="42.0" />
+      <Button fx:id="LuovutaBtn1" layoutX="40.0" layoutY="397.0" mnemonicParsing="false" onAction="#luovutusIlmoitus1" prefHeight="27.0" prefWidth="77.0" text="Luovuta" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font></Button>
+      <Button fx:id="LuovutaBtn2" layoutX="432.0" layoutY="397.0" mnemonicParsing="false" onAction="#luovutusIlmoitus2" prefHeight="27.0" prefWidth="84.0" text="Luovuta" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="42.0">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>

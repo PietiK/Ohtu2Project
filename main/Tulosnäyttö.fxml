@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="main.Controllers.TulosController" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.TulosController">
    <children>
       <Text fx:id="KierrosTxt" layoutX="209.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kierros" textAlignment="CENTER" wrappingWidth="117.01953125" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="209.0">
          <font>
-            <Font name="Arial" size="24.0" />
+            <Font name="Tahoma" size="24.0" />
          </font>
       </Text>
       <TableView fx:id="TableView" layoutX="37.0" layoutY="99.0" prefHeight="352.0" prefWidth="481.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="40.0">
@@ -27,22 +27,22 @@
       <ScrollBar fx:id="ScrollBar" layoutX="536.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="560.0" prefWidth="22.0" />
       <Button fx:id="EdellinenBtn" layoutX="37.0" layoutY="487.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" text="Edellinen" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="413.0">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="KeskeytäTurnausBtn" layoutX="156.0" layoutY="488.0" mnemonicParsing="false" text="Keskeytä turnaus">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="PäätäTurnausBtn" layoutX="293.0" layoutY="488.0" mnemonicParsing="false" text="Päätä turnaus">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="SeuraavaBtn" layoutX="410.0" layoutY="488.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" text="Seuraava" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="40.0">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
    </children>

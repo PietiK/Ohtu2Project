@@ -34,12 +34,12 @@
       </Button>
       <Button fx:id="PeruPeliBtn" layoutX="427.0" layoutY="508.0" mnemonicParsing="false" onAction="#PoistaTurnaus" prefHeight="26.0" prefWidth="101.0" text="Peru turnaus">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="TakaisinBtn" layoutX="46.0" layoutY="496.0" mnemonicParsing="false" onAction="#SiirryTakaisin" text="Takaisin">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
    </children>

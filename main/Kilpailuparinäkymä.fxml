@@ -11,7 +11,7 @@
    <children>
       <Text fx:id="EnsimmäinenTxt" layoutX="154.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ensimmäinen kierros" wrappingWidth="234.47412109375">
          <font>
-            <Font name="Arial" size="24.0" />
+            <Font name="Tahoma" size="24.0" />
          </font>
       </Text>
       <TableView fx:id="TableView" layoutX="110.0" layoutY="115.0" prefHeight="336.0" prefWidth="380" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="115.0">
@@ -23,7 +23,7 @@
       </TableView>
       <Button fx:id="TakaisinBtn" layoutX="40.0" layoutY="483.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="87.0" text="Takaisin" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="431.0" AnchorPane.topAnchor="483.0">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="SeuraavaBtn" layoutX="430.0" layoutY="483.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" text="Seuraava" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="483.0">
@@ -33,9 +33,12 @@
       </Button>
       <Button fx:id="PelaaBtn" layoutX="301.0" layoutY="483.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="27.0" prefWidth="87.0" text="Pelaa" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="301.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="483.0">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="tuloksetbutton" layoutX="180.0" layoutY="484.0" mnemonicParsing="false" onAction="#Tulokset" text="Tulokset" />
+      <Button fx:id="tuloksetbutton" layoutX="180.0" layoutY="484.0" mnemonicParsing="false" onAction="#Tulokset" text="Tulokset">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>
