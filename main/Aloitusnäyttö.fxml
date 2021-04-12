@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" style="-fx-background-color: #B3C6DC;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.AloitusController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="454.0" style="-fx-background-color: #5cd15c#5cd15c;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.AloitusController">
    <children>
       <VBox layoutY="29.0" opacity="0.62" prefHeight="101.0" prefWidth="455.0" style="-fx-background-color: #EAEDF2;">
          <effect>
@@ -23,9 +23,9 @@
             </Glow>
          </effect>
          <children>
-            <Label contentDisplay="CENTER" text="TERVETULOA" textFill="#959ce8">
+            <Label contentDisplay="CENTER" text="TERVETULOA" textFill="#41683c">
                <font>
-                  <Font name="Bodoni MT" size="48.0" />
+                  <Font name="Tahoma" size="48.0" />
                </font>
             </Label>
          </children>
@@ -40,19 +40,19 @@
       </ImageView>
       <VBox layoutX="107.0" layoutY="171.0" prefHeight="275.0" prefWidth="241.0" spacing="30.0">
          <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#SiirryPelinLuontiin" text="Uusi turnaus " textAlignment="CENTER" textFill="#111111">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#SiirryPelinLuontiin" prefHeight="39.0" prefWidth="133.0" text="Uusi turnaus " textAlignment="CENTER" textFill="#030303">
                <font>
-                  <Font name="Bodoni MT" size="18.0" />
+                  <Font name="Tahoma" size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="133.0" onAction="#SiirryTuleviinPeleihin" text="Tulevat">
+            <Button mnemonicParsing="false" onAction="#SiirryTuleviinPeleihin" prefHeight="35.0" prefWidth="133.0" text="Tulevat">
                <font>
-                  <Font name="Bodoni MT" size="24.0" />
+                  <Font name="Tahoma" size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="133.0" text="Menneet" textFill="#0c0c0c">
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="133.0" text="Menneet" textFill="#0a0a0a">
                <font>
-                  <Font name="Bodoni MT" size="24.0" />
+                  <Font name="Tahoma" size="18.0" />
                </font>
                <effect>
                   <Glow level="0.0" />

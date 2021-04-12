@@ -21,12 +21,12 @@
       </Button>
     <Label fx:id="taukominuutit" layoutX="393" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="taukosekunnit" layoutX="434" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label> 
-      <TableView fx:id="TableView" layoutX="40.0" layoutY="30.0" prefHeight="244.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="40" AnchorPane.rightAnchor="280" AnchorPane.topAnchor="129.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="40.0" layoutY="30.0" prefHeight="244.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="40" AnchorPane.rightAnchor="280" AnchorPane.topAnchor="129.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="230.0" text="Pelaaja 1 pisteet" />
         </columns>
       </TableView>
-      <TableView fx:id="TableView2" layoutX="40.0" layoutY="30.0" prefHeight="244.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="280" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
+      <TableView fx:id="TableView2" blendMode="OVERLAY" layoutX="40.0" layoutY="30.0" prefHeight="244.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="280" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
           <columns>
               <TableColumn fx:id="TableColumn2" prefWidth="230.0" text="Pelaaja 2 pisteet" />
           </columns>

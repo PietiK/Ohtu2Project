@@ -15,7 +15,7 @@
             <Font name="Tahoma" size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="TableView" layoutX="37.0" layoutY="99.0" prefHeight="352.0" prefWidth="481.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="40.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="37.0" layoutY="99.0" prefHeight="352.0" prefWidth="481.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="40.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="55.0" text="#" />
           <TableColumn fx:id="TableColumnPelaaja1" prefWidth="102.0" text="Pelaaja 1" />

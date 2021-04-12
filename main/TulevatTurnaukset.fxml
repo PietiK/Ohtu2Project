@@ -14,7 +14,7 @@
             <Font name="Tahoma" size="36.0" />
          </font>
       </Text>
-      <TableView fx:id="TableView" layoutX="32.0" layoutY="107.0" prefHeight="296.0" prefWidth="483.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="32.0" layoutY="107.0" prefHeight="296.0" prefWidth="483.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
         <columns>
           <TableColumn fx:id="TableColumnPelityyppi" prefWidth="87.0" text="Pelityyppi" />
             <TableColumn fx:id="TableColumnTurnauksenNimi" prefWidth="114.0" text="Turnauksen nimi" />

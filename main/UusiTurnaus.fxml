@@ -22,7 +22,7 @@
             <Font name="Tahoma" size="13.0" />
          </font>
       </Button>
-      <TableView fx:id="TableView" layoutX="26.0" layoutY="255.0" prefHeight="268.0" prefWidth="543.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="255.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="26.0" layoutY="255.0" prefHeight="268.0" prefWidth="543.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="255.0">
         <columns>
           <TableColumn id="TableColmunPelaajat" fx:id="TablecolumPelaajat" prefWidth="366.0" text="Pelaajat" />
           <TableColumn id="TableColmunMäärä" fx:id="TableColumnLuku" prefWidth="71.0" />
