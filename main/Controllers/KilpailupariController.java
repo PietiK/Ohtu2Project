@@ -123,7 +123,7 @@ public class KilpailupariController{
                 o.setKierros(kierrokset.size());
                 ottelut.add(o);
             }
-        } /*else {
+        } else {
             for (Integer i : ottelu_idt) {
                 Ottelu o = new Ottelu();
                 o.setID(i);
@@ -133,7 +133,7 @@ public class KilpailupariController{
                 o.setKierros(kierrokset.size());
                 ottelut.add(o);
             }
-        }*/
+        }
         //System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros());
         TableView.setItems(ottelut);    
       
