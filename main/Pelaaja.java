@@ -126,12 +126,15 @@ public class Pelaaja {
         this.pelattu = new ArrayList<>();
         this.pelattu.add(pelaaja);
     }
-
+    public void setPelattujj(){
+      this.pelattu = new ArrayList<>();
+    }
     public void addPelattu(Pelaaja pel){
       this.pelattu.add(pel);
     }
 
     public ArrayList<Integer> getPelattujenIdt(){ //Palauttaa pelaajan vastustajien id:t
+      System.out.println("Joo elikkä");
       ArrayList<Integer> idt = new ArrayList<>();
       for(Pelaaja p : this.pelattu) {
         idt.add(p.getId());

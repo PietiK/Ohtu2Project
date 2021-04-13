@@ -329,8 +329,12 @@ public class TulevatTurnauksetController {
                     ottelut.add(o);
                 }
             }
-        } //tähän voi tehdä ELSEn siihen että jaetaan loput pelit.
-        // pitää jotenkin tarkistaa, että ketkä ovat jo pelanneet vastakkain.
+        } else {
+          System.out.println("Jqwe");
+          return Pelaajataulu.jaaSeuraavaKierros(turnauksenpelaajat, 
+            kierrokset.get(kierrokset.size()-1).getJnum(), 
+            turnaus.getId());
+        }
 
         return ottelut;
     }

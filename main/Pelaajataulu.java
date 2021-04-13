@@ -41,14 +41,7 @@ public class Pelaajataulu {
 
     //Haetaan pelaaja idllä
     public static Pelaaja getPelaajaWithID(int id){
-      Pelaaja temp = null;
-      ArrayList<Pelaaja> pel = new ArrayList<>();
-      pel.addAll(Tietokanta.getTurnauksenPelaajat());
-      for(int i=0; i<pel.size(); i++){
-        if(pel.get(i).getId() == id)
-          temp = pel.get(i);
-      }
-      return temp;
+      return Tietokanta.getPelaaja(id);
     }
     
     public ArrayList<Pelaaja> getPelaajat() {
@@ -220,22 +213,26 @@ public class Pelaajataulu {
     }
     
     //Jakaa jäljellä olevista pelaajista parit
-    //Parametrina jaettavat pelaajat ja kierros
-    public static ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelaajat, int kierrosluku){
+    //Parametrina jaettavat pelaajat, kierrosluku ja turnauksen id
+    public static ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelaajat, int kierrosluku, int turnId){
       ArrayList<Ottelu> seuraavat = new ArrayList<>();  //Seuraavien otteluiden lista
       ArrayList<Pelaaja> pelurit = new ArrayList<>();
       pelurit.addAll(pelaajat);
 
       //Jos pelaajia enemmän kuin neljä niin jaetaan automaattisesti
-      if(pelurit.size() > 4) {
+      if(pelurit.size() < 100) {
           //Hakee jokaisen pelaajan entiset vastustajat
+          System.out.println("Täällä ollaan");
           for(Pelaaja p : pelurit) {
+            System.out.println("Joo tälle etitään pelattuja " + p.getId());
             ArrayList<Integer> temp = new ArrayList<>();
             temp.addAll(Tietokanta.haePelatut(p.getId()));
+            p.setPelattujj();
             for(int i : temp) {   //Lisätään pelaajan pelattuihin jos ei ole jo siellä
-              if(!p.getPelattujenIdt().contains(getPelaajaWithID(i).getId())){
+              System.out.println("Tätä lisättäs " + i);
+              //if(!p.getPelattujenIdt().contains(getPelaajaWithID(i).getId())){
                 p.addPelattu(getPelaajaWithID(i));
-              }
+              //}
             }
           }
 
@@ -255,7 +252,7 @@ public class Pelaajataulu {
               pelurit.remove(i);     //poistetaan alkuperäisestä ettei tätä ole kahteen kertaan
             } 
           }
-
+          System.out.println(pelinTarpeessa + " Pelintarpees");
           //Parien jako
           ArrayList<Pelaaja> paritetut = new ArrayList<>(); //Lista jo paritetuille pelaajille
 
@@ -289,7 +286,7 @@ public class Pelaajataulu {
           }
           //Poistetaan jo paritetut parittamattomien listoilta
           pelurit.removeAll(paritetut);
-
+          System.out.println("Nää on jaettu " + paritetut);
           //Jos pelaajia jäi yli tai kaikki jo pelanneet kaikkia vastaan
           if(!pelurit.isEmpty() || !pelinTarpeessa.isEmpty()) {  
 
@@ -354,6 +351,7 @@ public class Pelaajataulu {
           //TODO
           //Jos pelaajia <=4 niin sillo se manuaalinen jako
       }
+      System.out.println("Nää on perkele " + seuraavat);
       return seuraavat;
     } 
 
