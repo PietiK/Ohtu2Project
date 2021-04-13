@@ -41,14 +41,14 @@ public class Pelaajataulu {
 
     //Haetaan pelaaja idllä
     public static Pelaaja getPelaajaWithID(int id){
-      Pelaaja temp = null;
+     /* Pelaaja temp = null;
       ArrayList<Pelaaja> pel = new ArrayList<>();
       pel.addAll(Tietokanta.getTurnauksenPelaajat());
       for(int i=0; i<pel.size(); i++){
         if(pel.get(i).getId() == id)
           temp = pel.get(i);
-      }
-      return temp;
+      }*/
+      return Tietokanta.getPelaaja(id);
     }
     
     public ArrayList<Pelaaja> getPelaajat() {

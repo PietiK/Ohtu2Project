@@ -186,7 +186,7 @@ public class Tietokanta {
         }
         return null;
     }
-
+/*Hakee kaikki pelaajat eikä vaan yhen turnauksen ?
     public static ArrayList<Pelaaja> getTurnauksenPelaajat(){
       Statement stmt = null;
       String query = "Select * From pelaaja";
@@ -208,6 +208,57 @@ public class Tietokanta {
           e.printStackTrace();
       }
       return null;
+  }*/
+
+    //Tän pitäs hakee kaikki tiedot yhen turnauksen pelaajista
+    public static ArrayList<Pelaaja> getTurnauksenPelaajat(int turnId){
+      Statement stmt = null;
+      String query = "SELECT * FROM pelaaja " +
+      "JOIN pelaaja_turnaus USING(pelaaja_id) " +
+      " WHERE turnaus_id = " + turnId;
+      ArrayList<Pelaaja> lista = new ArrayList<>();
+      try {
+          Connection connect = connect();
+          stmt = connect.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()){
+              Pelaaja temp = new Pelaaja(rs.getString("nimi"));
+              temp.setId(rs.getInt("pelaaja_id"));
+              lista.add(temp);
+          }
+          connect.close();
+          return lista;
+      } catch (SQLException e) {
+          e.printStackTrace();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+      return lista;
+    }
+  
+    public static ArrayList<Pelaaja> getTurnauksenPelaajienTiedot(int turnId){
+      Statement stmt = null;
+      String query = "SELECT pelaaja.nimi, pelaaja_id FROM pelaaja " +
+      "JOIN pelaaja_turnaus USING(pelaaja_id) " +
+      " WHERE turnaus_id = " + turnId;
+      ArrayList<Pelaaja> lista = new ArrayList<>();
+      try {
+          Connection connect = connect();
+          stmt = connect.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()){
+              Pelaaja temp = new Pelaaja(rs.getString("nimi"));
+              temp.setId(rs.getInt("pelaaja_id"));
+              lista.add(temp);
+          }
+          connect.close();
+          return lista;
+      } catch (SQLException e) {
+          e.printStackTrace();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+      return lista;
   }
 
     //Hakee pelaajan jonka id on id
