@@ -21,6 +21,7 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -122,7 +123,7 @@ public class KilpailupariController{
                 o.setKierros(kierrokset.size());
                 ottelut.add(o);
             }
-        } else {
+        } /*else {
             for (Integer i : ottelu_idt) {
                 Ottelu o = new Ottelu();
                 o.setID(i);
@@ -132,8 +133,8 @@ public class KilpailupariController{
                 o.setKierros(kierrokset.size());
                 ottelut.add(o);
             }
-        }
-        System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros());
+        }*/
+        //System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros());
         TableView.setItems(ottelut);    
       
     }  

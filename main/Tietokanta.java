@@ -246,7 +246,7 @@ public class Tietokanta {
         try {
             Connection connect = connect();
             stmt = connect.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 temp = new Pelaaja(rs.getString("nimi"));
                 temp.setId(rs.getInt("pelaaja_id"));
@@ -543,24 +543,28 @@ public class Tietokanta {
 
         int eka_id = -1;
         int toka_id = -1;
-        try {
-            Connection conn = connect();
-            PreparedStatement stmt_eka = conn.prepareStatement(eka);
-            PreparedStatement stmt_toka = conn.prepareStatement(toka);
-            stmt_eka.setInt(1, o.getPelaaja1().getId());
-            stmt_eka.setInt(2, o.getID());
-            stmt_toka.setInt(1, o.getPelaaja2().getId());
-            stmt_toka.setInt(2, o.getID());
-            stmt_eka.executeUpdate();
-            stmt_toka.executeUpdate();
-            conn.close();
-        } catch (SQLException e) {
 
-            e.printStackTrace();
-        } catch (Exception e) {
+        if(o.getPelaaja2() != null){
+          try {
+              Connection conn = connect();
+              PreparedStatement stmt_eka = conn.prepareStatement(eka);
+              PreparedStatement stmt_toka = conn.prepareStatement(toka);
+              stmt_eka.setInt(1, o.getPelaaja1().getId());
+              stmt_eka.setInt(2, o.getID());
+              stmt_toka.setInt(1, o.getPelaaja2().getId());
+              stmt_toka.setInt(2, o.getID());
+              stmt_eka.executeUpdate();
+              stmt_toka.executeUpdate();
+              conn.close();
+          } catch (SQLException e) {
 
-            e.printStackTrace();
-        }
+              e.printStackTrace();
+          } catch (Exception e) {
+
+              e.printStackTrace();
+          }
+      }
+      else System.out.println("EI adsadf");
     }
 
     /*
