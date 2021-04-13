@@ -30,3 +30,6 @@
 .scroll-bar{
     -fx-background-color: transparent;
 }
+.toggle-button {
+    -fx-background-radius: 8;
+}
