@@ -881,8 +881,12 @@ public static int haeKierrosID() {
        return t;
     }
 
+    ///[YearlyIncome] = (SELECT MAX([YearlyIncome]) FROM Customer)
+
+
     public static int HaeSuurinKierrosnumero(int tid) {
-        String query = "Select kierrosluku, MAX[(kierrosluku)] from kierros where turnaus_id = " + tid; 
+        String query = "Select kierrosluku from kierros where (turnaus_id = " + tid +
+        " AND [kierrosluku] = (SELECT MAX([kierrosluku]) FROM kierros))"; 
         Statement stmt;
         int kierros = 0;
         try {

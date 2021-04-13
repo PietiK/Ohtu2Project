@@ -242,16 +242,19 @@ public class KilpailupariController{
             uusi.setID(kieid);
             ArrayList<Ottelu> uudetottelut = new ArrayList<Ottelu>(); 
             ArrayList<Pelaaja> pelaajatjäljellä = Tietokanta.haeJäljelläPelaajat(tid); 
-            TulevatTurnauksetController.JaaParit(pelaajatjäljellä, kieid, turnaus);
+            System.out.println("Pelaajat: " + pelaajatjäljellä); 
+            uudetottelut = TulevatTurnauksetController.JaaParit(pelaajatjäljellä, kieid, turnaus);
             ObservableList<Ottelu> seuraavatottelut = FXCollections.observableArrayList();
             for (Ottelu ot : uudetottelut) {
-                //ot.setKierros(kid); // asetetaan otteluille kierroksen ID
+                ot.setKierros(kid); // asetetaan otteluille kierroksen ID
                 Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
                 ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
                 Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
                 System.out.println(ot.toString());
                 seuraavatottelut.add(ot);
             }
+            System.out.println(uudetottelut); 
+            System.out.println(seuraavatottelut);
             TableView.setItems(seuraavatottelut); 
         }
     }

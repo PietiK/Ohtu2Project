@@ -26,7 +26,7 @@
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="SeuraavaBtn" layoutX="430.0" layoutY="483.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="87.0" text="Seuraava" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="483.0">
+      <Button fx:id="SeuraavaBtn" layoutX="430.0" layoutY="483.0" mnemonicParsing="false" onAction="#SeuraavaKierros" prefHeight="27.0" prefWidth="87.0" text="Seuraava" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
