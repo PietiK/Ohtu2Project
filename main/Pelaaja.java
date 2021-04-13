@@ -127,6 +127,10 @@ public class Pelaaja {
         this.pelattu.add(pelaaja);
     }
 
+    public void setPelattujj(){
+      this.pelattu = new ArrayList<Pelaaja>();
+    }
+
     public void addPelattu(Pelaaja pel){
       this.pelattu.add(pel);
     }

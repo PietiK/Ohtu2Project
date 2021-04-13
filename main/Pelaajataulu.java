@@ -227,15 +227,16 @@ public class Pelaajataulu {
       pelurit.addAll(pelaajat);
       Collections.shuffle(pelurit);
       //Jos pelaajia enemmän kuin neljä niin jaetaan automaattisesti
-      if(pelurit.size() > 4) {
+      if(pelurit.size() < 1000) {
           //Hakee jokaisen pelaajan entiset vastustajat
           for(Pelaaja p : pelurit) {
             ArrayList<Integer> temp = new ArrayList<>();
             temp.addAll(Tietokanta.haePelatut(p.getId()));
+            p.setPelattujj();
             for(int i : temp) {   //Lisätään pelaajan pelattuihin jos ei ole jo siellä
-              if(!p.getPelattujenIdt().contains(getPelaajaWithID(i).getId())){
+             // if(!p.getPelattujenIdt().contains(getPelaajaWithID(i).getId())){
                 p.addPelattu(getPelaajaWithID(i));
-              }
+              //}
             }
           }
 
