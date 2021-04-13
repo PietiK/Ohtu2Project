@@ -218,12 +218,7 @@ public class Tietokanta {
         try {
             Connection connect = connect();
             stmt = connect.prepareStatement(query);
-<<<<<<< HEAD
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery(query);
-=======
             ResultSet rs = stmt.executeQuery();
->>>>>>> temp
             while (rs.next()){
                 temp = new Pelaaja(rs.getString("nimi"));
                 temp.setId(rs.getInt("pelaaja_id"));
