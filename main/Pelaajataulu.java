@@ -220,8 +220,8 @@ public class Pelaajataulu {
     }
     
     //Jakaa jäljellä olevista pelaajista parit
-    //Parametrina jaettavat pelaajat ja kierros
-    public static ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelaajat, int kierrosluku){
+    //Parametrina jaettavat pelaajat, kierrosluku ja turnauksen id
+    public static ArrayList<Ottelu> jaaSeuraavaKierros(ArrayList<Pelaaja> pelaajat, int kierrosluku, int turnId){
       ArrayList<Ottelu> seuraavat = new ArrayList<>();  //Seuraavien otteluiden lista
       ArrayList<Pelaaja> pelurit = new ArrayList<>();
       pelurit.addAll(pelaajat);
