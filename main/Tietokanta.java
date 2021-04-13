@@ -187,7 +187,6 @@ public class Tietokanta {
         return null;
     }
 
-/*Hakee kaikki pelaajat eikä vaan yhen turnauksen ?
     public static ArrayList<Pelaaja> getTurnauksenPelaajat(){
       Statement stmt = null;
       String query = "Select * From pelaaja";
@@ -210,42 +209,16 @@ public class Tietokanta {
       }
       return null;
   }
-  */
-
-    //Tän pitäs hakee kaikki tiedot yhen turnauksen pelaajista
-    public static ArrayList<Pelaaja> getTurnauksenPelaajat(int turnId){
-      Statement stmt = null;
-      String query = "SELECT * FROM pelaaja " +
-      "JOIN pelaaja_turnaus USING(pelaaja_id) " +
-      " WHERE turnaus_id = " + turnId;
-      ArrayList<Pelaaja> lista = new ArrayList<>();
-      try {
-          Connection connect = connect();
-          stmt = connect.createStatement();
-          ResultSet rs = stmt.executeQuery(query);
-          while (rs.next()){
-              Pelaaja temp = new Pelaaja(rs.getString("nimi"));
-              temp.setId(rs.getInt("pelaaja_id"));
-              lista.add(temp);
-          }
-          connect.close();
-          return lista;
-      } catch (SQLException e) {
-          e.printStackTrace();
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
-      return lista;
-    }
 
     //Hakee pelaajan jonka id on id
     public static Pelaaja getPelaaja(int id) {  
       PreparedStatement stmt = null;
-        String query = "SELECT * From pelaaja WHERE pelaaja_id = " + id;
+        String query = "SELECT * From pelaaja WHERE pelaaja_id = ?";
         Pelaaja temp = null;
         try {
             Connection connect = connect();
             stmt = connect.prepareStatement(query);
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
                 temp = new Pelaaja(rs.getString("nimi"));
@@ -477,14 +450,14 @@ public class Tietokanta {
 
     public static int HaeUusinKierrosID() {
         Statement stmt = null; 
-        String query = "Select MAX(kierros_id) AS maks from kierros"; 
+        String query = "Select kierros_id, MAX([kierros_id]) from kierros"; 
         int id = -1; 
         try {
             Connection connect = connect();
             stmt = connect.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                id = rs.getInt("maks");
+                id = rs.getInt("kierros_id");
             }
             connect.close();
             return id;
@@ -836,7 +809,7 @@ public static int haeKierrosID() {
 
         }
     }
-//turnaus_id:itä ei missään vissiin lisätä otteluihin niin kaikissa otteluissa null
+
     public static ArrayList<Integer> HaeTurnauksenOttelut(int id){
         String query = "Select ottelu_id FROM ottelu WHERE turnaus_id = ?";
         ArrayList<Integer> ottelut = new ArrayList<>();

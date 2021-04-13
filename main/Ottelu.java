@@ -104,18 +104,13 @@ public class Ottelu {
 
     @Override
     public String toString() {
-      if(this.pelaaja2 == null){
-        return "Pelaaja " + pelaaja1.getId() + " odottaa";
-      }
-      else{
         return "Kierros = " +kierros + " Ottelu{" +
                 "Pelaaja1 = " + pelaaja1.getNimi() +
                 "Pisteet = " + pelaaja1.getPisteet() +
                 ", Pelaaja2 = " + pelaaja2.getNimi() +
                 " Pisteet = " + pelaaja2.getPisteet() +
                 '}';
-      }
-     }
+    }
 
     // Tarkistetaan onko pelaaja voittanut pelin
     // Voittoon tarvitaan 60 pistettä
