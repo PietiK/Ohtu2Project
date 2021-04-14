@@ -244,6 +244,7 @@ public class KilpailupariController{
             ArrayList<Ottelu> uudetottelut = new ArrayList<Ottelu>(); 
             ArrayList<Pelaaja> pelaajatjäljellä = Tietokanta.haeJäljelläPelaajat(tid); 
             System.out.println("Pelaajat: " + pelaajatjäljellä); 
+            if (pelaajatjäljellä.size() > 1) {
             uudetottelut = TulevatTurnauksetController.JaaParit(pelaajatjäljellä, kieid, turnaus);
             ObservableList<Ottelu> seuraavatottelut = FXCollections.observableArrayList();
             for (Ottelu ot : uudetottelut) {
@@ -257,9 +258,33 @@ public class KilpailupariController{
             System.out.println(uudetottelut); 
             System.out.println(seuraavatottelut);
             TableView.setItems(seuraavatottelut); 
+            } else {
+                Pelaaja voittaja = pelaajatjäljellä.get(0); 
+                TurnausOhi(voittaja);
+                Tietokanta.TurnausEiKäyntiin();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/main/TulevatTurnaukset.fxml"));
+                Parent AloitusNayttoP = loader.load();
+                Scene AloitusS = new Scene(AloitusNayttoP);
+        
+                Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+                window.setScene(AloitusS);
+                window.show();
+            }
         }
     }
 
+    private void TurnausOhi(Pelaaja voittaja) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setContentText("Turnauksen voittaja on " + voittaja.getNimi());
+        alert.setTitle("Turnaus loppunut!");
+        alert.setHeaderText("");
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.OK) {
+            alert.close();;
+        }
+    }
 
     private void Estä2() {
         Alert alert = new Alert(AlertType.INFORMATION);
