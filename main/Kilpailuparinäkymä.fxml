@@ -21,24 +21,29 @@
           <TableColumn fx:id="TableColumn2" prefWidth="150" text="Pelaaja2" />
         </columns>
       </TableView>
-      <Button fx:id="TakaisinBtn" layoutX="40.0" layoutY="483.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="87.0" text="Takaisin" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="431.0" AnchorPane.topAnchor="483.0">
+      <Button fx:id="TakaisinBtn" layoutX="29.0" layoutY="483.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="87.0" text="Takaisin" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="442.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="SeuraavaBtn" layoutX="430.0" layoutY="483.0" mnemonicParsing="false" onAction="#SeuraavaKierros" prefHeight="27.0" prefWidth="87.0" text="Seuraava" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="483.0">
+      <Button fx:id="SeuraavaBtn" layoutX="440.0" layoutY="483.0" mnemonicParsing="false" onAction="#SeuraavaKierros" prefHeight="27.0" prefWidth="89.0" text="Seuraava" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="PelaaBtn" layoutX="301.0" layoutY="483.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="27.0" prefWidth="87.0" text="Pelaa" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="301.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="483.0">
+      <Button fx:id="PelaaBtn" layoutX="335.0" layoutY="483.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="27.0" prefWidth="87.0" text="Pelaa" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="tuloksetbutton" layoutX="180.0" layoutY="484.0" mnemonicParsing="false" onAction="#Tulokset" text="Tulokset">
+      <Button fx:id="tuloksetbutton" layoutX="133.0" layoutY="483.0" mnemonicParsing="false" onAction="#Tulokset" text="Tulokset">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font></Button>
+      <Button fx:id="PelaajalistaBtn" layoutX="227.0" layoutY="483.0" mnemonicParsing="false" text="Pelaajalista">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
