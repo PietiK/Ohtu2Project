@@ -68,6 +68,9 @@ public class KilpailupariController{
     @FXML
     private Button tuloksetButton;
 
+    @FXML
+    private Button PelaajalistaBtn;
+
     public static ObservableList<Ottelu> get_ottelut() {
         return ottelut;
     }
@@ -319,6 +322,19 @@ public class KilpailupariController{
         PisteenlaskuController.aloitaKello();
       }
     }
+
+    @FXML
+    public void Pelaajat(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/Pelaajalista.fxml"));
+        Parent AloitusNayttoP = loader.load();
+        Scene PisteS = new Scene(AloitusNayttoP);
+        Stage window = new Stage(); 
+        window.setScene(PisteS);
+        window.show(); 
+    }
+
 
     //TODO
     //Voittajan väritys

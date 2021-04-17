@@ -32,7 +32,7 @@ public class Pelaajataulu {
     public Pelaaja getPelaaja(int nro) {
         Pelaaja temp = new Pelaaja( "a");
         for (int j = 0; j < this.pelaajat.size(); j++){
-            if(this.pelaajat.get(j).getPeliNro() == nro){
+            if(this.pelaajat.get(j).getPelinro() == nro){
                 temp = this.pelaajat.get(j);
             }
         }
@@ -59,7 +59,7 @@ public class Pelaajataulu {
         int temp = 0;
         for(int j = 0; j < this.pelaajat.size(); j++){
             if (pelaajat.get(j).getNimi().equals(pelaaja.getNimi())) {
-                temp = pelaajat.get(j).getPeliNro();
+                temp = pelaajat.get(j).getPelinro();
             }
         }
         return temp;

@@ -7,7 +7,7 @@ public class Pelaaja {
 
     private int id; 
     private String nimi;
-    private int peliNro;
+    private int pelinro;
     private int voitto;
     private int tappio;
     private int pisteet;
@@ -34,7 +34,7 @@ public class Pelaaja {
 
     public Pelaaja(String nimi, int peliNro) {
       this.nimi=nimi;
-      this.peliNro = peliNro;
+      this.pelinro = peliNro;
       this.pisteet=0;
       this.pelissa = true;
       this.pelattu = new ArrayList<>();
@@ -61,12 +61,12 @@ public class Pelaaja {
         this.nimi = nimi;
     }
 
-    public int getPeliNro() {
-        return peliNro;
+    public int getPelinro() {
+        return pelinro;
     }
 
     public void setPeliNro(int peliNro) {
-        this.peliNro = peliNro;
+        this.pelinro = peliNro;
     }
 
     public int getVoitto() {

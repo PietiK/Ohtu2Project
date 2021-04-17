@@ -67,7 +67,7 @@ public class Tietokanta {
             PreparedStatement stmt = conn.prepareStatement(query); 
             stmt.setInt(1, pelaaja.getId());
             stmt.setInt(2, tid); 
-            stmt.setInt(3, pelaaja.getPeliNro());
+            stmt.setInt(3, pelaaja.getPelinro());
             stmt.executeUpdate();
             conn.close();
         }  catch (SQLException e) {
@@ -446,6 +446,7 @@ public class Tietokanta {
                 pel.add(p); 
             }
             conn.close();
+            System.out.println("Pelaajat: " + pel); 
             return pel;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -453,6 +454,7 @@ public class Tietokanta {
             e.printStackTrace();
         }
         return pel;
+
 
     }
 
