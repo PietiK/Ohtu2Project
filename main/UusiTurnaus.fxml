@@ -55,5 +55,6 @@
          </font>
       </Text>
       <TextField id="TextField" fx:id="TextField1" layoutX="35.0" layoutY="118.0" prefHeight="11.0" prefWidth="173.0" />
+      <Button fx:id="PoistaBtn" layoutX="498.0" layoutY="560.0" mnemonicParsing="false" onAction="#PoistaPelaaja" text="Poista" />
    </children>
 </AnchorPane>

@@ -12,12 +12,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -43,6 +46,9 @@ public class UusiTurnausController {
 
     @FXML
     private Button LisääBtn2;
+
+    @FXML
+    private Button PoistaBtn;
 
     @FXML
     private TableView<Pelaaja> TableView;
@@ -112,7 +118,24 @@ public class UusiTurnausController {
         initialize();
     }
 
+    @FXML
+    public void PoistaPelaaja(ActionEvent event) throws IOException {
+        Pelaaja p = TableView.getSelectionModel().getSelectedItem(); 
+        Varmista(p); 
+    }
+
     
+    private void Varmista(Pelaaja p) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setContentText("Poista pelaaja painamalla ok");
+        alert.setTitle("Pelaajan poistaminen ");
+        alert.setHeaderText("");
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.OK){
+          TableView.getItems().remove(p); 
+        }
+    }
+
     public void LuoTurnaus(ActionEvent event) throws IOException {
         Turnaus uusiturnaus = new Turnaus(); 
         uusiturnaus.setNimi(TextField1.getText());
