@@ -1,0 +1,194 @@
+
+
+Version:	3.14
+CmdLine:	C:\Users\marti\OneDrive\Tiedostot\GitHub\R02\Kaisasovellus\Kaisatesti.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\marti\OneDrive\Tiedostot\GitHub\R02\Kaisasovellus\.
+Java min ver:	1.007.000
+Java max ver:	
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_231\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_231
+Check launcher:	C:\Program Files\Java\jre1.8.0_231\bin\javaw.exe (OK)
+Match:		1.008.000_231
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_231
+Ignore:		1.008.000_231
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Check:		SOFTWARE\JavaSoft\JDK\11
+Check launcher:	C:\Program Files\AdoptOpenJDK\jdk-11.0.4.11-hotspot\bin\javaw.exe (OK)
+Match:		1.011.000
+Check:		SOFTWARE\JavaSoft\JDK\11.0.4.11
+Warning:	formatJavaVersion() too many parts added.
+Check launcher:	C:\Program Files\AdoptOpenJDK\jdk-11.0.4.11-hotspot\bin\javaw.exe (OK)
+Match:		1.011.000_004
+Runtime used:	1.011.000_004 (64-bit)
+Launcher:	C:\Program Files\AdoptOpenJDK\jdk-11.0.4.11-hotspot\bin\javaw.exe
+Launcher args:	-jar "C:\Users\marti\OneDrive\Tiedostot\GitHub\R02\Kaisasovellus\Kaisatesti.exe"
+Args length:	80/32768 chars
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, restarting the application!
+Exit code:	1, res
