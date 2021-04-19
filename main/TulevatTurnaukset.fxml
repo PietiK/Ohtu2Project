@@ -22,22 +22,22 @@
             <TableColumn fx:id="TableColumnLopetuspäivämäärä" prefWidth="132.0" text="Lopetuspäivämäärä" />
         </columns>
       </TableView>
-      <Button fx:id="NäytäPeliBtn" layoutX="427.0" layoutY="433.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="26.0" prefWidth="101.0" text="Pelaa">
+      <Button fx:id="NäytäPeliBtn" layoutX="409.0" layoutY="433.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="27.0" prefWidth="119.0" text="Pelaa">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="MuokkaaBtn" layoutX="427.0" layoutY="469.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Muokkaa">
+      <Button fx:id="MuokkaaBtn" layoutX="409.0" layoutY="469.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="119.0" text="Muokkaa">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="PeruPeliBtn" layoutX="427.0" layoutY="508.0" mnemonicParsing="false" onAction="#PoistaTurnaus" prefHeight="26.0" prefWidth="101.0" text="Peru turnaus">
+      <Button fx:id="PeruPeliBtn" layoutX="409.0" layoutY="508.0" mnemonicParsing="false" onAction="#PoistaTurnaus" prefHeight="27.0" prefWidth="119.0" text="Peru turnaus" AnchorPane.rightAnchor="30.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="TakaisinBtn" layoutX="46.0" layoutY="496.0" mnemonicParsing="false" onAction="#SiirryTakaisin" text="Takaisin">
+      <Button fx:id="TakaisinBtn" layoutX="42.0" layoutY="508.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="119.0" text="Takaisin" AnchorPane.leftAnchor="30.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>

@@ -28,7 +28,7 @@
           <TableColumn id="TableColmunMäärä" fx:id="TableColumnLuku" prefWidth="71.0" />
         </columns>
       </TableView>
-      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="498.0" layoutY="617.0" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="78.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="498.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="617.0">
+      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="490.0" layoutY="617.0" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="86.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="490.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="617.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font></Button>
@@ -38,7 +38,7 @@
             <Font name="Tahoma" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="TakaisinBtn" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="78.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
+      <Button fx:id="TakaisinBtn" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="86.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>

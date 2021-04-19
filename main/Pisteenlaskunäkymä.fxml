@@ -36,7 +36,7 @@
          <font>
             <Font name="Tahoma" size="13.0" />
          </font></Button>
-      <Button fx:id="SeuraavaBtn" layoutX="434.0" layoutY="500.0" mnemonicParsing="false" onAction="#Seuraava" prefHeight="26.0" prefWidth="84.0" text="Seuraava" AnchorPane.leftAnchor="434.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="SeuraavaBtn" layoutX="423.0" layoutY="500.0" mnemonicParsing="false" onAction="#Seuraava" prefHeight="27.0" prefWidth="95.0" text="Seuraava" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
@@ -51,7 +51,7 @@
          </font>
       </ToggleButton>
       <TextField fx:id="TextField2" layoutX="336.0" layoutY="449.0" prefHeight="25.0" prefWidth="114.0" />
-      <Button fx:id="PeruutaBtn" layoutX="40.0" layoutY="500.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Peruuta" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="434.0">
+      <Button fx:id="PeruutaBtn" layoutX="40.0" layoutY="500.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Peruuta" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="423.0">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
