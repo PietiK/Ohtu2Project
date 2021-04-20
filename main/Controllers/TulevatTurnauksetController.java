@@ -123,7 +123,8 @@ public class TulevatTurnauksetController {
             //turnauksen pelaajat turnauksen perusteella
             ArrayList<Pelaaja> turnauksenpelaajat =  Tietokanta.TurnauksenPelaajat(turnaus);
 
-            Tietokanta.TurnausKäyntiin(turnaus.getId()); 
+            Tietokanta.TurnausKäyntiin(turnaus.getId());
+
             setTurnaus_id(turnaus.getId());
             Kierros uusi_kierros = new Kierros();
             uusi_kierros.setTurnaus(turnaus);
@@ -338,6 +339,37 @@ public class TulevatTurnauksetController {
             turnaus.getId());
         }
         return ottelut;
+    }
+
+    @FXML
+    public void SiirryMuokkaamaan(ActionEvent event) throws IOException {
+        turnaus = TableView.getSelectionModel().getSelectedItem();
+        ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());
+        //System.out.println(Tietokanta.OnkoKaynnissa(turnaus.getId()));
+        if (turnauksenkierrokset.isEmpty()){
+            //System.out.println(Tietokanta.OnkoKaynnissa(turnaus.getId()));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/main/Muokkaa.fxml"));
+            Parent AloitusNayttoP = loader.load();
+            Scene UusipeliS = new Scene(AloitusNayttoP);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(UusipeliS);
+            window.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Turnaus on jo käynnissä");
+            alert.setTitle("Turnaus on jo aloitettu");
+            alert.setHeaderText("");
+            alert.showAndWait();
+            if(alert.getResult() == ButtonType.OK) {
+                alert.close();;
+            }
+        }
+
+
+
     }
 
 }

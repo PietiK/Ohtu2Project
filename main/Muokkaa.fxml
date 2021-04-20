@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="Anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="613.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.MuokkaaController">
+   <children>
+      <Text id="LisääPelaajiaText" fx:id="UusiTurnausTxt" layoutX="180.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Muokkaa Turnausta" textAlignment="CENTER" wrappingWidth="253.63623046875">
+         <font>
+            <Font name="Tahoma" size="36.0" />
+         </font>
+      </Text>
+      <TextField id="TextField" fx:id="TextField2" layoutX="134.0" layoutY="556.0" prefHeight="34.0" prefWidth="278.0" />
+      <Button id="LisääBtn" fx:id="LisääBtn2" layoutX="422.0" layoutY="560.0" mnemonicParsing="false" onAction="#LisaaPelaaja" text="Lisää">
+         <font>
+            <Font name="Tahoma" size="13.0" />
+         </font>
+      </Button>
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="26.0" layoutY="255.0" prefHeight="268.0" prefWidth="543.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="255.0">
+        <columns>
+          <TableColumn id="TableColmunPelaajat" fx:id="TablecolumPelaajat" prefWidth="366.0" text="Pelaajat" />
+          <TableColumn id="TableColmunMäärä" fx:id="TableColumnLuku" prefWidth="71.0" />
+        </columns>
+      </TableView>
+      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="498.0" layoutY="617.0" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="78.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="498.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="617.0">
+         <font>
+            <Font name="Tahoma" size="14.0" />
+         </font></Button>
+      <DatePicker fx:id="DatePicker1" layoutX="392.0" layoutY="119.0" AnchorPane.topAnchor="119.0" />
+      <Text fx:id="AloituspäivämääräTxt" layoutX="399.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aloituspäivämäärä" wrappingWidth="172.5400390625">
+         <font>
+            <Font name="Tahoma" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="TakaisinBtn" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="78.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
+         <font>
+            <Font name="Tahoma" size="14.0" />
+         </font>
+      </Button>
+      <Text fx:id="LopetuspäivämääräTxt" layoutX="399.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lopetuspäivämäärä" wrappingWidth="172.5400390625">
+         <font>
+            <Font name="Tahoma" size="18.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="DatePicker2" layoutX="392.0" layoutY="189.0" />
+      <Text fx:id="NimeäTurnausTxt" layoutX="48.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nimeä turnaus" wrappingWidth="172.5400390625">
+         <font>
+            <Font name="Tahoma" size="18.0" />
+         </font>
+      </Text>
+      <TextField id="TextField" fx:id="TextField1" layoutX="35.0" layoutY="118.0" prefHeight="11.0" prefWidth="173.0" />
+      <Button fx:id="PoistaBtn" layoutX="498.0" layoutY="560.0" mnemonicParsing="false" onAction="#PoistaPelaaja" text="Poista" />
+   </children>
+</AnchorPane>

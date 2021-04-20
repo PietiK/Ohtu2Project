@@ -10,8 +10,8 @@ import java.util.List;
 public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
-        //String url = "jdbc:sqlite:src/tietokanta.db";
-        String url = "jdbc:sqlite:tietokanta.db";
+        String url = "jdbc:sqlite:src/tietokanta.db";
+        //String url = "jdbc:sqlite:tietokanta.db";
         
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -78,6 +78,56 @@ public class Tietokanta {
 
     }
 
+    public static ArrayList<Integer> getTurnauksenPelaajatIDt(int turnId){
+        Statement stmt = null;
+        String query = "SELECT * FROM pelaaja " +
+                "JOIN pelaaja_turnaus USING(pelaaja_id) " +
+                " WHERE turnaus_id = " + turnId;
+        ArrayList<Integer> lista = new ArrayList<>();
+        try {
+            Connection connect = connect();
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                //Pelaaja temp = new Pelaaja(rs.getString("nimi"));
+                //temp.setId(rs.getInt("pelaaja_id"));
+                lista.add(rs.getInt("pelaaja_id"));
+            }
+            connect.close();
+            return lista;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+    /*
+    public static boolean OnkoTurnauksessa(Pelaaja pelaaja, int tid){
+        int nro = -1;
+        String query = "SELECT pelaaja_id FROM pelaaja_turnaus WHERE pelaaja_id = ? AND turnaus_id = ?";
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,pelaaja.getId());
+            stmt.setInt(2,tid);
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                nro = rs.getInt("pelaaja_id");
+            }
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        }
+
+     */
+
     public static int HaeuusinTurnausID() {
         Statement stmt = null; 
         String query = "SELECT turnaus_id, MAX([turnaus_id]) from turnaus"; 
@@ -119,7 +169,26 @@ public class Tietokanta {
         }
         return id;
     }
+    public static void PaivitaTurnaus(Turnaus turnaus) {
+        String query = "UPDATE turnaus SET nimi = ?, aloituspvm = ?, lopetuspvm = ?"
+                + "WHERE turnaus_id = ?";
 
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, turnaus.getNimi());
+            stmt.setString(2, turnaus.getAloituspvm());
+            stmt.setString(3, turnaus.getLopetuspvm());
+            stmt.setInt(4,turnaus.getId());
+            stmt.executeUpdate();
+            conn.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void LisaaTurnaus(Turnaus turnaus) {
         String query = "INSERT INTO turnaus(nimi, aloituspvm, lopetuspvm) " 
                         + "VALUES(?,?,?)";
@@ -779,6 +848,27 @@ public static void TurnausKäyntiin(int id) {
         e.printStackTrace();
     }
 }
+    public static int OnkoKaynnissa(int id) {
+        int kaynnissa = -1;
+        String query = "SELECT kaynnissa FROM turnaus WHERE turnaus_id = ?";
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            kaynnissa = rs.getInt("kaynnissa");
+            conn.close();
+            System.out.println(kaynnissa);
+            return kaynnissa;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return kaynnissa;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return kaynnissa;
+        }
+    }
 
 public static void TurnausEiKäyntiin () {
     String query = "Update turnaus set kaynnissa = 0 Where kaynnissa = 1"; 

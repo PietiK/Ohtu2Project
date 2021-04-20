@@ -33,9 +33,10 @@ import main.PelaajaNumerot;
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
 
-public class UusiTurnausController {
-
-
+public class MuokkaaController {
+    int turnaus_id = TulevatTurnauksetController.getTurnaus_id();
+    ArrayList<Pelaaja> pelaajat = Tietokanta.getTurnauksenPelaajat(TulevatTurnauksetController.getTurnaus_id());
+    Turnaus turnaus = Tietokanta.haeTurnaus(TulevatTurnauksetController.getTurnaus_id());
 
     @FXML
     private AnchorPane Anchorpane;
@@ -94,10 +95,18 @@ public class UusiTurnausController {
 
    @FXML
     void initialize() {
-        TablecolumPelaajat.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+       TablecolumPelaajat.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+       TableView.getItems().clear();
+       TextField1.setText(turnaus.getNimi());
+
+       for (Pelaaja p : pelaajat) {
+           TableView.getItems().add(p);
+       }
         //TableView.setItems(Tietokanta.haePelaajat());
-        //Ylläoleva hakee kaikki tietokannassa olevat pelaajat taulukkoon, miksi? 
-    }
+       //TableView.setItems(pelaajatO);
+
+
+   }
 
     @FXML
     public void SiirryTakaisin(ActionEvent event) throws IOException {
@@ -114,7 +123,8 @@ public class UusiTurnausController {
     @FXML
     public void LisaaPelaaja(ActionEvent event) throws IOException {
         String nimi = TextField2.getText();
-        TableView.getItems().add(new Pelaaja(nimi)); 
+        pelaajat.add((new Pelaaja(nimi)));
+        //TableView.getItems().add(new Pelaaja(nimi));
         TextField2.setText("");
         //Tietokanta.LisaaPelaaja(temp);
         initialize();
@@ -138,7 +148,57 @@ public class UusiTurnausController {
         }
     }
 
+
     public void LuoTurnaus(ActionEvent event) throws IOException {
+        Turnaus uusiturnaus = new Turnaus();
+        uusiturnaus.setId(turnaus.getId());
+        uusiturnaus.setNimi(TextField1.getText());
+        String Aloitus = turnaus.getAloituspvm();
+        String Lopetus = turnaus.getLopetuspvm();
+        uusiturnaus.setAloituspvm(Aloitus);
+        uusiturnaus.setLopetuspvm(Lopetus);
+
+        ObservableList<Pelaaja> p = TableView.getItems();
+
+        ArrayList<Pelaaja> temp = new ArrayList<Pelaaja>();
+        for (Pelaaja pe : p) {
+            temp.add(pe);
+        }
+
+        for (Pelaaja pe : temp) {
+            if(pe.getId()==0){
+                System.out.println("OK");
+                Tietokanta.LisaaPelaaja(pe);
+                int pid = Tietokanta.HaeUusinPelaajaID();
+                pe.setId(pid);
+            }
+
+        }
+
+        ArrayList<Integer> pel = Tietokanta.getTurnauksenPelaajatIDt(turnaus_id);
+
+        PelaajaNumerot.arvoNumerot(temp);
+        for (Pelaaja pelaaja : temp) {
+            if(pel.contains(pelaaja.getId())){
+                //System.out.println("OK");
+            } else {
+                Tietokanta.LuoTurnauksenPelaajalista(pelaaja, turnaus_id);
+                System.out.println("OK");
+            }
+        }
+        Tietokanta.PaivitaTurnaus(uusiturnaus);
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/Aloitusnäyttö.fxml"));
+        Parent AloitusNayttoP = loader.load();
+        Scene UusipeliS = new Scene(AloitusNayttoP);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(UusipeliS);
+        window.show();
+
+       /*
         Turnaus uusiturnaus = new Turnaus(); 
         uusiturnaus.setNimi(TextField1.getText());
 
@@ -148,6 +208,7 @@ public class UusiTurnausController {
         uusiturnaus.setLopetuspvm(Lopetus);
         
         ObservableList<Pelaaja> p = TableView.getItems();
+
         ArrayList<Pelaaja> pelaajat = new ArrayList<Pelaaja>(); 
         for (Pelaaja pe : p) {
             pelaajat.add(pe); 
@@ -159,15 +220,16 @@ public class UusiTurnausController {
         for (Pelaaja pel : pelaajat) {
             Tietokanta.LisaaPelaaja(pel);
             int pid = Tietokanta.HaeUusinPelaajaID();
-            pel.setId(pid); 
+            pel.setId(pid);
         }
         PelaajaNumerot.arvoNumerot(pelaajat); 
 
         for (Pelaaja peip : pelaajat) {
             Tietokanta.LuoTurnauksenPelaajalista(peip, id);
         }
+       */
 
-
+        /*
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/Aloitusnäyttö.fxml"));
         Parent AloitusNayttoP = loader.load();
@@ -177,7 +239,10 @@ public class UusiTurnausController {
 
         window.setScene(UusipeliS);
         window.show();
+
+         */
     }
+
 
 
 }
