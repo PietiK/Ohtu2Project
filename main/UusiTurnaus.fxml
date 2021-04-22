@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -28,21 +29,12 @@
           <TableColumn id="TableColmunMäärä" fx:id="TableColumnLuku" prefWidth="71.0" />
         </columns>
       </TableView>
-      <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" layoutX="490.0" layoutY="617.0" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="86.0" text="Valmis" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="490.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="617.0">
-         <font>
-            <Font name="Tahoma" size="14.0" />
-         </font></Button>
       <DatePicker fx:id="DatePicker1" layoutX="392.0" layoutY="119.0" AnchorPane.topAnchor="119.0" />
       <Text fx:id="AloituspäivämääräTxt" layoutX="399.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aloituspäivämäärä" wrappingWidth="172.5400390625">
          <font>
             <Font name="Tahoma" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="TakaisinBtn" layoutX="35.0" layoutY="617.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="86.0" text="Takaisin" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="617.0">
-         <font>
-            <Font name="Tahoma" size="14.0" />
-         </font>
-      </Button>
       <Text fx:id="LopetuspäivämääräTxt" layoutX="399.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lopetuspäivämäärä" wrappingWidth="172.5400390625">
          <font>
             <Font name="Tahoma" size="18.0" />
@@ -56,5 +48,23 @@
       </Text>
       <TextField id="TextField" fx:id="TextField1" layoutX="35.0" layoutY="118.0" prefHeight="11.0" prefWidth="173.0" />
       <Button fx:id="PoistaBtn" layoutX="498.0" layoutY="560.0" mnemonicParsing="false" onAction="#PoistaPelaaja" text="Poista" />
+      <VBox layoutX="26.0" layoutY="617.0" prefHeight="34.0" prefWidth="98.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="478.0">
+         <children>
+            <Button fx:id="TakaisinBtn" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="86.0" text="Takaisin">
+               <font>
+                  <Font name="Tahoma" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="478.0" layoutY="622.0" prefHeight="34.0" prefWidth="98.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="478.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="622.0">
+         <children>
+            <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="86.0" text="Valmis">
+               <font>
+                  <Font name="Tahoma" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

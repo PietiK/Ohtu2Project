@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,6 +22,5 @@
             <TableColumn fx:id="TableColumnP2pisteet" prefWidth="102.0" text="Pelaaja 2 pisteet" />
         </columns>
       </TableView>
-      <ScrollBar fx:id="ScrollBar" layoutX="536.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="560.0" prefWidth="22.0" />
    </children>
 </AnchorPane>

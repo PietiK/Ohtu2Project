@@ -4,13 +4,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="498.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.PelaajalistaController" >
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="498.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.PelaajalistaController">
    <children>
-      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="77.0" layoutY="99.0" prefHeight="359.0" prefWidth="325.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="77.0" AnchorPane.topAnchor="77.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="36.0" layoutY="99.0" prefHeight="409.0" prefWidth="437.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="77.0">
         <columns>
-          <TableColumn fx:id="TableColumnNro" prefWidth="72.0" text="Nro" />
-          <TableColumn fx:id="TableColumnNimi" prefWidth="252.0" text="Nimi" />
+          <TableColumn fx:id="TableColumnNro" prefWidth="55.0" text="Nro" />
+          <TableColumn fx:id="TableColumnNimi" prefWidth="98.0" text="Nimi" />
+            <TableColumn fx:id="TableColumnVoitot" prefWidth="73.0" text="Voitot" />
+            <TableColumn fx:id="TableColumnTappiot" prefWidth="72.0" text="Tappiot" />
+            <TableColumn fx:id="TableColumnKokonaispiste" prefWidth="138.0" text="Kokonaispistemäärä" />
         </columns>
       </TableView>
    </children>

@@ -21,27 +21,27 @@
       </Button>
     <Label fx:id="taukominuutit" layoutX="393" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="taukosekunnit" layoutX="434" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label> 
-      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="40.0" layoutY="30.0" prefHeight="244.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="40" AnchorPane.rightAnchor="280" AnchorPane.topAnchor="129.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="40.0" layoutY="153.0" prefHeight="244.0" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="153.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="230.0" text="Pelaaja 1 pisteet" />
         </columns>
       </TableView>
-      <TableView fx:id="TableView2" blendMode="OVERLAY" layoutX="40.0" layoutY="30.0" prefHeight="244.0" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="280" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="129.0">
+      <TableView fx:id="TableView2" blendMode="OVERLAY" layoutX="280.0" layoutY="153.0" prefHeight="244.0" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="153.0">
           <columns>
               <TableColumn fx:id="TableColumn2" prefWidth="230.0" text="Pelaaja 2 pisteet" />
           </columns>
       </TableView>
-      <TextField fx:id="TextField1" layoutX="38.0" layoutY="449.0" prefHeight="27.0" prefWidth="114.0" AnchorPane.leftAnchor="39.5" />
-      <Button fx:id="LisääBtn1" layoutX="159.0" layoutY="449.0" mnemonicParsing="false" onAction="#lisaaPelaajalle1" prefHeight="27.0" prefWidth="54.0" text="Lisää">
+      <TextField fx:id="TextField1" layoutX="40.0" layoutY="456.0" prefHeight="27.0" prefWidth="114.0" AnchorPane.leftAnchor="40.0" />
+      <Button fx:id="LisääBtn1" layoutX="159.0" layoutY="456.0" mnemonicParsing="false" onAction="#lisaaPelaajalle1" prefHeight="27.0" prefWidth="54.0" text="Lisää">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font></Button>
-      <Button fx:id="SeuraavaBtn" layoutX="423.0" layoutY="500.0" mnemonicParsing="false" onAction="#Seuraava" prefHeight="27.0" prefWidth="95.0" text="Seuraava" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="SeuraavaBtn" layoutX="423.0" layoutY="500.0" mnemonicParsing="false" onAction="#Seuraava" prefHeight="27.0" prefWidth="95.0" text="Sulje peli" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="LisääBtn2" layoutX="458.0" layoutY="449.0" mnemonicParsing="false" onAction="#lisaaPelaajalle2" prefHeight="27.0" prefWidth="59.0" text="Lisää" AnchorPane.rightAnchor="41.5">
+      <Button fx:id="LisääBtn2" layoutX="459.0" layoutY="456.0" mnemonicParsing="false" onAction="#lisaaPelaajalle2" prefHeight="27.0" prefWidth="59.0" text="Lisää" AnchorPane.rightAnchor="40.0">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font></Button>
@@ -50,24 +50,30 @@
             <Font name="Tahoma" size="14.0" />
          </font>
       </ToggleButton>
-      <TextField fx:id="TextField2" layoutX="336.0" layoutY="449.0" prefHeight="25.0" prefWidth="114.0" />
+      <TextField fx:id="TextField2" layoutX="336.0" layoutY="456.0" prefHeight="25.0" prefWidth="114.0" />
       <Button fx:id="PeruutaBtn" layoutX="40.0" layoutY="500.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Peruuta" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="423.0">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
       </Button>
-      <Label layoutX="239.0" layoutY="394.0" text="Yhteensä">
+      <Label layoutX="244.0" layoutY="124.0" text="Yhteensä">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="p1Label" layoutX="134.0" layoutY="397.0" prefHeight="26.0" prefWidth="36.0" text="0" textAlignment="CENTER" AnchorPane.leftAnchor="134.0" AnchorPane.topAnchor="397.0" />
-      <Label fx:id="p2Label" layoutX="385.0" layoutY="397.0" prefHeight="27.0" prefWidth="29.0" text="0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="397.0" />
-      <Button fx:id="LuovutaBtn1" layoutX="40.0" layoutY="397.0" mnemonicParsing="false" onAction="#luovutusIlmoitus1" prefHeight="27.0" prefWidth="77.0" text="Luovuta" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="40.0">
+      <Label fx:id="p1Label" layoutX="117.0" layoutY="121.0" prefHeight="26.0" prefWidth="36.0" text="0" textAlignment="CENTER" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="121.0">
+         <font>
+            <Font name="Tahoma" size="24.0" />
+         </font></Label>
+      <Label fx:id="p2Label" layoutX="399.0" layoutY="120.0" prefHeight="27.0" prefWidth="29.0" text="0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="121.0">
+         <font>
+            <Font name="Tahoma" size="24.0" />
+         </font></Label>
+      <Button fx:id="LuovutaBtn1" layoutX="40.0" layoutY="411.0" mnemonicParsing="false" onAction="#luovutusIlmoitus1" prefHeight="27.0" prefWidth="77.0" text="Luovuta" AnchorPane.bottomAnchor="116.0" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font></Button>
-      <Button fx:id="LuovutaBtn2" layoutX="432.0" layoutY="397.0" mnemonicParsing="false" onAction="#luovutusIlmoitus2" prefHeight="27.0" prefWidth="84.0" text="Luovuta" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="42.0">
+      <Button fx:id="LuovutaBtn2" layoutX="429.0" layoutY="411.0" mnemonicParsing="false" onAction="#luovutusIlmoitus2" prefHeight="27.0" prefWidth="84.0" text="Luovuta" AnchorPane.bottomAnchor="116.0" AnchorPane.leftAnchor="429.0" AnchorPane.rightAnchor="45.0">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font></Button>
