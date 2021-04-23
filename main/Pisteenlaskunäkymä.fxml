@@ -19,6 +19,11 @@
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
+    <Button fx:id="KelloBtn" layoutX="40" layoutY="10" mnemonicParsing="false" onAction="#aloitaKello" prefHeight="26.0" text="Aloita peli">
+      <font>
+          <Font name="Tahoma" size="14.0" />
+      </font>
+    </Button>
     <Label fx:id="taukominuutit" layoutX="393" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label>
     <Label fx:id="taukosekunnit" layoutX="434" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label> 
       <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="40.0" layoutY="153.0" prefHeight="244.0" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="153.0">

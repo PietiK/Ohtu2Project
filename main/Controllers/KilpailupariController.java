@@ -175,8 +175,7 @@ public class KilpailupariController{
         Stage window = new Stage(); 
 
         window.setScene(PisteS);
-        window.show(); 
-        luoIlmoitus();
+        window.show();
         }
     }
 
@@ -312,16 +311,6 @@ public class KilpailupariController{
         this.fxmlLoader = fxmlLoader;
     }
     */
-    public void luoIlmoitus(){
-      Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setContentText("Paina ok aloittaaksesi ottelu");
-      alert.setTitle("Ottelun aloitus");
-      alert.setHeaderText("Aloita ottelu");
-      alert.showAndWait();
-      if(alert.getResult() == ButtonType.OK){
-        PisteenlaskuController.aloitaKello();
-      }
-    }
 
     @FXML
     public void Pelaajat(ActionEvent event) throws IOException {

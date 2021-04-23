@@ -74,6 +74,7 @@ public class PisteenlaskuController {
     @FXML private Label taukominuutit;
     @FXML private Label taukosekunnit;
     @FXML private Button muutaAikaaBtn;
+    @FXML private Button KelloBtn;
     private Duration kesto;
     private Duration taukoKesto;
     private long edellinenAika;
@@ -92,10 +93,6 @@ public class PisteenlaskuController {
       ajastin = new Ajastin();
       //Tauon ajastin
       taukoajastin = new Taukoajastin();
-    }
-
-    public static void aloitaKello() {  //Aloittaa pelin kellon
-      ajastin.start();
     }
 
     public void aloitaTauko() {  //Aloittaa tauon kellon
@@ -173,6 +170,10 @@ public class PisteenlaskuController {
 
       Stage window = (Stage) TableView.getScene().getWindow(); 
       window.close();
+    }
+
+    public void aloitaKello(ActionEvent actionEvent) { // aloittaa pelin kellon
+        ajastin.start();
     }
 
     //Ottelun kello
