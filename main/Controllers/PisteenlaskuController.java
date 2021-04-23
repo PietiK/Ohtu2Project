@@ -183,6 +183,9 @@ public class PisteenlaskuController {
     }
 
     public void aloitaKello(ActionEvent actionEvent) { // aloittaa pelin kellon
+
+        //Ihan kauheeta koodia mutta nyt on hätä kiire ei ennätä somistelemaan
+        //toimii
         if(!kellobool){
             kellobool = true;
             ajastin.start();
@@ -191,8 +194,14 @@ public class PisteenlaskuController {
             kellobool = false;
         }
         if(!onkokelloaloitettu){
-            KelloBtn.setText("Pysäytä aika");
+            KelloBtn.setText("Pysäytä peli");
             onkokelloaloitettu = true;
+        }
+        if(onkokelloaloitettu && !kellobool){
+            KelloBtn.setText("Jatka peliä");
+        }
+        if(onkokelloaloitettu && kellobool){
+            KelloBtn.setText("Pysäytä peli");
         }
     }
 
@@ -218,6 +227,15 @@ public class PisteenlaskuController {
             edellinenAika = NOW;
           }
         }
+        //Jos peli on paussilla mutta halutaan muokata aikaa
+          else{
+            int remainingSeconds = (int) kesto.toSeconds();
+            int m = remainingSeconds / SECONDS_PER_MINUTE;
+            int s = remainingSeconds % SECONDS_PER_MINUTE;
+            Minuutit.setText(String.format("%02d", m));
+            Sekunnit.setText(String.format("%02d", s));
+
+        }
       }
     }
     
@@ -227,14 +245,24 @@ public class PisteenlaskuController {
       TextInputDialog dialog = new TextInputDialog();
       dialog.setTitle("Muuta ottelun kelloa");
       dialog.getEditor().setPromptText("Esim. 54");
-      dialog.setHeaderText("Aseta uusi aika minuuteissa:");
+      dialog.setHeaderText("Aseta uusi aika: (esim. 49 tai 49:32)");
       //Näytetään ilmoitus ja odotetaan vastausta
       Optional<String> result = dialog.showAndWait();
       result.ifPresent(uusiAika -> {
+          int sekunnit = 0;
+          int minuutit = 0;
         //Poistetaan muut kuin numerot
-        uusiAika = uusiAika.replaceAll("[^0-9]", "");
+        uusiAika = uusiAika.replaceAll("[^0-9 ^:]", "");
+        //Katsotaan onko sekunteja
+        if (uusiAika.contains(":")) {
+            minuutit = Integer.parseInt(uusiAika.substring(0, uusiAika.lastIndexOf(":")));
+            sekunnit = Integer.parseInt(uusiAika.substring(uusiAika.lastIndexOf(":") + 1));
+        } else{
+            minuutit = Integer.parseInt(uusiAika);
+        }
         //Muutetaan ottelun kesto
-        kesto = Duration.minutes(Integer.parseInt(uusiAika));
+        kesto = Duration.minutes(minuutit);
+        kesto = kesto.add(Duration.seconds(sekunnit));
     });
     }
 
