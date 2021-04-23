@@ -225,7 +225,7 @@ public class Pelaajataulu {
       ArrayList<Ottelu> seuraavat = new ArrayList<>();  //Seuraavien otteluiden lista
       ArrayList<Pelaaja> pelurit = new ArrayList<>();
       pelurit.addAll(pelaajat);
-      Collections.shuffle(pelurit);
+      //Collections.shuffle(pelurit);
       //Jos pelaajia enemmän kuin neljä niin jaetaan automaattisesti
       if(pelurit.size() < 1000) {
           //Hakee jokaisen pelaajan entiset vastustajat
