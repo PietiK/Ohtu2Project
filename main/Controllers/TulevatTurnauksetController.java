@@ -148,8 +148,8 @@ public class TulevatTurnauksetController {
 
 
              */
-            Collections.shuffle(turnauksenpelaajat);  //Sekoitetaan pelaajat
-            Collections.shuffle(turnauksenpelaajat);
+            //Collections.shuffle(turnauksenpelaajat);  //Sekoitetaan pelaajat
+            //Collections.shuffle(turnauksenpelaajat);
 
             ottelut = JaaParit(turnauksenpelaajat,kid,turnaus);
 
