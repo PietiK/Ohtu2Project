@@ -81,6 +81,8 @@ public class PisteenlaskuController {
     private static AnimationTimer ajastin;
     private static AnimationTimer taukoajastin;
     private int taukolaskuri = 0;
+    private boolean kellobool;
+    private boolean onkokelloaloitettu;
 
     @FXML
     void initialize() {
@@ -93,25 +95,33 @@ public class PisteenlaskuController {
       ajastin = new Ajastin();
       //Tauon ajastin
       taukoajastin = new Taukoajastin();
+      kellobool = false;
+      onkokelloaloitettu = false;
     }
 
     public void aloitaTauko() {  //Aloittaa tauon kellon
-      if (taukolaskuri < 2){
-        taukoKesto = Duration.minutes(5);
-        taukoajastin.start();
-        if (TaukoBtn.isSelected()) {
-          taukominuutit.setVisible(true);
-          taukosekunnit.setVisible(true);
-        }
-      else {
-        taukominuutit.setVisible(false);
-        taukosekunnit.setVisible(false);
-        taukolaskuri++;
-        if (taukolaskuri >= 2) {
-          TaukoBtn.setVisible(false);
-        }
+        if(kellobool){
+          if (taukolaskuri < 2) {
+              taukoKesto = Duration.minutes(5);
+              taukoajastin.start();
+              if (TaukoBtn.isSelected()) {
+                  taukominuutit.setVisible(true);
+                  taukosekunnit.setVisible(true);
+                  TaukoBtn.setText("Lopeta tauko");
+              } else {
+                  taukominuutit.setVisible(false);
+                  taukosekunnit.setVisible(false);
+                  TaukoBtn.setText("Tauko");
+                  taukolaskuri++;
+                  if (taukolaskuri >= 2) {
+                      TaukoBtn.setVisible(false);
+                  }
+              }
+          }
       }
-      }
+        else {
+            TaukoBtn.setSelected(false); //Jos ei voi aloittaa taukoa niin nappi ei pysy pohjassa
+        }
     }
 
     public void lisaaPelaajalle1(ActionEvent event) throws IOException {
@@ -173,13 +183,23 @@ public class PisteenlaskuController {
     }
 
     public void aloitaKello(ActionEvent actionEvent) { // aloittaa pelin kellon
-        ajastin.start();
+        if(!kellobool){
+            kellobool = true;
+            ajastin.start();
+        }
+        else{
+            kellobool = false;
+        }
+        if(!onkokelloaloitettu){
+            KelloBtn.setText("Pysäytä aika");
+            onkokelloaloitettu = true;
+        }
     }
 
     //Ottelun kello
     class Ajastin extends AnimationTimer {
       @Override public void handle(final long NOW) {
-        if(!TaukoBtn.isSelected()){       //Jos taukonappi on valittuna niin ollaan tauolla
+        if(!TaukoBtn.isSelected() && kellobool){       //Jos taukonappi on valittuna niin ollaan tauolla
           if (NOW > edellinenAika + 1_000_000_000l) {
             kesto = kesto.subtract(Duration.seconds(1));
             //Jäljellä oleva aika
