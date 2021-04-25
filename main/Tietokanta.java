@@ -10,8 +10,8 @@ import java.util.List;
 public class Tietokanta {
     public static Connection connect() throws SQLException, Exception {
         Connection conn = null;
-        //String url = "jdbc:sqlite:src/tietokanta.db";
-        String url = "jdbc:sqlite:tietokanta.db";
+        String url = "jdbc:sqlite:src/tietokanta.db";
+        //String url = "jdbc:sqlite:tietokanta.db";
         
         try {
             // ota yhteys kantaan, kayttaja = root, salasana = root
@@ -723,7 +723,7 @@ public static int getOttelunVoittaja(int otteluid) {
     try {
         Connection conn = connect();
         PreparedStatement stmt = conn.prepareStatement(query);
-        ResultSet rs = stmt.executeQuery(query);
+        ResultSet rs = stmt.executeQuery();
         int voittaja = -1;
         if (rs.next()) {
             voittaja = rs.getInt("voittaja");

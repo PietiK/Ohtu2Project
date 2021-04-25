@@ -12,6 +12,7 @@ public class Ottelu {
     private String otNimi;
     private boolean pelattu;
     Scanner skanneri = new Scanner(System.in);
+    private String voittaja;
 
     
     public Ottelu(Pelaaja eka, Pelaaja toka, int kierros) {
@@ -45,7 +46,10 @@ public class Ottelu {
 
     public Ottelu() {
     }
-
+    public void noollaaPisteet(){
+        p1pisteet = 0;
+        p2pisteet = 0;
+    }
     public void setKierros(int kid) {
         this.kierros = kid; 
     }
@@ -178,6 +182,14 @@ public class Ottelu {
         }
 
         System.out.println(" ");
+    }
+
+    public void setVoittaja(String voittaja) {
+        this.voittaja = voittaja;
+    }
+
+    public String getVoittaja() {
+        return voittaja;
     }
 }
 

@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import main.Ottelu;
+import main.Pelaaja;
 import main.Tietokanta;
 
 
@@ -45,6 +46,8 @@ public class TulosController {
     private TableColumn<Ottelu,Integer> TableColumnP2pisteet;
 
     @FXML
+    private TableColumn<Ottelu,String> Voittaja;
+    @FXML
     private ScrollBar ScrollBar;
 
     @FXML
@@ -71,6 +74,7 @@ public class TulosController {
         TableColumnP1pisteet.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("p1pisteet"));;
         TableColumnPelaaja2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
         TableColumnP2pisteet.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("p2pisteet"));;
+        Voittaja.setCellValueFactory(new PropertyValueFactory<Ottelu,String>("Voittaja"));
 
         if (kierros_nro > 2){
             KierrosTxt.setText("Kierroksen "+kierros_nro+" tulokset");
@@ -79,10 +83,19 @@ public class TulosController {
         }
 
         for (Ottelu ottelu : ottelut){
+                ottelu.noollaaPisteet();
                 ottelu.LisääPisteitä1(Tietokanta.get_pelaaja_ottelu_pisteet(ottelu.getPelaaja1().getId(),ottelu.getID()));
                 //System.out.println(Tietokanta.get_pelaaja_ottelu_pisteet(ottelu.getPelaaja1().getId(),ottelu.getID()));
                 ottelu.LisääPisteitä2(Tietokanta.get_pelaaja_ottelu_pisteet(ottelu.getPelaaja2().getId(),ottelu.getID()));
-
+                int i = Tietokanta.getOttelunVoittaja(ottelu.getID());
+                //System.out.println(i);
+                if(ottelu.getPelaaja1().getId() == i){
+                    ottelu.setVoittaja(ottelu.getPelaaja1().getNimi());
+                } else if (ottelu.getPelaaja2().getId() == i){
+                    ottelu.setVoittaja(ottelu.getPelaaja2().getNimi());
+                } else {
+                    ottelu.setVoittaja("");
+                }
         }
         /*
         / Tämä poistaisi pelaamattomat pelit

@@ -20,6 +20,7 @@
             <TableColumn fx:id="TableColumnP1pisteet" prefWidth="122.0" text="Pelaaja 1 pisteet" />
             <TableColumn fx:id="TableColumnPelaaja2" prefWidth="98.0" text="Pelaaja 2" />
             <TableColumn fx:id="TableColumnP2pisteet" prefWidth="102.0" text="Pelaaja 2 pisteet" />
+            <TableColumn fx:id="Voittaja" prefWidth="102.0" text="Voittaja" />
         </columns>
       </TableView>
    </children>
