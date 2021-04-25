@@ -233,7 +233,6 @@ public class Pelaajataulu {
           for(Pelaaja p : pelurit) {
             ArrayList<Integer> temp = new ArrayList<>();
             temp.addAll(Tietokanta.haePelatut(p.getId()));
-            System.out.println("SDFSFD"+temp);
             p.setPelattujj();
             for(int i : temp) {   //Lisätään pelaajan pelattuihin jos ei ole jo siellä
              // if(!p.getPelattujenIdt().contains(getPelaajaWithID(i).getId())){
