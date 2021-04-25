@@ -161,7 +161,6 @@ public class UusiTurnausController {
         pelaajat = Pelaajataulu.arvoNumerot(pelaajat);
 
         for (Pelaaja peip : pelaajat) {
-            System.out.println("TÄSSÄ PELAAJA " + peip.getNimi() + peip.getPelinro());
             Tietokanta.LuoTurnauksenPelaajalista(peip, id);
         }
 

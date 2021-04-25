@@ -384,9 +384,6 @@ public class Pelaajataulu {
     //metodi joka sekoittaa annetun taulukon
 	public static int[] sekoita(int[] taulu)
     {
-        System.out.print(taulu[0]);
-        System.out.print(taulu[1]);
-        System.out.print(taulu[2]);
       Random rnd = ThreadLocalRandom.current();
       for (int i=taulu.length-1; i>0; i--)
       {
@@ -395,9 +392,6 @@ public class Pelaajataulu {
         taulu[index] = taulu[i];
         taulu[i] = a;
       }
-        System.out.print(taulu[0]);
-        System.out.print(taulu[1]);
-        System.out.print(taulu[2]);
       return taulu;
     }
     /*

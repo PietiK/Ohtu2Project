@@ -16,6 +16,7 @@ import main.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 
 public class TulevatTurnauksetController {
@@ -148,9 +149,6 @@ public class TulevatTurnauksetController {
 
 
              */
-            //Collections.shuffle(turnauksenpelaajat);  //Sekoitetaan pelaajat
-            //Collections.shuffle(turnauksenpelaajat);
-
             ottelut = JaaParit(turnauksenpelaajat,kid,turnaus);
 
             for (Ottelu ot : ottelut) {
@@ -243,8 +241,12 @@ public class TulevatTurnauksetController {
 
     public static ArrayList<Ottelu> JaaParit(ArrayList<Pelaaja> turnauksenpelaajat, int kid,Turnaus turnaus) {
         ArrayList<Ottelu> ottelut = new ArrayList<>();
-        ArrayList<Pelaaja> temp = turnauksenpelaajat;
+
         ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());
+
+        //Järjestetään pelaajien lista heidän pelinumeronsa mukaan
+        Collections.sort(turnauksenpelaajat, Collections.reverseOrder(Pelaaja.peliNroSorter));
+        ArrayList<Pelaaja> temp = turnauksenpelaajat;
 
         //jos kierroksia on alle 3, niin jaetaan 2 ensimmäistä kierrosta.
         if(kierrokset.size() < 3){

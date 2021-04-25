@@ -165,4 +165,12 @@ public class Pelaaja {
             return toka-eka;
         }
     };
+
+    public static Comparator <Pelaaja> peliNroSorter = new Comparator<Pelaaja>() {
+        @Override
+        public int compare(Pelaaja p1, Pelaaja p2) {
+            return Integer.valueOf(p2.getPelinro()).compareTo(Integer.valueOf(p1.getPelinro()));
+        }
+    };
+
 }
