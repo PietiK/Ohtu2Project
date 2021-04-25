@@ -247,6 +247,7 @@ public class TulevatTurnauksetController {
         //Järjestetään pelaajien lista heidän pelinumeronsa mukaan
         Collections.sort(turnauksenpelaajat, Collections.reverseOrder(Pelaaja.peliNroSorter));
         ArrayList<Pelaaja> temp = turnauksenpelaajat;
+        System.out.println("Tässä pelurit " + temp);
 
         //jos kierroksia on alle 3, niin jaetaan 2 ensimmäistä kierrosta.
         if(kierrokset.size() < 3){

@@ -225,19 +225,24 @@ public class Pelaajataulu {
       ArrayList<Ottelu> seuraavat = new ArrayList<>();  //Seuraavien otteluiden lista
       ArrayList<Pelaaja> pelurit = new ArrayList<>();
       pelurit.addAll(pelaajat);
+        Collections.sort(pelurit, Collections.reverseOrder(Pelaaja.peliNroSorter));
       //Collections.shuffle(pelurit);
       //Jos pelaajia enemmän kuin neljä niin jaetaan automaattisesti
-      if(pelurit.size() < 1000) {
+      //if(pelurit.size() > 4) {
           //Hakee jokaisen pelaajan entiset vastustajat
           for(Pelaaja p : pelurit) {
             ArrayList<Integer> temp = new ArrayList<>();
             temp.addAll(Tietokanta.haePelatut(p.getId()));
+            System.out.println("SDFSFD"+temp);
             p.setPelattujj();
             for(int i : temp) {   //Lisätään pelaajan pelattuihin jos ei ole jo siellä
              // if(!p.getPelattujenIdt().contains(getPelaajaWithID(i).getId())){
-                p.addPelattu(getPelaajaWithID(i));
+                p.addPelattu(Tietokanta.getPelaaja(i));
               //}
             }
+            System.out.println("Tää on pelannu " + p.getPelinro());
+            for(Pelaaja a : p.getPelattu())
+              System.out.print("Tätä vastaa: " + a.getPelinro());
           }
 
           //Katsoo onko pelaajia joilla on muita vähemmän otteluita
@@ -354,7 +359,7 @@ public class Pelaajataulu {
 
           //TODO
           //Jos pelaajia <=4 niin sillo se manuaalinen jako
-      }
+      //}
       return seuraavat;
     } 
 

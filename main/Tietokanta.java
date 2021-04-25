@@ -333,7 +333,9 @@ public class Tietokanta {
     //Hakee pelaajan jonka id on id
     public static Pelaaja getPelaaja(int id) {  
       PreparedStatement stmt = null;
-        String query = "SELECT * From pelaaja WHERE pelaaja_id = ?";
+      PreparedStatement nroStmt = null;
+        String query = "SELECT * From pelaaja WHERE pelaaja_id = " + id;
+        String pelinumeroQuery = "SELECT pelinro FROM pelaaja_turnaus WHERE pelaaja_id = " +id;
         Pelaaja temp = null;
         try {
             Connection connect = connect();
@@ -342,6 +344,11 @@ public class Tietokanta {
             while (rs.next()){
                 temp = new Pelaaja(rs.getString("nimi"));
                 temp.setId(rs.getInt("pelaaja_id"));
+            }
+            nroStmt = connect.prepareStatement(pelinumeroQuery);
+            ResultSet nrors = nroStmt.executeQuery();
+            while(rs.next()){
+                temp.setPeliNro(nrors.getInt("pelinro"));
             }
             connect.close();
             return temp;
