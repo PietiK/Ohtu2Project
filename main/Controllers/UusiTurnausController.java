@@ -25,10 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.Pelaaja;
-import main.Tietokanta;
-import main.Turnaus; 
-import main.PelaajaNumerot;
+import main.*;
 
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
@@ -161,9 +158,10 @@ public class UusiTurnausController {
             int pid = Tietokanta.HaeUusinPelaajaID();
             pel.setId(pid); 
         }
-        PelaajaNumerot.arvoNumerot(pelaajat); 
+        pelaajat = Pelaajataulu.arvoNumerot(pelaajat);
 
         for (Pelaaja peip : pelaajat) {
+            System.out.println("TÄSSÄ PELAAJA " + peip.getNimi() + peip.getPelinro());
             Tietokanta.LuoTurnauksenPelaajalista(peip, id);
         }
 

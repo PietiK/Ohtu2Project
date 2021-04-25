@@ -25,7 +25,7 @@ public class Pelaajataulu {
 
         //Arvotaan pelaajille numerot
         //Numerot pitää jakaa jokasen pelaajan jälkeen uusiks
-        arvoNumerot(pelaajat);
+        pelaajat = arvoNumerot(pelaajat);
     }
     // Haetaan pelaaja pelaajanro:lla
     // Jos tätä ei tarvitsekkaan, niin poistetaan
@@ -360,13 +360,17 @@ public class Pelaajataulu {
 
 
     //Metodi joka jakaa pelaajille pelinumerot
-	public void arvoNumerot(ArrayList<Pelaaja> pelaajat) {
+	public static ArrayList<Pelaaja> arvoNumerot(ArrayList<Pelaaja> pelaajat) {
 		
 		//Taulukko pelaajien numeroille
 		int randomi[] = new int[pelaajat.size()];
+		//Lisätään taulukkoon numeroita
+        for (int i = 0; i < randomi.length; i++) {
+            randomi[i] = i+1;
+        }
 
 		//sekoitetaan taulukko
-		sekoita(randomi);
+		randomi = sekoita(randomi);
 
 		//Jaetaan pelaajille numerot
 		int numero = 0;
@@ -374,11 +378,15 @@ public class Pelaajataulu {
 			pelaaja.setPeliNro(randomi[numero]);
 			numero += 1;
 		}
+		return pelaajat;
 	}
 
     //metodi joka sekoittaa annetun taulukon
-	public void sekoita(int[] taulu)
+	public static int[] sekoita(int[] taulu)
     {
+        System.out.print(taulu[0]);
+        System.out.print(taulu[1]);
+        System.out.print(taulu[2]);
       Random rnd = ThreadLocalRandom.current();
       for (int i=taulu.length-1; i>0; i--)
       {
@@ -387,6 +395,10 @@ public class Pelaajataulu {
         taulu[index] = taulu[i];
         taulu[i] = a;
       }
+        System.out.print(taulu[0]);
+        System.out.print(taulu[1]);
+        System.out.print(taulu[2]);
+      return taulu;
     }
     /*
     public List<Ottelu> getKierros() {
