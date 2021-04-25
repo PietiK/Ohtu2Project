@@ -1,5 +1,6 @@
 package main.Controllers;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +34,8 @@ public class PelaajalistaController {
         Integer tid = TulevatTurnauksetController.getTurnaus_id();
         System.out.println("Turnaus: " + tid); 
         Turnaus t = Tietokanta.haeTurnaus(tid); 
-        ArrayList<Pelaaja> pelaajat = Tietokanta.TurnauksenPelaajat(t); 
+        ArrayList<Pelaaja> pelaajat = Tietokanta.TurnauksenPelaajat(t);
+        Collections.sort(pelaajat, Collections.reverseOrder(Pelaaja.peliNroSorter));
         ObservableList<Pelaaja> pelaajatO = FXCollections.observableArrayList();
         System.out.println(pelaajat); 
         for (Pelaaja p : pelaajat) {
