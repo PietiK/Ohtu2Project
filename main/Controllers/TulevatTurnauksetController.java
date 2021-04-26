@@ -201,12 +201,10 @@ public class TulevatTurnauksetController {
         TablePosition pos = TableView.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         Turnaus item = TableView.getItems().get(row);
-        TableColumn col = TableView.getColumns().get(1);
+        TableColumn col = TableView.getColumns().get(0);
         String nimi = (String) col.getCellObservableValue(item).getValue();
-
         //haetaan turnauksen ID turnauksen nimellä
         int id = Tietokanta.HaeTurnauksenID(nimi);
-
 
         ArrayList<Integer> Poistettavatottelut = Tietokanta.HaeTurnauksenOttelut(id);
         Alert poistetaanko = new Alert(Alert.AlertType.CONFIRMATION);
