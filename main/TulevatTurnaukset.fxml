@@ -9,35 +9,35 @@
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.TulevatTurnauksetController">
    <children>
-      <Text fx:id="TulevatTurnauksetTxt" layoutX="117.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulevat turnaukset">
+      <Text fx:id="TulevatTurnauksetTxt" layoutX="123.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulevat turnaukset" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="123.0">
          <font>
             <Font name="Tahoma" size="36.0" />
          </font>
       </Text>
-      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="32.0" layoutY="107.0" prefHeight="308.0" prefWidth="474.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="42.0" layoutY="112.0" prefHeight="345.0" prefWidth="474.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
         <columns>
-          <TableColumn fx:id="TableColumnPelityyppi" prefWidth="87.0" text="Pelityyppi" />
             <TableColumn fx:id="TableColumnTurnauksenNimi" prefWidth="114.0" text="Turnauksen nimi" />
           <TableColumn fx:id="TableColumnAloituspäivämäärä" prefWidth="138.0" text="Aloituspäivämäärä" />
             <TableColumn fx:id="TableColumnLopetuspäivämäärä" prefWidth="132.0" text="Lopetuspäivämäärä" />
+            <TableColumn fx:id="TableColumnVoittaja" prefWidth="89.0" text="Voittaja" />
         </columns>
       </TableView>
-      <Button fx:id="NäytäPeliBtn" layoutX="427.0" layoutY="439.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="26.0" prefWidth="101.0" text="Pelaa">
+      <Button fx:id="NäytäPeliBtn" layoutX="171.0" layoutY="497.0" mnemonicParsing="false" onAction="#Pelaa" prefHeight="26.0" prefWidth="101.0" text="Pelaa" AnchorPane.leftAnchor="171.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="MuokkaaBtn" layoutX="427.0" layoutY="475.0" mnemonicParsing="false" onAction="#SiirryMuokkaamaan" prefHeight="26.0" prefWidth="101.0" text="Muokkaa">
+      <Button fx:id="MuokkaaBtn" layoutX="292.0" layoutY="497.0" mnemonicParsing="false" onAction="#SiirryMuokkaamaan" prefHeight="26.0" prefWidth="101.0" text="Muokkaa" AnchorPane.rightAnchor="171.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="PeruPeliBtn" layoutX="427.0" layoutY="510.0" mnemonicParsing="false" onAction="#PoistaTurnaus" prefHeight="26.0" prefWidth="101.0" text="Poista">
+      <Button fx:id="PeruPeliBtn" layoutX="407.0" layoutY="497.0" mnemonicParsing="false" onAction="#PoistaTurnaus" prefHeight="26.0" prefWidth="101.0" text="Poista" AnchorPane.rightAnchor="50.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="TakaisinBtn" layoutX="46.0" layoutY="496.0" mnemonicParsing="false" onAction="#SiirryTakaisin" text="Takaisin">
+      <Button fx:id="TakaisinBtn" layoutX="48.0" layoutY="497.0" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="101.0" text="Takaisin" AnchorPane.leftAnchor="50.0">
          <font>
             <Font name="Tahoma" size="14.0" />
          </font>
