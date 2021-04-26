@@ -24,12 +24,12 @@
       </TableView>
       <Button fx:id="tuloksetbutton" layoutX="144.0" layoutY="479.0" mnemonicParsing="false" onAction="#Tulokset" prefHeight="29.0" prefWidth="89.0" text="Tulokset">
          <font>
-            <Font name="Tahoma" size="13.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="PelaajalistaBtn" layoutX="244.0" layoutY="479.0" mnemonicParsing="false" onAction="#Pelaajat" prefHeight="29.0" prefWidth="89.0" text="Pelaajalista">
          <font>
-            <Font name="Tahoma" size="13.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <VBox layoutX="47.0" layoutY="479.0" prefHeight="38.0" prefWidth="83.0">
