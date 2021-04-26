@@ -8,12 +8,12 @@
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.TulosController">
    <children>
-      <Text fx:id="KierrosTxt" layoutX="209.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kierros" textAlignment="CENTER" wrappingWidth="117.01953125" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="209.0">
+      <Text fx:id="KierrosTxt" layoutX="209.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulokset" textAlignment="CENTER" wrappingWidth="117.01953125" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="231.98046875">
          <font>
             <Font name="Tahoma" size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="37.0" layoutY="99.0" prefHeight="383.0" prefWidth="481.0" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="99.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="39.0" layoutY="140.0" prefHeight="383.0" prefWidth="481.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="140.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="55.0" text="#" />
           <TableColumn fx:id="TableColumnPelaaja1" prefWidth="102.0" text="Pelaaja 1" />
