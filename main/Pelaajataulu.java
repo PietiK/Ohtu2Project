@@ -268,7 +268,7 @@ public class Pelaajataulu {
           if(pelinTarpeessa.size() > 0) {
             for(Pelaaja p : pelinTarpeessa) {
               for(Pelaaja v : pelurit) {
-                if (!p.getPelattu().contains(v) && !p.equals(v)  && !paritetut.contains(p) && !paritetut.contains(v)) {
+                if (!p.getPelattujenIdt().contains(v.getId()) && p.getId() != v.getId()  && !paritetut.contains(p) && !paritetut.contains(v)) {
                   seuraavat.add(new Ottelu(p,v,kierrosluku)); //Luodaan ottelu
                   //Poistetaan pelaajat listoilta
                   paritetut.add(p);
@@ -285,7 +285,7 @@ public class Pelaajataulu {
             //Etsitään pari
             for(Pelaaja v : pelurit) {   
               //Jos ei ole vielä pelannut tätä vastaan niin paritetaan
-              if(!p.getPelattu().contains(v) && !p.equals(v) && !paritetut.contains(p) && !paritetut.contains(v)){
+              if(!p.getPelattujenIdt().contains(v.getId()) && p.getId() != v.getId()  && !paritetut.contains(p) && !paritetut.contains(v)){
                 seuraavat.add(new Ottelu(p, v, kierrosluku)); //Lisätään ottelu seuraavien listaan
                 paritetut.add(v);
                 paritetut.add(p);
@@ -298,12 +298,11 @@ public class Pelaajataulu {
           //Jos pelaajia jäi yli tai kaikki jo pelanneet kaikkia vastaan
           if(!pelurit.isEmpty() || !pelinTarpeessa.isEmpty()) {  
 
-            if(!pelurit.isEmpty() && !pelinTarpeessa.isEmpty()) { //Molemmissa listoissa vielä pelaajia 
-              //TODO
+            if(!pelurit.isEmpty() && !pelinTarpeessa.isEmpty()) { //Molemmissa listoissa vielä pelaajia
               //eli kaikki ovat jo pelanneet kaikkia vastaan??
               for(Pelaaja p : pelinTarpeessa) { //Jaetaan ensin pelin tarpeessa oleville parit
                 for(Pelaaja a : pelurit) {
-                  if(!paritetut.contains(a) && !paritetut.contains(p) && !p.equals(a)) {
+                  if(!paritetut.contains(a) && !paritetut.contains(p) && p.getId() != a.getId() ) {
                     seuraavat.add(new Ottelu(p, a, kierrosluku));
                     paritetut.add(p);
                     paritetut.add(a);
@@ -317,7 +316,7 @@ public class Pelaajataulu {
               //Jaetaan loput
               for(Pelaaja p : pelurit) {
                 for(Pelaaja a : pelurit) {
-                  if(!paritetut.contains(a) && !paritetut.contains(p)) {
+                  if(!paritetut.contains(a) && !paritetut.contains(p) && p.getId() != a.getId() ) {
                     seuraavat.add(new Ottelu(p, a, kierrosluku));
                     paritetut.add(p);
                     paritetut.add(a);
@@ -340,7 +339,7 @@ public class Pelaajataulu {
                 //Jaa jäljellä olevista parit
                 for(Pelaaja p : pelurit) {
                   for(Pelaaja a : pelurit) {
-                    if(!paritetut.contains(p) && !paritetut.contains(a) && !p.equals(a)) {
+                    if(!paritetut.contains(p) && !paritetut.contains(a) && p.getId() != a.getId() ) {
                       seuraavat.add(new Ottelu(p,a,kierrosluku)); //Luodaan ottelu
                       paritetut.add(p); //Lisätään paritettuihin
                       paritetut.add(a);
