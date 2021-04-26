@@ -1143,4 +1143,41 @@ public static int haeKierrosID() {
         }
         return pisteet;
     }
+
+    public static Integer haeVoitot(int pelaaja_id){
+        String query = "SELECT COUNT(ottelu_id) AS lasku FROM ottelu WHERE voittaja = " + pelaaja_id;
+        int voitot = 0;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                voitot = rs.getInt("lasku");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return voitot;
+    }
+
+    public static Integer haePelaajanPisteet(int pelaaja_id){
+        String query = "SELECT pisteet FROM pelaaja_ottelu WHERE pelaaja_id = " + pelaaja_id;
+        int pisteet = 0;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                pisteet = pisteet + rs.getInt("pisteet");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pisteet;
+    }
+
 }
