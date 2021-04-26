@@ -446,7 +446,9 @@ public class Tietokanta {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1,nimi);
             ResultSet rs = stmt.executeQuery();
-            id = rs.getInt(1);
+            while(rs.next()) {
+                id = rs.getInt(1);
+            }
             conn.close();
             return id;
             /*

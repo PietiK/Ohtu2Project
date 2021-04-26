@@ -30,12 +30,12 @@
             <Insets left="70.0" top="20.0" />
          </padding>
       </VBox>
-      <Button fx:id="UusiTurnausBtn" layoutX="147.0" layoutY="235.0" mnemonicParsing="false" onAction="#SiirryTuleviinPeleihin" prefHeight="45.0" prefWidth="173.0" text="Uusi Turnaus" AnchorPane.leftAnchor="147.0" AnchorPane.rightAnchor="147.0">
+      <Button fx:id="UusiTurnausBtn" layoutX="147.0" layoutY="235.0" mnemonicParsing="false" onAction="#SiirryPelinLuontiin" prefHeight="45.0" prefWidth="173.0" text="Uusi Turnaus" AnchorPane.leftAnchor="147.0" AnchorPane.rightAnchor="147.0">
          <font>
             <Font name="Tahoma" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="TurnauksetBtn" layoutX="147.0" layoutY="311.0" mnemonicParsing="false" onAction="#SiirryPelinLuontiin" prefHeight="45.0" prefWidth="173.0" text="Turnaukset" AnchorPane.leftAnchor="147.0" AnchorPane.rightAnchor="147.0">
+      <Button fx:id="TurnauksetBtn" layoutX="147.0" layoutY="311.0" mnemonicParsing="false" onAction="#SiirryTuleviinPeleihin" prefHeight="45.0" prefWidth="173.0" text="Turnaukset" AnchorPane.leftAnchor="147.0" AnchorPane.rightAnchor="147.0">
          <font>
             <Font name="Tahoma" size="18.0" />
          </font>
