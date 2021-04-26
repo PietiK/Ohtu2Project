@@ -113,6 +113,10 @@ public class TulevatTurnauksetController {
         turnaus = TableView.getSelectionModel().getSelectedItem();
         System.out.println(turnaus.getId());
         ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());
+        System.out.println("SKKRKRK" + turnauksenkierrokset);
+        for(Kierros k : turnauksenkierrokset){
+            System.out.print(" KIEKKA " + k.getID());
+        }
         /*
         Tässä testataan, onko turnaus jo aloitettu aiemmin, eli onko sille luotu vielä kierroksia.
         Jos ei, niin luodaan ensimmäinen kierros sekä sen ottelut. Tätä voidaan käyttää myös
@@ -179,12 +183,15 @@ public class TulevatTurnauksetController {
             //Tietojen etsiminen tietokannasta??
             ArrayList<Integer> k = new ArrayList<Integer>(); 
             for (Kierros ki : turnauksenkierrokset) {
-                k.add(ki.getJnum()); 
+                k.add(ki.getJnum());
+                System.out.println(k);
             }
             Integer max = Collections.max(k); 
             for (Kierros kie : turnauksenkierrokset) {
+                System.out.println("KIERROKSIA JOO " + kie.getID());
                 if (kie.getJnum() == max) {
                     setKierros_id(kie.getID());
+                    System.out.println("KIERROKSEN ID ON " + getKierrosId());
                 }
             }
             Tietokanta.TurnausKäyntiin(turnaus.getId());
@@ -247,7 +254,6 @@ public class TulevatTurnauksetController {
         //Järjestetään pelaajien lista heidän pelinumeronsa mukaan
         Collections.sort(turnauksenpelaajat, Collections.reverseOrder(Pelaaja.peliNroSorter));
         ArrayList<Pelaaja> temp = turnauksenpelaajat;
-        System.out.println("Tässä pelurit " + temp);
 
         //jos kierroksia on alle 3, niin jaetaan 2 ensimmäistä kierrosta.
         if(kierrokset.size() < 3){

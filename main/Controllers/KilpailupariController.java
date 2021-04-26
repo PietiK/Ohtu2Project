@@ -88,15 +88,19 @@ public class KilpailupariController{
 
         //hakee edellisessä näytössä olleen kierroksen ja turnauksen ID:n
         int viimeisein_kierros = TulevatTurnauksetController.getKierrosId();
+        System.out.println("Viimesimmän kierroksen id " + viimeisein_kierros);
         turnauksen_id = TulevatTurnauksetController.getTurnaus_id();
 
         ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnauksen_id);
-
-        ArrayList<Integer> ottelu_idt = Tietokanta.getKierroksenOttelut(viimeisein_kierros);
+        System.out.println("HAETAAN KIERROKSEN OTTELUT");
+        ArrayList<Integer> ottelu_idt = new ArrayList<>();
+        ottelu_idt.addAll(Tietokanta.getKierroksenOttelut(viimeisein_kierros));
+        System.out.println("OTTELUIDEN IDT " + ottelu_idt);
 
         //edellisellä näytöllä jaetut otteluiden ID:t.
         //jos kierroksia on alle 3 haetaan myös ensimmäinen kierros.
         if (kierrokset.size()<3){
+            System.out.println("QWERT");
             ArrayList<Integer> eka_kierros_idt = Tietokanta.getKierroksenOttelut(viimeisein_kierros-1);
             int indexi = 0;
             for (Integer i :eka_kierros_idt){
@@ -234,6 +238,7 @@ public class KilpailupariController{
              /*
             Tässä luodaan uusi kierros ja sen ottelut, tableviewin pitäsi päivittyä 
             */
+            System.out.println("UUTTA KIERROSTA LUOMASSA");
             Kierros uusi = new Kierros (); 
             int tid = TulevatTurnauksetController.getTurnaus_id();
             Turnaus turnaus = Tietokanta.haeTurnaus(tid);
@@ -245,13 +250,12 @@ public class KilpailupariController{
             int kieid = Tietokanta.HaeUusinKierrosID();
             uusi.setID(kieid);
             ArrayList<Ottelu> uudetottelut = new ArrayList<Ottelu>(); 
-            ArrayList<Pelaaja> pelaajatjäljellä = Tietokanta.haeJäljelläPelaajat(tid); 
-            System.out.println("Pelaajat: " + pelaajatjäljellä); 
+            ArrayList<Pelaaja> pelaajatjäljellä = Tietokanta.haeJäljelläPelaajat(tid);
             if (pelaajatjäljellä.size() > 1) {
             uudetottelut = TulevatTurnauksetController.JaaParit(pelaajatjäljellä, kieid, turnaus);
             ObservableList<Ottelu> seuraavatottelut = FXCollections.observableArrayList();
             for (Ottelu ot : uudetottelut) {
-                ot.setKierros(Tietokanta.HaeSuurinKierrosnumero(tid)); // asetetaan otteluille kierroksen ID
+                ot.setKierros(Tietokanta.HaeSuurimmankierroksenID(tid)); // asetetaan otteluille kierroksen ID
                 Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
                 ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
                 Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
@@ -259,7 +263,7 @@ public class KilpailupariController{
                 seuraavatottelut.add(ot);
             }
             System.out.println(uudetottelut); 
-            System.out.println(seuraavatottelut);
+            System.out.println("TÄSSÄ " + seuraavatottelut);
             TableView.setItems(seuraavatottelut); 
             } else {
                 Pelaaja voittaja = pelaajatjäljellä.get(0); 
