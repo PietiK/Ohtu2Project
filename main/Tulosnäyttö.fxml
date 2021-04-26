@@ -6,21 +6,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="632.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.TulosController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="628.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.TulosController">
    <children>
       <Text fx:id="KierrosTxt" layoutX="257.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tulokset" textAlignment="CENTER" wrappingWidth="117.01953125" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="257.0">
          <font>
             <Font name="Tahoma" size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="74.0" layoutY="127.0" prefHeight="383.0" prefWidth="484.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="127.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="74.0" layoutY="127.0" prefHeight="383.0" prefWidth="469.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="127.0">
         <columns>
-          <TableColumn fx:id="TableColumn1" prefWidth="44.0" text="#" />
-          <TableColumn fx:id="TableColumnPelaaja1" prefWidth="86.0" text="Pelaaja 1" />
-            <TableColumn fx:id="TableColumnP1pisteet" prefWidth="97.0" text="Pelaaja 1 pisteet" />
-            <TableColumn fx:id="TableColumnPelaaja2" prefWidth="70.0" text="Pelaaja 2" />
-            <TableColumn fx:id="TableColumnP2pisteet" minWidth="0.0" prefWidth="101.0" text="Pelaaja 2 pisteet" />
-            <TableColumn fx:id="Voittaja" prefWidth="87.0" text="Voittaja" />
+          <TableColumn fx:id="TableColumnPelaaja1" prefWidth="90.0" text="Pelaaja 1" />
+            <TableColumn fx:id="TableColumnP1pisteet" prefWidth="104.0" text="Pelaaja 1 pisteet" />
+            <TableColumn fx:id="TableColumnPelaaja2" prefWidth="90.0" text="Pelaaja 2" />
+            <TableColumn fx:id="TableColumnP2pisteet" minWidth="0.0" prefWidth="104.0" text="Pelaaja 2 pisteet" />
+            <TableColumn fx:id="Voittaja" prefWidth="90.0" text="Voittaja" />
         </columns>
       </TableView>
    </children>
