@@ -225,7 +225,8 @@ public class KilpailupariController{
     @FXML
     public void SeuraavaKierros(ActionEvent event) throws IOException {
         int kid = TulevatTurnauksetController.getKierrosId();
-        ArrayList<Integer> ottelut = Tietokanta.getKierroksenOttelut(kid); 
+        ArrayList<Integer> ottelut = Tietokanta.getKierroksenOttelut(kid);
+        System.out.println("SEURAAVA");
         boolean valmis = true; 
         for (Integer i : ottelut) {
             if (!Tietokanta.OnkoVoittajaa(i)) {
@@ -256,10 +257,15 @@ public class KilpailupariController{
             ObservableList<Ottelu> seuraavatottelut = FXCollections.observableArrayList();
             for (Ottelu ot : uudetottelut) {
                 ot.setKierros(Tietokanta.HaeSuurimmankierroksenID(tid)); // asetetaan otteluille kierroksen ID
+                ot.setKierrosluku(Tietokanta.HaeSuurinKierrosnumero(tid));
                 Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
                 ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
                 Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
                 System.out.println(ot.toString());
+                //Tälleen huonosti tein että muokataan ottelun kierrosluku sen jälkee ku jo lisätty
+                //tietokantaan, koska tietokannassa se on id ja tässä järjestysnumero
+                //nii tällee tableviewissa näkyy se järjestysnumero
+                ot.setKierros(Tietokanta.HaeSuurinKierrosnumero(tid));
                 seuraavatottelut.add(ot);
             }
             System.out.println(uudetottelut); 
