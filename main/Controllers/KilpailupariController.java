@@ -115,6 +115,7 @@ public class KilpailupariController{
                 o.setPelaaja1(pelaajat.get(0));
                 o.setPelaaja2(pelaajat.get(1));
                 o.setKierros(kierrokset.size()/2);
+                System.out.println("MIKÄ HOMMA " + o.getKierros());
                 ottelut.add(o);
             }
             for (int i = ottelu_idt.size()/2;i < ottelu_idt.size();i++){
@@ -250,7 +251,7 @@ public class KilpailupariController{
             uudetottelut = TulevatTurnauksetController.JaaParit(pelaajatjäljellä, kieid, turnaus);
             ObservableList<Ottelu> seuraavatottelut = FXCollections.observableArrayList();
             for (Ottelu ot : uudetottelut) {
-                ot.setKierros(kid); // asetetaan otteluille kierroksen ID
+                ot.setKierros(Tietokanta.HaeSuurinKierrosnumero(tid)); // asetetaan otteluille kierroksen ID
                 Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
                 ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
                 Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.

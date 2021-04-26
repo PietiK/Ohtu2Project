@@ -112,7 +112,7 @@ public class TulevatTurnauksetController {
 
         turnaus = TableView.getSelectionModel().getSelectedItem();
         System.out.println(turnaus.getId());
-        ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId()); 
+        ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());
         /*
         Tässä testataan, onko turnaus jo aloitettu aiemmin, eli onko sille luotu vielä kierroksia.
         Jos ei, niin luodaan ensimmäinen kierros sekä sen ottelut. Tätä voidaan käyttää myös
@@ -174,13 +174,16 @@ public class TulevatTurnauksetController {
             voi etsiä oikeat ottelut. 
             Tässä pitää todnäk tehdä muutakin mutta nyt en muista enää mitä  
             */
+            System.out.println("TÄÄLLÄKÖ OLLAAN??");
+            //TODO
+            //Tietojen etsiminen tietokannasta??
             ArrayList<Integer> k = new ArrayList<Integer>(); 
             for (Kierros ki : turnauksenkierrokset) {
                 k.add(ki.getJnum()); 
             }
             Integer max = Collections.max(k); 
             for (Kierros kie : turnauksenkierrokset) {
-                if (kie.getJnum() == max) { 
+                if (kie.getJnum() == max) {
                     setKierros_id(kie.getID());
                 }
             }

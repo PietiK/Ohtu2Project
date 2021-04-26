@@ -1037,16 +1037,17 @@ public static int haeKierrosID() {
 
 
     public static int HaeSuurinKierrosnumero(int tid) {
-        String query = "Select kierrosluku from kierros where (turnaus_id = " + tid +
-        " AND [kierrosluku] = (SELECT MAX([kierrosluku]) FROM kierros))"; 
-        Statement stmt;
+        //String query = "Select kierrosluku from kierros where (turnaus_id = " + tid +
+        //" AND [kierrosluku] = (SELECT MAX([kierrosluku]) FROM kierros))";
+        String query = "SELECT MAX(kierrosluku) AS maks FROM kierros WHERE turnaus_id = " + tid;
+        PreparedStatement stmt;
         int kierros = 0;
         try {
             Connection connect = connect();
-            stmt = connect.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+            stmt = connect.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                kierros = rs.getInt("kierrosluku"); 
+                kierros = rs.getInt("maks");
             }
             connect.close();
             return kierros; 
