@@ -42,7 +42,7 @@ public class PelaajalistaController {
         TableColumnNimi.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
         TableColumnVoitot.setCellValueFactory(new PropertyValueFactory<Pelaaja, Integer>("voitto"));
         TableColumnTappiot.setCellValueFactory(new PropertyValueFactory<Pelaaja, Integer>("tappio"));
-        TableColumnKokonaispiste.setCellValueFactory(new PropertyValueFactory<Pelaaja, Integer>("pisteet"));
+        TableColumnKokonaispiste.setCellValueFactory(new PropertyValueFactory<Pelaaja, Integer>("kokonaispisteet"));
         Integer tid = TulevatTurnauksetController.getTurnaus_id();
         System.out.println("Turnaus: " + tid); 
         Turnaus t = Tietokanta.haeTurnaus(tid); 
@@ -52,7 +52,7 @@ public class PelaajalistaController {
         System.out.println(pelaajat); 
         for (Pelaaja p : pelaajat) {
             p.setTappio(Tietokanta.HaeTappiot(tid, p.getId()));
-            p.setPisteet(Tietokanta.haePelaajanPisteet(p.getId()));
+            p.setKokonaispisteet(Tietokanta.haePelaajanPisteet(p.getId()));
             p.setVoitto(Tietokanta.haeVoitot(p.getId()));
             pelaajatO.add(p); 
         }
