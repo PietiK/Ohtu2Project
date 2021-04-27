@@ -60,6 +60,9 @@ public class KilpailupariController{
     private TableColumn<Ottelu, String> TableColumn2;
 
     @FXML
+    private TableColumn<Ottelu,String> TableColumnVoittaja;
+
+    @FXML
     private Button TakaisinBtn;
 
     @FXML
@@ -83,7 +86,7 @@ public class KilpailupariController{
         TableColmun0.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("kierros"));
         TableColmun1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumn2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
-        
+        TableColumnVoittaja.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("voittaja"));
         //TableView.setItems(Tietokanta.haeKilpailuparinPelaajat())
 
         //hakee edellisessä näytössä olleen kierroksen ja turnauksen ID:n
@@ -92,12 +95,15 @@ public class KilpailupariController{
         turnauksen_id = TulevatTurnauksetController.getTurnaus_id();
 
         ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnauksen_id);
+        System.out.println("HAETAAN KIERROKSEN OTTELUT");
         ArrayList<Integer> ottelu_idt = new ArrayList<>();
         ottelu_idt.addAll(Tietokanta.getKierroksenOttelut(viimeisein_kierros));
+        System.out.println("OTTELUIDEN IDT " + ottelu_idt);
 
         //edellisellä näytöllä jaetut otteluiden ID:t.
         //jos kierroksia on alle 3 haetaan myös ensimmäinen kierros.
         if (kierrokset.size()<3){
+            System.out.println("QWERT");
             ArrayList<Integer> eka_kierros_idt = Tietokanta.getKierroksenOttelut(viimeisein_kierros-1);
             int indexi = 0;
             for (Integer i :eka_kierros_idt){
@@ -116,6 +122,8 @@ public class KilpailupariController{
                 o.setPelaaja1(pelaajat.get(0));
                 o.setPelaaja2(pelaajat.get(1));
                 o.setKierros(kierrokset.size()/2);
+                System.out.println("MIKÄ HOMMA " + o.getKierros());
+
                 ottelut.add(o);
             }
             for (int i = ottelu_idt.size()/2;i < ottelu_idt.size();i++){
@@ -125,6 +133,7 @@ public class KilpailupariController{
                 o.setPelaaja1(pelaajat.get(0));
                 o.setPelaaja2(pelaajat.get(1));
                 o.setKierros(kierrokset.size());
+
                 ottelut.add(o);
             }
         } else {
@@ -135,10 +144,22 @@ public class KilpailupariController{
                 o.setPelaaja1(pelaajat.get(0));
                 o.setPelaaja2(pelaajat.get(1));
                 o.setKierros(kierrokset.size());
+
                 ottelut.add(o);
             }
         }
         //System.out.println("Ottelun kierros: " + ottelut.get(ottelut.size() -1 ).getKierros());
+        for (Ottelu ottelu : ottelut){
+            int voittaja = Tietokanta.getOttelunVoittaja(ottelu.getID());
+            System.out.println(voittaja);
+            if(ottelu.getPelaaja1().getId() == voittaja){
+                ottelu.setVoittaja(ottelu.getPelaaja1().getNimi());
+            } else if (ottelu.getPelaaja2().getId() == voittaja){
+                ottelu.setVoittaja(ottelu.getPelaaja2().getNimi());
+            } else {
+                ottelu.setVoittaja("");
+            }
+        }
         TableView.setItems(ottelut);    
       
     }  
@@ -182,7 +203,7 @@ public class KilpailupariController{
 
     @FXML
     public void Tulokset(ActionEvent event) throws IOException {
-
+        initialize();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/Tulosnäyttö.fxml"));
         Parent AloitusNayttoP = loader.load();
@@ -223,10 +244,12 @@ public class KilpailupariController{
         //int kid = TulevatTurnauksetController.getKierrosId();
         int kid = Tietokanta.HaeSuurimmankierroksenID(TulevatTurnauksetController.getTurnaus_id());
         ArrayList<Integer> ottelut = Tietokanta.getKierroksenOttelut(kid);
+        System.out.println("SEURAAVA" + ottelut);
         boolean valmis = true; 
         for (Integer i : ottelut) {
             if (!Tietokanta.OnkoVoittajaa(i)) {
                 valmis = false;
+                System.out.println("EI VOITTAJAA");
             }
         }
         if (!valmis) {
@@ -235,6 +258,7 @@ public class KilpailupariController{
              /*
             Tässä luodaan uusi kierros ja sen ottelut, tableviewin pitäsi päivittyä 
             */
+            System.out.println("UUTTA KIERROSTA LUOMASSA");
             Kierros uusi = new Kierros (); 
             int tid = TulevatTurnauksetController.getTurnaus_id();
             Turnaus turnaus = Tietokanta.haeTurnaus(tid);
@@ -262,7 +286,10 @@ public class KilpailupariController{
                 //nii tällee tableviewissa näkyy se järjestysnumero
                 ot.setKierros(Tietokanta.HaeSuurinKierrosnumero(tid));
                 seuraavatottelut.add(ot);
+
             }
+            System.out.println(uudetottelut); 
+            System.out.println("TÄSSÄ " + seuraavatottelut);
             TableView.setItems(seuraavatottelut); 
             } else {
                 Pelaaja voittaja = pelaajatjäljellä.get(0); 
@@ -327,6 +354,13 @@ public class KilpailupariController{
         window.setScene(PisteS);
         window.show(); 
     }
+
+
+    //TODO
+    //Voittajan väritys
+    //public void varita(TableColumn<Ottelu, String> column1, TableColumn<Ottelu, String> column2){
+    //}
+      
       
         
 }
