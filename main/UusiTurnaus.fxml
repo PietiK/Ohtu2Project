@@ -18,9 +18,9 @@
          </font>
       </Text>
       <TextField id="TextField" fx:id="TextField2" layoutX="134.0" layoutY="556.0" prefHeight="34.0" prefWidth="278.0" />
-      <Button id="LisääBtn" fx:id="LisääBtn2" layoutX="422.0" layoutY="560.0" mnemonicParsing="false" onAction="#LisaaPelaaja" text="Lisää">
+      <Button id="LisääBtn" fx:id="LisääBtn2" layoutX="425.0" layoutY="558.0" mnemonicParsing="false" onAction="#LisaaPelaaja" prefHeight="31.0" prefWidth="68.0" text="Lisää">
          <font>
-            <Font name="Tahoma" size="13.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="26.0" layoutY="255.0" prefHeight="268.0" prefWidth="543.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="255.0">
@@ -47,10 +47,13 @@
          </font>
       </Text>
       <TextField id="TextField" fx:id="TextField1" layoutX="35.0" layoutY="118.0" prefHeight="11.0" prefWidth="173.0" />
-      <Button fx:id="PoistaBtn" layoutX="498.0" layoutY="560.0" mnemonicParsing="false" onAction="#PoistaPelaaja" text="Poista" />
+      <Button fx:id="PoistaBtn" layoutX="501.0" layoutY="558.0" mnemonicParsing="false" onAction="#PoistaPelaaja" prefHeight="31.0" prefWidth="68.0" text="Poista">
+         <font>
+            <Font name="Tahoma" size="14.0" />
+         </font></Button>
       <VBox layoutX="26.0" layoutY="617.0" prefHeight="34.0" prefWidth="98.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="478.0">
          <children>
-            <Button fx:id="TakaisinBtn" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="27.0" prefWidth="86.0" text="Takaisin">
+            <Button fx:id="TakaisinBtn" mnemonicParsing="false" onAction="#SiirryTakaisin" prefHeight="31.0" prefWidth="99.0" text="Takaisin">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
@@ -59,7 +62,7 @@
       </VBox>
       <VBox layoutX="478.0" layoutY="622.0" prefHeight="34.0" prefWidth="98.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="478.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="622.0">
          <children>
-            <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="27.0" prefWidth="86.0" text="Valmis">
+            <Button id="AloitaTurnausBtn" fx:id="ValmisBtndrop" mnemonicParsing="false" onAction="#LuoTurnaus" prefHeight="31.0" prefWidth="99.0" text="Valmis">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
