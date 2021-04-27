@@ -83,7 +83,6 @@ public class TulevatTurnauksetController {
 
     @FXML
     void initialize() {
-        TableColumnPelityyppi.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("pelityyppi"));
         TableColumnTurnauksenNimi.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("nimi"));
         TableColumnAloituspäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("aloituspvm"));
         TableColumnLopetuspäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("lopetuspvm"));
@@ -112,8 +111,8 @@ public class TulevatTurnauksetController {
     public void Pelaa(ActionEvent event) throws IOException {
 
         turnaus = TableView.getSelectionModel().getSelectedItem();
-        System.out.println(turnaus.getId());
-        ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId()); 
+        ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());
+
         /*
         Tässä testataan, onko turnaus jo aloitettu aiemmin, eli onko sille luotu vielä kierroksia.
         Jos ei, niin luodaan ensimmäinen kierros sekä sen ottelut. Tätä voidaan käyttää myös
@@ -156,7 +155,6 @@ public class TulevatTurnauksetController {
                 Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
                 ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
                 Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
-                System.out.println(ot.toString());
             }
 
             FXMLLoader loader = new FXMLLoader();
@@ -177,11 +175,12 @@ public class TulevatTurnauksetController {
             */
             ArrayList<Integer> k = new ArrayList<Integer>(); 
             for (Kierros ki : turnauksenkierrokset) {
-                k.add(ki.getJnum()); 
+                k.add(ki.getJnum());
+                System.out.println(k);
             }
             Integer max = Collections.max(k); 
             for (Kierros kie : turnauksenkierrokset) {
-                if (kie.getJnum() == max) { 
+                if (kie.getJnum() == max) {
                     setKierros_id(kie.getID());
                 }
             }
@@ -202,12 +201,10 @@ public class TulevatTurnauksetController {
         TablePosition pos = TableView.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         Turnaus item = TableView.getItems().get(row);
-        TableColumn col = TableView.getColumns().get(1);
+        TableColumn col = TableView.getColumns().get(0);
         String nimi = (String) col.getCellObservableValue(item).getValue();
-
         //haetaan turnauksen ID turnauksen nimellä
         int id = Tietokanta.HaeTurnauksenID(nimi);
-
 
         ArrayList<Integer> Poistettavatottelut = Tietokanta.HaeTurnauksenOttelut(id);
         Alert poistetaanko = new Alert(Alert.AlertType.CONFIRMATION);
@@ -247,7 +244,6 @@ public class TulevatTurnauksetController {
         //Järjestetään pelaajien lista heidän pelinumeronsa mukaan
         Collections.sort(turnauksenpelaajat, Collections.reverseOrder(Pelaaja.peliNroSorter));
         ArrayList<Pelaaja> temp = turnauksenpelaajat;
-        System.out.println("Tässä pelurit " + temp);
 
         //jos kierroksia on alle 3, niin jaetaan 2 ensimmäistä kierrosta.
         if(kierrokset.size() < 3){
@@ -336,7 +332,6 @@ public class TulevatTurnauksetController {
                 }
             }
         } else {
-          System.out.println("Jqwe");
           return Pelaajataulu.jaaSeuraavaKierros(turnauksenpelaajat, 
             kierrokset.get(kierrokset.size()-1).getJnum(), 
             turnaus.getId());

@@ -446,7 +446,9 @@ public class Tietokanta {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1,nimi);
             ResultSet rs = stmt.executeQuery();
-            id = rs.getInt(1);
+            while(rs.next()) {
+                id = rs.getInt(1);
+            }
             conn.close();
             return id;
             /*
@@ -575,14 +577,15 @@ public class Tietokanta {
 
     public static int HaeUusinKierrosID() {
         Statement stmt = null; 
-        String query = "Select kierros_id, MAX([kierros_id]) from kierros"; 
-        int id = -1; 
+        //String query = "Select kierros_id, MAX([kierros_id]) from kierros";
+        String query = "SELECT MAX(kierros_id) AS maks FROM kierros";
+        int id = -1;
         try {
             Connection connect = connect();
             stmt = connect.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                id = rs.getInt("kierros_id");
+                id = rs.getInt("maks");
             }
             connect.close();
             return id;
@@ -662,7 +665,7 @@ public class Tietokanta {
               e.printStackTrace();
           }
       }
-      else System.out.println("EI adsadf");
+      else System.out.println("EI");
     }
 
     /*
@@ -676,15 +679,15 @@ public class Tietokanta {
   }*/
 
 public static ArrayList<Integer> getKierroksenOttelut(int kierros_id) {
-    Statement stmt = null; 
-    String query = "Select ottelu_id from ottelu where kierros_id = " + kierros_id; 
+    ArrayList<Integer> idt = new ArrayList<>();
+    String query = "Select ottelu_id from ottelu where kierros_id = " + kierros_id;
+
     try {
         Connection connect = connect();
-        stmt = connect.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-        ArrayList<Integer> idt = new ArrayList<Integer>(); 
+        PreparedStatement stmt = connect.prepareStatement(query);
+        ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            idt.add(rs.getInt("ottelu_id")); 
+            idt.add(rs.getInt("ottelu_id"));
         }
         connect.close();
         return idt; 
@@ -693,7 +696,7 @@ public static ArrayList<Integer> getKierroksenOttelut(int kierros_id) {
     } catch (Exception e) {
         e.printStackTrace();
     }
-    return null;
+    return idt;
     
 }
 
@@ -705,7 +708,6 @@ public static boolean OnkoVoittajaa(int id) {
         Connection connect = connect();
         stmt = connect.createStatement();
         ResultSet rs = stmt.executeQuery(query);
-        
         while (rs.next()) {
             if (rs.getInt("voittaja") == 0) {
                 voitto = false; 
@@ -1033,18 +1035,39 @@ public static int haeKierrosID() {
 
     ///[YearlyIncome] = (SELECT MAX([YearlyIncome]) FROM Customer)
 
-
-    public static int HaeSuurinKierrosnumero(int tid) {
-        String query = "Select kierrosluku from kierros where (turnaus_id = " + tid +
-        " AND [kierrosluku] = (SELECT MAX([kierrosluku]) FROM kierros))"; 
-        Statement stmt;
+    public static int HaeSuurimmankierroksenID(int tid){
+        String query = "SELECT MAX(kierros_id) AS maks FROM kierros WHERE turnaus_id = " + tid;
+        PreparedStatement stmt;
         int kierros = 0;
         try {
             Connection connect = connect();
-            stmt = connect.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+            stmt = connect.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                kierros = rs.getInt("kierrosluku"); 
+                kierros = rs.getInt("maks");
+            }
+            connect.close();
+            return kierros;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return kierros;
+    }
+
+    public static int HaeSuurinKierrosnumero(int tid) {
+        //String query = "Select kierrosluku from kierros where (turnaus_id = " + tid +
+        //" AND [kierrosluku] = (SELECT MAX([kierrosluku]) FROM kierros))";
+        String query = "SELECT MAX(kierrosluku) AS maks FROM kierros WHERE turnaus_id = " + tid;
+        PreparedStatement stmt;
+        int kierros = 0;
+        try {
+            Connection connect = connect();
+            stmt = connect.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                kierros = rs.getInt("maks");
             }
             connect.close();
             return kierros; 
@@ -1141,4 +1164,41 @@ public static int haeKierrosID() {
         }
         return pisteet;
     }
+
+    public static Integer haeVoitot(int pelaaja_id){
+        String query = "SELECT COUNT(ottelu_id) AS lasku FROM ottelu WHERE voittaja = " + pelaaja_id;
+        int voitot = 0;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                voitot = rs.getInt("lasku");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return voitot;
+    }
+
+    public static Integer haePelaajanPisteet(int pelaaja_id){
+        String query = "SELECT pisteet FROM pelaaja_ottelu WHERE pelaaja_id = " + pelaaja_id;
+        int pisteet = 0;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                pisteet = pisteet + rs.getInt("pisteet");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pisteet;
+    }
+
 }

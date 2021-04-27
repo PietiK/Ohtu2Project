@@ -73,6 +73,10 @@ public class Pelaaja {
         return voitto;
     }
 
+    public void setVoitto(int lukum){
+        this.voitto = lukum;
+    }
+
     public int getTappio() {
         return tappio;
     }

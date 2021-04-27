@@ -28,9 +28,21 @@ public class PelaajalistaController {
     private TableColumn<Pelaaja, String> TableColumnNimi;
 
     @FXML
+    private TableColumn<Pelaaja, Integer> TableColumnVoitot;
+
+    @FXML
+    private TableColumn<Pelaaja, Integer> TableColumnTappiot;
+
+    @FXML
+    private TableColumn<Pelaaja, Integer> TableColumnKokonaispiste;
+
+    @FXML
     void initialize() {
         TableColumnNro.setCellValueFactory(new PropertyValueFactory<Pelaaja, Integer>("pelinro"));
         TableColumnNimi.setCellValueFactory(new PropertyValueFactory<Pelaaja, String>("nimi"));
+        TableColumnVoitot.setCellValueFactory(new PropertyValueFactory<Pelaaja, Integer>("voitto"));
+        TableColumnTappiot.setCellValueFactory(new PropertyValueFactory<Pelaaja, Integer>("tappio"));
+        TableColumnKokonaispiste.setCellValueFactory(new PropertyValueFactory<Pelaaja, Integer>("kokonaispisteet"));
         Integer tid = TulevatTurnauksetController.getTurnaus_id();
         System.out.println("Turnaus: " + tid); 
         Turnaus t = Tietokanta.haeTurnaus(tid); 
@@ -39,6 +51,9 @@ public class PelaajalistaController {
         ObservableList<Pelaaja> pelaajatO = FXCollections.observableArrayList();
         System.out.println(pelaajat); 
         for (Pelaaja p : pelaajat) {
+            p.setTappio(Tietokanta.HaeTappiot(tid, p.getId()));
+            p.setKokonaispisteet(Tietokanta.haePelaajanPisteet(p.getId()));
+            p.setVoitto(Tietokanta.haeVoitot(p.getId()));
             pelaajatO.add(p); 
         }
         System.out.println(pelaajatO);

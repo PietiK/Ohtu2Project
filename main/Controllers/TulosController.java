@@ -69,18 +69,18 @@ public class TulosController {
         System.out.println(ottelut.size());
         kierros_id = TulevatTurnauksetController.getKierrosId();
         kierros_nro = Tietokanta.haeTurnauksenKierrokset(turnauksen_id).size();
-        TableColumn1.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("ottelu_id"));
+        //TableColumn1.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("ottelu_id"));
         TableColumnPelaaja1.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja1"));
         TableColumnP1pisteet.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("p1pisteet"));;
         TableColumnPelaaja2.setCellValueFactory(new PropertyValueFactory<Ottelu, String>("Pelaaja2"));
         TableColumnP2pisteet.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("p2pisteet"));;
         Voittaja.setCellValueFactory(new PropertyValueFactory<Ottelu,String>("Voittaja"));
 
-        if (kierros_nro > 2){
-            KierrosTxt.setText("Kierroksen "+kierros_nro+" tulokset");
-        } else {
-            KierrosTxt.setText("Kierrosten 1 ja 2 tulokset");
-        }
+        //if (kierros_nro > 2){
+          //  KierrosTxt.setText("Kierroksen "+kierros_nro+" tulokset");
+        //} else {
+            KierrosTxt.setText("Tulokset");//Eikös tähän tuu lopulta kaikki tulokset niin siks tää teksti
+        //}
 
         for (Ottelu ottelu : ottelut){
                 ottelu.noollaaPisteet();

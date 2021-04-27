@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class Ottelu {
     private int ottelu_id; 
-    private int kierros; 
+    private int kierros;
+    private int kierrosluku;
     private Pelaaja pelaaja1;
     private Pelaaja pelaaja2;
     private int p1pisteet; 
@@ -14,7 +15,14 @@ public class Ottelu {
     Scanner skanneri = new Scanner(System.in);
     private String voittaja;
 
-    
+    public void setKierrosluku(int numero){
+        this.kierrosluku = numero;
+    }
+
+    public int getKierrosluku(){
+        return this.kierrosluku;
+    }
+
     public Ottelu(Pelaaja eka, Pelaaja toka, int kierros) {
         this.kierros = kierros; 
         this.pelaaja1 = eka;

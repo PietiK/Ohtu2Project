@@ -87,6 +87,9 @@ public class PisteenlaskuController {
     @FXML
     void initialize() {
       System.out.println("ottelu =" + ottelu.getID());
+      TableColumn1.setText(ottelu.getPelaaja1().getNimi());
+      TableColumn2.setText(ottelu.getPelaaja2().getNimi());
+
       Minuutit.setText("60");
       Sekunnit.setText("00");
       kesto = Duration.minutes(60);   //Ottelun kesto

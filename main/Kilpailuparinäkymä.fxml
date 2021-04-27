@@ -6,30 +6,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="558.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controllers.KilpailupariController">
    <children>
-      <Text fx:id="EnsimmäinenTxt" layoutX="154.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ensimmäinen kierros" wrappingWidth="234.47412109375">
-         <font>
-            <Font name="Tahoma" size="24.0" />
-         </font>
-      </Text>
-      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="110.0" layoutY="115.0" prefHeight="336.0" prefWidth="380" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="115.0">
+      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="57.0" layoutY="71.0" prefHeight="380.0" prefWidth="417.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="84.0" AnchorPane.topAnchor="71.0">
         <columns>
-         <TableColumn fx:id="TableColmun0" prefWidth="80" text="Kierros" />
-          <TableColumn fx:id="TableColmun1" prefWidth="150" text="Pelaaja1" />
-          <TableColumn fx:id="TableColumn2" prefWidth="150" text="Pelaaja2" />
+         <TableColumn fx:id="TableColmun0" prefWidth="90.0" text="Kierros" />
+          <TableColumn fx:id="TableColmun1" prefWidth="110.0" text="Pelaaja1" />
+          <TableColumn fx:id="TableColumn2" prefWidth="110.0" text="Pelaaja2" />
+            <TableColumn fx:id="TableColumnVoittaja" prefWidth="110.0" text="Voittaja" />
         </columns>
       </TableView>
       <Button fx:id="tuloksetbutton" layoutX="144.0" layoutY="479.0" mnemonicParsing="false" onAction="#Tulokset" prefHeight="29.0" prefWidth="89.0" text="Tulokset">
          <font>
-            <Font name="Tahoma" size="13.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <Button fx:id="PelaajalistaBtn" layoutX="244.0" layoutY="479.0" mnemonicParsing="false" onAction="#Pelaajat" prefHeight="29.0" prefWidth="89.0" text="Pelaajalista">
          <font>
-            <Font name="Tahoma" size="13.0" />
+            <Font name="Tahoma" size="14.0" />
          </font>
       </Button>
       <VBox layoutX="47.0" layoutY="479.0" prefHeight="38.0" prefWidth="83.0">
