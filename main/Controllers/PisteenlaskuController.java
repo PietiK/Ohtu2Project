@@ -159,27 +159,34 @@ public class PisteenlaskuController {
       String p1p = p1Label.getText(); 
       String p2p = p2Label.getText(); 
       int p1pis = Integer.parseInt(p1p);
-      int p2pis = Integer.parseInt(p2p); 
-      
-      if (Integer.parseInt(p1p) > Integer.parseInt(p2p)) {
-        voittaja = pelaaja_1;
-        häviäjä = pelaaja_2; 
-      } else { voittaja = pelaaja_2; häviäjä = pelaaja_1; }
-      int turnausid = TulevatTurnauksetController.getTurnaus_id();
+      int p2pis = Integer.parseInt(p2p);
 
-      //int tappiot = Tietokanta.HaeTappiot(turnausid, häviäjä.getId()); 
-      System.out.println("Tappiot: " + Tietokanta.HaeTappiot(turnausid, häviäjä.getId()));
-      Tietokanta.LisaaTappio(turnausid, häviäjä.getId());
-      System.out.println("Lisatty tappio: " + Tietokanta.HaeTappiot(turnausid, häviäjä.getId())); 
-      //Tietokanta.LisaaTappio(turnausid, häviäjä.getId(), lisatty);
-      //int lisatty = tappiot +1; 
+      if (p1pis < 60 && p2pis < 60) {
+          Estä();
+      } else {
+          if (Integer.parseInt(p1p) > Integer.parseInt(p2p)) {
+              voittaja = pelaaja_1;
+              häviäjä = pelaaja_2;
+          } else {
+              voittaja = pelaaja_2;
+              häviäjä = pelaaja_1;
+          }
+          int turnausid = TulevatTurnauksetController.getTurnaus_id();
 
-      Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
-      Tietokanta.LisaaTPisteita(turnausid, pelaaja_1.getId(), p1pis);
-      Tietokanta.LisaaTPisteita(turnausid, pelaaja_2.getId(), p2pis); 
+          //int tappiot = Tietokanta.HaeTappiot(turnausid, häviäjä.getId());
+          System.out.println("Tappiot: " + Tietokanta.HaeTappiot(turnausid, häviäjä.getId()));
+          Tietokanta.LisaaTappio(turnausid, häviäjä.getId());
+          System.out.println("Lisatty tappio: " + Tietokanta.HaeTappiot(turnausid, häviäjä.getId()));
+          //Tietokanta.LisaaTappio(turnausid, häviäjä.getId(), lisatty);
+          //int lisatty = tappiot +1;
 
-      Stage window = (Stage) TableView.getScene().getWindow(); 
-      window.close();
+          Tietokanta.OttelunVoittaja(ottelu.getID(), voittaja.getId());
+          Tietokanta.LisaaTPisteita(turnausid, pelaaja_1.getId(), p1pis);
+          Tietokanta.LisaaTPisteita(turnausid, pelaaja_2.getId(), p2pis);
+
+          Stage window = (Stage) TableView.getScene().getWindow();
+          window.close();
+      }
     }
 
     public void aloitaKello(ActionEvent actionEvent) { // aloittaa pelin kellon
@@ -332,6 +339,17 @@ public class PisteenlaskuController {
         Stage window = (Stage) TableView.getScene().getWindow(); 
         window.close();
       }
+    }
+
+    private void Estä() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setContentText("Ottelu ei ole vielä päättynyt!");
+        alert.setTitle("Ottelu kesken");
+        alert.setHeaderText("");
+        alert.showAndWait();
+        if(alert.getResult() == ButtonType.OK){
+            alert.close();;
+        }
     }
 
 }
