@@ -183,7 +183,6 @@ public class MuokkaaController {
                 //System.out.println("OK");
             } else {
                 Tietokanta.LuoTurnauksenPelaajalista(pelaaja, turnaus_id);
-                System.out.println("OK");
             }
         }
         Tietokanta.PaivitaTurnaus(uusiturnaus);

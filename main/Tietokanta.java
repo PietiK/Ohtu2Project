@@ -665,7 +665,7 @@ public class Tietokanta {
               e.printStackTrace();
           }
       }
-      else System.out.println("EI adsadf");
+      else System.out.println("EI");
     }
 
     /*
@@ -705,13 +705,11 @@ public static boolean OnkoVoittajaa(int id) {
     Statement stmt = null; 
     boolean voitto = false; 
     try {
-        System.out.println("ONKO SITÄ VOITTAJAA");
         Connection connect = connect();
         stmt = connect.createStatement();
         ResultSet rs = stmt.executeQuery(query);
         while (rs.next()) {
             if (rs.getInt("voittaja") == 0) {
-                System.out.println("NOLLALTA NÄYTTÄÄ");
                 voitto = false; 
             } else { voitto = true; }
         }
@@ -1000,7 +998,6 @@ public static int haeKierrosID() {
                 k.setTurnaus(Tietokanta.haeTurnaus(rs.getInt("turnaus_id")));
                 kierrokset.add(k); 
             }
-            System.out.println("TURNAUKSEN KIERROKSET " + kierrokset);
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();

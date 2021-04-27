@@ -111,12 +111,8 @@ public class TulevatTurnauksetController {
     public void Pelaa(ActionEvent event) throws IOException {
 
         turnaus = TableView.getSelectionModel().getSelectedItem();
-        System.out.println(turnaus.getId());
         ArrayList<Kierros> turnauksenkierrokset = Tietokanta.haeTurnauksenKierrokset(turnaus.getId());
-        System.out.println("SKKRKRK" + turnauksenkierrokset);
-        for(Kierros k : turnauksenkierrokset){
-            System.out.print(" KIEKKA " + k.getID());
-        }
+
         /*
         Tässä testataan, onko turnaus jo aloitettu aiemmin, eli onko sille luotu vielä kierroksia.
         Jos ei, niin luodaan ensimmäinen kierros sekä sen ottelut. Tätä voidaan käyttää myös
@@ -159,7 +155,6 @@ public class TulevatTurnauksetController {
                 Tietokanta.LisaaOttelu(ot); //lisätaan ottelut tietokantaan.
                 ot.setID(Tietokanta.HaeUusinOtteluID()); //haetaan äsken lisätyn ottelut ID
                 Tietokanta.PelaajatOtteluun(ot); //lisätään pelaajat otteluun.
-                System.out.println(ot.toString());
             }
 
             FXMLLoader loader = new FXMLLoader();
@@ -178,9 +173,6 @@ public class TulevatTurnauksetController {
             voi etsiä oikeat ottelut. 
             Tässä pitää todnäk tehdä muutakin mutta nyt en muista enää mitä  
             */
-            System.out.println("TÄÄLLÄKÖ OLLAAN??");
-            //TODO
-            //Tietojen etsiminen tietokannasta??
             ArrayList<Integer> k = new ArrayList<Integer>(); 
             for (Kierros ki : turnauksenkierrokset) {
                 k.add(ki.getJnum());
@@ -188,10 +180,8 @@ public class TulevatTurnauksetController {
             }
             Integer max = Collections.max(k); 
             for (Kierros kie : turnauksenkierrokset) {
-                System.out.println("KIERROKSIA JOO " + kie.getID());
                 if (kie.getJnum() == max) {
                     setKierros_id(kie.getID());
-                    System.out.println("KIERROKSEN ID ON " + getKierrosId());
                 }
             }
             Tietokanta.TurnausKäyntiin(turnaus.getId());
@@ -342,7 +332,6 @@ public class TulevatTurnauksetController {
                 }
             }
         } else {
-          System.out.println("Jqwe");
           return Pelaajataulu.jaaSeuraavaKierros(turnauksenpelaajat, 
             kierrokset.get(kierrokset.size()-1).getJnum(), 
             turnaus.getId());

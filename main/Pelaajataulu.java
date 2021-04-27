@@ -100,19 +100,15 @@ public class Pelaajataulu {
         ArrayList<Pelaaja> temp = new ArrayList<>(pelaajat);
         Collections.sort(temp, Pelaaja.sijoitusNro);
         for (int j = 0; j < temp.size(); j++ ) {
-            System.out.println("Sijoitus: " + sijoitus + " | " + temp.get(j).toString());
             sijoitus++;
         }
 
         if (pudonneet.size() > 0){
-            System.out.println("Poissa pelistä");
             for (Pelaaja p : pudonneet) {
-                System.out.println("Sijoitus: " + sijoitus + " | " + p.toString());
                 sijoitus++;
             }
         }
         temp.clear();
-        System.out.println("");
     }
     
     //Palauttaa kaikki pelaajat
@@ -134,10 +130,7 @@ public class Pelaajataulu {
         //kierros.clear();
         List<Pelaaja> ylimaarainen = new ArrayList<>();
         Pelaaja temp = pelaajat.get(0);
-        //System.out.println(pelaajat.size());
-        //System.out.println("testi " + pelaajat.get(0).getPelattu());
         if (pelaajat.size() > 0 && pelaajat.get(0).getPelattu() == null) {
-            System.out.println("a");
             for (int i = 0; i < pelaajat.size(); i++){
                 for (int j = 0; j < pelaajat.size(); j++) {
                     // Tarkistetaan ovatko pelaajat pelanneet toisiaan vastaan
@@ -156,7 +149,6 @@ public class Pelaajataulu {
             }
         }
         else if (pelaajat.size() % 2 != 0 && pelaajat.get(0).getPelattu().size() == 1) {
-            System.out.println("b");
             for (int i = 0; i < pelaajat.size(); i++){
                 for (int j = 0; j < pelaajat.size(); j++) {
                     // Tarkistetaan ovatko pelaajat pelanneet toisiaan vastaan
@@ -179,7 +171,6 @@ public class Pelaajataulu {
             }
         }
         else if (pelaajat.size() > 1 && pelaajat.get(0).getPelattu().size() > 2) {
-            System.out.println("c");
             for (int i = 0; i < pelaajat.size(); i++){
                 for (int j = 0; j < pelaajat.size(); j++) {
                     // Tarkistetaan ovatko pelaajat pelanneet toisiaan vastaan
@@ -239,9 +230,6 @@ public class Pelaajataulu {
                 p.addPelattu(Tietokanta.getPelaaja(i));
               //}
             }
-            System.out.println("Tää on pelannu " + p.getPelinro());
-            for(Pelaaja a : p.getPelattu())
-              System.out.print("Tätä vastaa: " + a.getPelinro());
           }
 
           //Katsoo onko pelaajia joilla on muita vähemmän otteluita
