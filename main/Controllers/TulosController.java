@@ -28,7 +28,7 @@ public class TulosController {
     private Text KierrosTxt;
 
     @FXML
-    private TableView<Ottelu> TableView;
+    private TableView<Ottelu> TableViewTulos;
 
     @FXML
     private TableColumn<Ottelu,Integer> TableColumn1;
@@ -106,7 +106,7 @@ public class TulosController {
         }
         */
 
-        TableView.setItems(ottelut);
+        TableViewTulos.setItems(ottelut);
     }
 
 }

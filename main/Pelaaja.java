@@ -87,11 +87,9 @@ public class Pelaaja {
     // lisätään pelaajalle pisteitä
     //jos pisteet ylittävät 60, asetetaan pisteiksi 60
     public void setPisteet(int pisteet) {
-        if(this.pisteet + pisteet >= 60){
-            this.pisteet = 60;
-        } else {
+
             this.pisteet += pisteet;
-        }
+
     }
 
     public int getKokonaispisteet() {

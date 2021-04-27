@@ -13,7 +13,7 @@
             <Font name="Tahoma" size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="74.0" layoutY="127.0" prefHeight="383.0" prefWidth="469.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="127.0">
+      <TableView fx:id="TableViewTulos" blendMode="OVERLAY" layoutX="74.0" layoutY="127.0" prefHeight="383.0" prefWidth="469.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="127.0">
         <columns>
           <TableColumn fx:id="TableColumnPelaaja1" prefWidth="90.0" text="Pelaaja 1" />
             <TableColumn fx:id="TableColumnP1pisteet" prefWidth="104.0" text="Pelaaja 1 pisteet" />
