@@ -224,13 +224,15 @@ public class KilpailupariController{
 
     @FXML
     public void SeuraavaKierros(ActionEvent event) throws IOException {
-        int kid = TulevatTurnauksetController.getKierrosId();
+        //int kid = TulevatTurnauksetController.getKierrosId();
+        int kid = Tietokanta.HaeSuurimmankierroksenID(TulevatTurnauksetController.getTurnaus_id());
         ArrayList<Integer> ottelut = Tietokanta.getKierroksenOttelut(kid);
-        System.out.println("SEURAAVA");
+        System.out.println("SEURAAVA" + ottelut);
         boolean valmis = true; 
         for (Integer i : ottelut) {
             if (!Tietokanta.OnkoVoittajaa(i)) {
-                valmis = false; 
+                valmis = false;
+                System.out.println("EI VOITTAJAA");
             }
         }
         if (!valmis) {

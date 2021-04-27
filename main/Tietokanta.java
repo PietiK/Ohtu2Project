@@ -705,12 +705,13 @@ public static boolean OnkoVoittajaa(int id) {
     Statement stmt = null; 
     boolean voitto = false; 
     try {
+        System.out.println("ONKO SITÄ VOITTAJAA");
         Connection connect = connect();
         stmt = connect.createStatement();
         ResultSet rs = stmt.executeQuery(query);
-        
         while (rs.next()) {
             if (rs.getInt("voittaja") == 0) {
+                System.out.println("NOLLALTA NÄYTTÄÄ");
                 voitto = false; 
             } else { voitto = true; }
         }
