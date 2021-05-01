@@ -331,7 +331,7 @@ public class Tietokanta {
   }
 
     //Hakee pelaajan jonka id on id
-    public static Pelaaja getPelaaja(int id) {  
+    public static Pelaaja getPelaaja(int id) {
       PreparedStatement stmt = null;
       PreparedStatement nroStmt = null;
         String query = "SELECT pelaaja.pelaaja_id, pelaaja.nimi, pelinro From pelaaja"+
@@ -1200,5 +1200,55 @@ public static int haeKierrosID() {
         }
         return pisteet;
     }
+
+    public static Ottelu haeOttelunPelaajat(int ottelu_id){
+        String query = "SELECT pelaaja_id FROM pelaaja_ottelu WHERE ottelu_id = " + ottelu_id;
+        Ottelu temp = new Ottelu();
+        Pelaaja pel1 = new Pelaaja();
+        Pelaaja pel2 = new Pelaaja();
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                pel1.setId(rs.getInt("pelaaja_id"));
+                System.out.println("PEL ! " + pel1.getId());
+            }
+            if(rs.next()){
+                pel2.setId(rs.getInt("pelaaja_id"));
+                System.out.println("PEL 2 " + pel2.getId());
+            }
+            temp.setPelaaja1(pel1);
+            temp.setPelaaja2(pel2);
+            conn.close();
+            return temp;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+
+    public static String getPelaajanNimi(int pelaaja_id){
+        String query = "SELECT nimi FROM pelaaja WHERE pelaaja_id = " + pelaaja_id;
+        String nimi = null;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                nimi = rs.getString("nimi");
+            }
+            conn.close();
+            return nimi;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nimi;
+    }
+
 
 }

@@ -167,7 +167,6 @@ public class MuokkaaController {
 
         for (Pelaaja pe : temp) {
             if(pe.getId()==0){
-                System.out.println("OK");
                 Tietokanta.LisaaPelaaja(pe);
                 int pid = Tietokanta.HaeUusinPelaajaID();
                 pe.setId(pid);

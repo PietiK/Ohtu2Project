@@ -1,5 +1,6 @@
 package main.Controllers;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,9 +10,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import main.Kierros;
 import main.Ottelu;
 import main.Pelaaja;
 import main.Tietokanta;
+
+import java.util.ArrayList;
 
 
 public class TulosController {
@@ -65,7 +69,25 @@ public class TulosController {
     @FXML
     void initialize() {
         turnauksen_id = TulevatTurnauksetController.getTurnaus_id();
-        ottelut = KilpailupariController.get_ottelut();
+        //Haetaan kaikki turnauksen ottelut
+        //Ensin pitää hakea kierroksien ottelut, koska turnaus_id:itä ei ole otteluntaulussa tietokannassa
+        ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnauksen_id);
+        ArrayList<Integer> kierrosidt = new ArrayList<>();
+        for(Kierros k : kierrokset){
+            kierrosidt.add(k.getID());
+            System.out.println("Kierrosid " + k.getID());
+        }
+        ArrayList<Integer> otteluidt = new ArrayList<>();
+        for(int kid : kierrosidt){
+             otteluidt.addAll(Tietokanta.getKierroksenOttelut(kid));
+        }
+        ObservableList<Ottelu> ottelut = FXCollections.observableArrayList();
+        for(int i=0; i<otteluidt.size(); i++) {
+            ottelut.add(Tietokanta.haeOttelunPelaajat(otteluidt.get(i)));
+            ottelut.get(i).setID(otteluidt.get(i));
+        }
+
+        //ottelut = KilpailupariController.get_ottelut();
         System.out.println(ottelut.size());
         kierros_id = TulevatTurnauksetController.getKierrosId();
         kierros_nro = Tietokanta.haeTurnauksenKierrokset(turnauksen_id).size();
@@ -85,8 +107,12 @@ public class TulosController {
         for (Ottelu ottelu : ottelut){
                 ottelu.noollaaPisteet();
                 ottelu.LisääPisteitä1(Tietokanta.get_pelaaja_ottelu_pisteet(ottelu.getPelaaja1().getId(),ottelu.getID()));
-                //System.out.println(Tietokanta.get_pelaaja_ottelu_pisteet(ottelu.getPelaaja1().getId(),ottelu.getID()));
                 ottelu.LisääPisteitä2(Tietokanta.get_pelaaja_ottelu_pisteet(ottelu.getPelaaja2().getId(),ottelu.getID()));
+
+                //Etsitään pelaajille nimet
+                ottelu.getPelaaja1().setNimi(Tietokanta.getPelaajanNimi(ottelu.getPelaaja1().getId()));
+                ottelu.getPelaaja2().setNimi(Tietokanta.getPelaajanNimi(ottelu.getPelaaja2().getId()));
+
                 int i = Tietokanta.getOttelunVoittaja(ottelu.getID());
                 //System.out.println(i);
                 if(ottelu.getPelaaja1().getId() == i){
