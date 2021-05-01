@@ -58,6 +58,9 @@ public class PisteenlaskuController {
     private Button LisääBtn2;
 
     @FXML
+    private Button PeruutaBtn;
+
+    @FXML
     private TextField TextField2;
 
     @FXML
@@ -73,6 +76,7 @@ public class PisteenlaskuController {
     @FXML private Label Sekunnit;
     @FXML private Label taukominuutit;
     @FXML private Label taukosekunnit;
+    @FXML private Label taukokaksoispiste;
     @FXML private Button muutaAikaaBtn;
     @FXML private Button KelloBtn;
     private Duration kesto;
@@ -109,10 +113,12 @@ public class PisteenlaskuController {
               taukoajastin.start();
               if (TaukoBtn.isSelected()) {
                   taukominuutit.setVisible(true);
+                  taukokaksoispiste.setVisible(true);
                   taukosekunnit.setVisible(true);
                   TaukoBtn.setText("Lopeta tauko");
               } else {
                   taukominuutit.setVisible(false);
+                  taukokaksoispiste.setVisible(false);
                   taukosekunnit.setVisible(false);
                   TaukoBtn.setText("Tauko");
                   taukolaskuri++;
@@ -290,6 +296,7 @@ public class PisteenlaskuController {
             taukoajastin.stop(); 
             TaukoBtn.setSelected(false);
             taukominuutit.setVisible(false);
+            taukokaksoispiste.setVisible(false);
             taukosekunnit.setVisible(false);
             taukolaskuri++;
             //Jos ollut jo kaksi taukoa niin poistetaan tauko-nappi
@@ -353,6 +360,12 @@ public class PisteenlaskuController {
         if(alert.getResult() == ButtonType.OK){
             alert.close();;
         }
+    }
+
+    @FXML
+    private void peruutaPeli(ActionEvent event) throws IOException{
+        Stage stage = (Stage) PeruutaBtn.getScene().getWindow();
+        stage.close();
     }
 
 }

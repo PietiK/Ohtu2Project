@@ -25,7 +25,8 @@
       </font>
     </Button>
     <Label fx:id="taukominuutit" layoutX="393" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label>
-    <Label fx:id="taukosekunnit" layoutX="434" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label> 
+      <Label fx:id="taukokaksoispiste" visible="false" layoutX="425.0" layoutY="74.0" text=":"><font><Font name="Arial" size="30" /></font></Label>
+      <Label fx:id="taukosekunnit" layoutX="434" layoutY="74.0"><font><Font name="Arial" size="30" /></font></Label>
       <TableView fx:id="TableView" blendMode="OVERLAY" layoutX="40.0" layoutY="153.0" prefHeight="244.0" AnchorPane.bottomAnchor="157.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="153.0">
         <columns>
           <TableColumn fx:id="TableColumn1" prefWidth="230.0" text="Pelaaja 1 pisteet" />
@@ -56,7 +57,7 @@
          </font>
       </ToggleButton>
       <TextField fx:id="TextField2" layoutX="336.0" layoutY="456.0" prefHeight="25.0" prefWidth="114.0" />
-      <Button fx:id="PeruutaBtn" layoutX="40.0" layoutY="500.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Peruuta" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="423.0">
+      <Button fx:id="PeruutaBtn" onAction="#peruutaPeli" layoutX="40.0" layoutY="500.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Peruuta" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="423.0">
          <font>
             <Font name="Tahoma" size="13.0" />
          </font>
