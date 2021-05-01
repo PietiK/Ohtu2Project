@@ -70,12 +70,11 @@ public class TulosController {
     void initialize() {
         turnauksen_id = TulevatTurnauksetController.getTurnaus_id();
         //Haetaan kaikki turnauksen ottelut
-        //Ensin pitää hakea kierroksien ottelut, koska turnaus_id:itä ei ole otteluntaulussa tietokannassa
+        //Ensin pitää hakea kierroksien ottelut, koska turnaus_id:itä ei ole ottelutaulussa tietokannassa
         ArrayList<Kierros> kierrokset = Tietokanta.haeTurnauksenKierrokset(turnauksen_id);
         ArrayList<Integer> kierrosidt = new ArrayList<>();
         for(Kierros k : kierrokset){
             kierrosidt.add(k.getID());
-            System.out.println("Kierrosid " + k.getID());
         }
         ArrayList<Integer> otteluidt = new ArrayList<>();
         for(int kid : kierrosidt){
@@ -88,7 +87,6 @@ public class TulosController {
         }
 
         //ottelut = KilpailupariController.get_ottelut();
-        System.out.println(ottelut.size());
         kierros_id = TulevatTurnauksetController.getKierrosId();
         kierros_nro = Tietokanta.haeTurnauksenKierrokset(turnauksen_id).size();
         //TableColumn1.setCellValueFactory(new PropertyValueFactory<Ottelu, Integer>("ottelu_id"));

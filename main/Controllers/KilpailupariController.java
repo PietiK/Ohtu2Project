@@ -285,6 +285,7 @@ public class KilpailupariController{
             } else {
                 Pelaaja voittaja = pelaajatjäljellä.get(0); 
                 TurnausOhi(voittaja);
+                Tietokanta.setTurnauksenVoittaja(turnaus.getId(), voittaja.getId());
                 Tietokanta.TurnausEiKäyntiin();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/main/TulevatTurnaukset.fxml"));

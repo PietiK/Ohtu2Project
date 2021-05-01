@@ -210,7 +210,7 @@ public class Tietokanta {
     }
     public static ObservableList<Turnaus> haeTurnaukset() {
         Statement stmt = null;
-        String query = "Select turnaus_id, nimi, aloituspvm, lopetuspvm From turnaus";
+        String query = "Select turnaus_id, nimi, aloituspvm, lopetuspvm, voittaja From turnaus";
         List<Turnaus> lista = new ArrayList<>();
         try {
             Connection connect = connect();
@@ -222,6 +222,10 @@ public class Tietokanta {
                 t.setNimi(rs.getString("nimi"));
                 t.setAloituspvm(rs.getString("aloituspvm"));
                 t.setLopetuspvm(rs.getString("lopetuspvm"));
+                int voittaja = rs.getInt("voittaja");
+                if(voittaja != 0) {
+                    t.setVoittaja(getPelaajanNimi(voittaja));
+                }
                 lista.add(t);
             }
             connect.close();
@@ -1250,5 +1254,19 @@ public static int haeKierrosID() {
         return nimi;
     }
 
+    public static void setTurnauksenVoittaja(int turnaus_id, int pelaaja_id){
+        String query = "UPDATE turnaus SET voittaja = " + pelaaja_id +
+                " WHERE turnaus_id = " + turnaus_id;
+        try {
+            Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

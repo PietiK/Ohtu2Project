@@ -11,6 +11,7 @@ public class Turnaus {
 	private String pelityyppi;
 	private String aloituspvm;
 	private String lopetuspvm;
+	private String voittaja;
 	private ArrayList<Kierros> kierrokset;
 	private Map<Pelaaja, Integer> tappiot;
 	private Pelaajataulu pelaajat = new Pelaajataulu();
@@ -80,6 +81,14 @@ public class Turnaus {
 
 	public void setLopetuspvm(String accessibleText) {
     this.lopetuspvm = accessibleText;
+	}
+
+	public void setVoittaja(String nimi){
+		this.voittaja = nimi;
+	}
+
+	public String getVoittaja(){
+		return this.voittaja;
 	}
 
 	public Map<Pelaaja, Integer> getPelaajat() {

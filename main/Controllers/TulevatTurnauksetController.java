@@ -58,7 +58,7 @@ public class TulevatTurnauksetController {
     private TableView<Turnaus> TableView;
 
     @FXML
-    private TableColumn<Turnaus, String> TableColumnPelityyppi;
+    private TableColumn<Turnaus, String> TableColumnVoittaja;
 
     @FXML
     private TableColumn<Turnaus, String> TableColumnTurnauksenNimi;
@@ -86,6 +86,7 @@ public class TulevatTurnauksetController {
         TableColumnTurnauksenNimi.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("nimi"));
         TableColumnAloituspäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("aloituspvm"));
         TableColumnLopetuspäivämäärä.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("lopetuspvm"));
+        TableColumnVoittaja.setCellValueFactory(new PropertyValueFactory<Turnaus, String>("voittaja"));
         TableView.setItems(Tietokanta.haeTurnaukset());
         TableView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (TableView.getSelectionModel().getSelectedItem() != null) {
